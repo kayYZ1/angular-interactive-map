@@ -37,11 +37,13 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.objectList$.subscribe(data => this.objects = data);
+    this.tripRoad$.subscribe(data => this.road = data)
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     this.initMarkers();
+    this.drawLines();
   }
 
   initMarkers() {
@@ -50,5 +52,11 @@ export class MapComponent implements OnInit {
       marker.addTo(this.map).bindPopup(o.title)
       this.markers.push(marker)
     }
+  }
+
+  drawLines() {
+    Leaflet.polyline([[50.673329439288906, 17.926613371482905], [50.66655956910213, 17.922351760468285]], {
+      color: 'red'
+    }).addTo(this.map)
   }
 }
