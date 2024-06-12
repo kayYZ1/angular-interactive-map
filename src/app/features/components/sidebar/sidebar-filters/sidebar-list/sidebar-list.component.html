@@ -1,0 +1,19 @@
+<main class="object-list">
+  @for
+  (object of objects |
+  searchFilter: query |
+  criteriaFilter: criteria |
+  paginate: { itemsPerPage: 4, currentPage: page }; track object.id) {
+  <li (click)="onClick(object)">
+    <img [src]="object.imgUrl" alt="object.id" class="object-img" loading="lazy" />
+    <div class="object-content">
+      <p class="object-title">{{ object.title }}</p>
+      <p class="object-description">{{ object.description }}</p>
+    </div>
+  </li>
+  }
+  @empty {
+  <li class="object-empty">Brak dopasowań</li>
+  }
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</main>

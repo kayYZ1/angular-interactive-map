@@ -1,0 +1,23 @@
+<header class="header-block">
+  <div class="header-brand"></div>
+  <nav class="navbar">
+    <div class="navbar-list">
+      <span class="navbar-list-item">
+        <fa-icon [icon]="faLocationDot"></fa-icon>
+        <a class="navbar-list-item-text">Mapa</a>
+      </span>
+      <span class="navbar-list-item" (click)="changeSidebarView('search')">
+        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        <a class="navbar-list-item-text">Szukaj</a>
+      </span>
+      <span class="navbar-list-item" (click)="changeSidebarView('trip')">
+        <fa-icon [icon]="faPersonWalking"></fa-icon>
+        <a class="navbar-list-item-text">Wycieczka</a>
+      </span>
+      <span class="navbar-list-item" (click)="changeSidebarView('save')">
+        <fa-icon [icon]="faFloppyDisk"></fa-icon>
+        <a class="navbar-list-item-text">Zapisz</a>
+      </span>
+    </div>
+  </nav>
+</header>

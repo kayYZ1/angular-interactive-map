@@ -1,0 +1,43 @@
+.object-list {
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  list-style-type: none;
+  align-items: center;
+}
+
+li:nth-child(odd) {
+  background-color: #eee;
+}
+
+.object-img {
+  width: 10vh;
+  height: 7vh;
+  padding: 1vh;
+}
+
+.object-content {
+  justify-content: center;
+  padding-bottom: 2vh;
+}
+
+.object-title {
+  font-weight: 500;
+  font-size: large;
+  color: #00adef;
+}
+
+.object-description {
+  font-weight: 300;
+  font-size: smaller;
+}
+
+.object-empty {
+  justify-content: center;
+  font-size: larger;
+}

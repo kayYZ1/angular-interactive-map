@@ -1,0 +1,31 @@
+<main>
+  <div class="icon-input">
+    <fa-icon [icon]="faLocationDot"></fa-icon>
+    <input placeholder="Lokalizacja" type="text" disabled />
+  </div>
+  <div class="icon-input">
+    <fa-icon [icon]="faSearch"></fa-icon>
+    <input [placeholder]="searchPlaceholder" type="text" [formControl]="searchQuery" />
+    @if (searchQuery.value && searchQuery.value.length > 2) {
+    <fa-icon [icon]="faClose" class="icon-close" (click)="resetQuery()"></fa-icon>
+    }
+  </div>
+  <div class="icon-input">
+    <fa-icon [icon]="faList"></fa-icon>
+    <div class="categories-input">Kategoria</div>
+    <fa-icon [icon]="isCollapsed ? faAngleUp : faAngleDown " class="icon-close" (click)="onToggle()"></fa-icon>
+  </div>
+  <div class="collapsible">
+    <div class="content" [class.collapsed]="isCollapsed">
+      <form>
+        @for (category of categoriesList; track category) {
+        <label>
+          <input type="checkbox" value="category" (click)="addCriteria(category)">
+          <p class=" radio-text">{{ category }}</p>
+        </label>
+        }
+      </form>
+    </div>
+  </div>
+  <app-sidebar-list [query]="searchQuery.value" [criteria]="searchCriteria"></app-sidebar-list>
+</main>
