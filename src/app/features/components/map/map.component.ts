@@ -53,7 +53,7 @@ export class MapComponent implements OnInit {
       this.markers.push(marker)
     }
   }
-
+  //leaflet routing machine
   drawLines() {
     Leaflet.polyline([[50.673329439288906, 17.926613371482905], [50.66655956910213, 17.922351760468285]], {
       color: 'red'

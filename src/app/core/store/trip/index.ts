@@ -1,5 +1,5 @@
 import { createAction, createReducer, props, on, createFeatureSelector, createSelector } from "@ngrx/store";
-import { IObject, ITrip } from "../../ts/interfaces";
+import { IObject } from "../../ts/interfaces";
 
 interface TripState {
   places: IObject[],
