@@ -17,17 +17,17 @@ export class AppComponent {
   toggleSidebarView(sidebarView: string) {
     switch (sidebarView) {
       case 'search':
-        this.currentView = 'search'
-        break
+        this.currentView = 'search';
+        break;
       case 'trip':
-        this.currentView = 'trip'
-        break
+        this.currentView = 'trip';
+        break;
       case 'save':
-        this.currentView = 'save'
-        break
+        this.currentView = 'save';
+        break;
       default:
-        this.currentView = 'map'
-        break
+        this.currentView = 'map';
+        break;
     }
   }
 }

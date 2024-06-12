@@ -41,3 +41,7 @@ li:nth-child(odd) {
   justify-content: center;
   font-size: larger;
 }
+
+.pagination-controls {
+  justify-content: center;
+}
