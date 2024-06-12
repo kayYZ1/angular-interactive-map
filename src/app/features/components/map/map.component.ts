@@ -1,10 +1,10 @@
+import * as Leaflet from 'leaflet';
 import { Component, OnInit, inject } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import * as Leaflet from 'leaflet';
 import { Store } from '@ngrx/store';
 import { IObject } from '../../../core/ts/interfaces';
 import { selectObjects } from '../../../core/store/objects';
-import { selectTripRoad } from '../../../core/store/trip';
+import { selectRoute } from '../../../core/store/trip';
 
 @Component({
   selector: 'app-map',
@@ -17,14 +17,15 @@ export class MapComponent implements OnInit {
   private readonly store = inject(Store);
 
   objectList$ = this.store.select(selectObjects);
-  tripRoad$ = this.store.select(selectTripRoad);
+  route$ = this.store.select(selectRoute);
 
   objects: IObject[] = [];
-  road: [number, number][] = [];
+  route: [number, number][] = [];
   page = 1;
 
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
+  polyline!: Leaflet.Polyline;
   options = {
     layers: [
       Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -40,22 +41,36 @@ export class MapComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.objectList$.subscribe((data) => (this.objects = data));
-    this.tripRoad$.subscribe((data) => (this.road = data));
+    this.objectList$.subscribe((data) => {
+      this.objects = data;
+      if (this.map) {
+        this.updateMap();
+      }
+    });
+
+    this.route$.subscribe((data) => {
+      this.route = data;
+      if (this.map) {
+        this.updatePolyline();
+      }
+    });
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
-    this.initMarkers();
-    this.drawLines();
+    this.initMapFeatures();
   }
 
-  initMarkers() {
-    Leaflet.control
-      .zoom({
-        position: 'bottomright',
-      })
-      .addTo(this.map);
+  initMapFeatures() {
+    this.updateMap();
+    this.updatePolyline();
+  }
+
+  updateMap() {
+    this.markers.forEach((marker) => this.map.removeLayer(marker));
+    this.markers = [];
+
+    Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
     for (const o of this.objects) {
       const marker = Leaflet.marker(o.coordinates);
@@ -63,16 +78,16 @@ export class MapComponent implements OnInit {
       this.markers.push(marker);
     }
   }
-  //leaflet routing machine
-  drawLines() {
-    Leaflet.polyline(
-      [
-        [50.673329439288906, 17.926613371482905],
-        [50.66655956910213, 17.922351760468285],
-      ],
-      {
-        color: 'red',
-      }
-    ).addTo(this.map);
+
+  updatePolyline() {
+    if (this.polyline) {
+      this.map.removeLayer(this.polyline);
+    }
+
+    if (this.route.length > 0) {
+      this.polyline = Leaflet.polyline(this.route, { color: 'red' }).addTo(
+        this.map
+      );
+    }
   }
 }
