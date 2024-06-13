@@ -1,0 +1,73 @@
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-date {
+  color: #00adef;
+}
+
+.trip-info {
+  height: 55vh;
+  overflow-y: scroll;
+}
+
+* {
+  scrollbar-width: 3px;
+  scrollbar-color: #095768;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #095768;
+  width: 5px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+hr {
+  opacity: 0.2;
+  padding: 2 0 2 0;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  list-style-type: none;
+  align-items: center;
+  cursor: grab;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.object-img {
+  width: 7vw;
+  height: 7vh;
+  padding: 1vh;
+}
+
+.object-content {
+  justify-content: center;
+  padding-bottom: 2vh;
+}
+
+.object-title {
+  font-weight: 500;
+  font-size: large;
+  color: #00adef;
+}
+
+.object-description {
+  font-weight: 300;
+  font-size: smaller;
+}
+
+.object-empty {
+  justify-content: center;
+  font-size: larger;
+}

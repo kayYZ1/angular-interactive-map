@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Store } from '@ngrx/store';
 import "leaflet-routing-machine";
+import "leaflet-defaulticon-compatibility";
 import { IObject } from '../../../core/ts/interfaces';
 import { selectObjects } from '../../../core/store/objects';
 import { selectRoute } from '../../../core/store/trip';
@@ -25,7 +26,6 @@ export class MapComponent {
   page = 1;
 
   map!: Leaflet.Map;
-  markers: Leaflet.Marker[] = [];
   options = {
     layers: [
       Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -55,35 +55,34 @@ export class MapComponent {
   }
 
   updateMap() {
-    this.markers.forEach((marker) => this.map.removeLayer(marker));
-    this.markers = [];
-
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
+    const icon = new Leaflet.Icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
+    })
+
     for (const o of this.objects) {
-      const marker = Leaflet.marker(o.coordinates);
+      const marker = Leaflet.marker(o.coordinates, { icon });
       marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`)
-      this.markers.push(marker);
     }
   }
 
   mapRoute() {
     const waypoints: L.LatLng[] = [];
-    this.route.forEach((coordinates) => waypoints.push(Leaflet.latLng(coordinates[0], coordinates[1])))
+    for (let i = 0; i < this.route.length; i++) {
+      waypoints.push(Leaflet.latLng(this.route[i][0], this.route[i][1]))
+    }
 
     const routeControl = Leaflet.Routing.control({
       waypoints,
-      plan: Leaflet.Routing.plan(waypoints, {
-        addWaypoints: false,
-        draggableWaypoints: false,
-      }),
+      addWaypoints: false,
       lineOptions: {
-        addWaypoints: false,
         styles: [{ color: '#242c81', weight: 2 }],
         extendToWaypoints: false,
         missingRouteTolerance: 1,
       },
-      routeWhileDragging: false,
+      waypointMode: "connect"
     })
 
     routeControl.addTo(this.map);
