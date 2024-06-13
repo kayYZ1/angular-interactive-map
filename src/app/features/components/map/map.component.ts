@@ -23,6 +23,7 @@ export class MapComponent {
 
   objects: IObject[] = [];
   route: [number, number][] = [];
+  objectsDistance: string[] = [];
   page = 1;
 
   map!: Leaflet.Map;
@@ -45,6 +46,7 @@ export class MapComponent {
     this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
+      console.log(this.objectsDistance)
     });
   }
 
@@ -74,7 +76,7 @@ export class MapComponent {
 
     for (let i = 0; i < this.route.length - 1; i++) {
       const distanceInM = this.map.distance(this.route[i], this.route[i + 1]);
-      console.log((distanceInM / 1000).toFixed(2), "km")
+      this.objectsDistance.push((distanceInM / 1000).toFixed(2)) //Fix
     }
 
     const routeControl = Leaflet.Routing.control({
