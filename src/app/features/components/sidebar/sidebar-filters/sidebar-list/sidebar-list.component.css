@@ -9,6 +9,7 @@ li {
   height: 10vh;
   list-style-type: none;
   align-items: center;
+  cursor: pointer;
 }
 
 li:nth-child(odd) {
@@ -16,8 +17,8 @@ li:nth-child(odd) {
 }
 
 .object-img {
-  width: 10vh;
-  height: 7vh;
+  width: 5vw;
+  height: 5vh;
   padding: 1vh;
 }
 
@@ -44,4 +45,5 @@ li:nth-child(odd) {
 
 .pagination-controls {
   justify-content: center;
+  margin-left: 1.5vw;
 }

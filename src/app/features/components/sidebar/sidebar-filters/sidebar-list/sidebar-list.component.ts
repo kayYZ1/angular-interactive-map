@@ -42,7 +42,6 @@ export class SidebarListComponent implements OnInit {
   onClick(object: IObject) {
     if (!this.places.includes(object)) {
       this.store.dispatch(addToTrip({ object }));
-      console.log(object);
     }
   }
 }

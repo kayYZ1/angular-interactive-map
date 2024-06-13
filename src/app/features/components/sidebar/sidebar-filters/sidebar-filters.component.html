@@ -1,11 +1,11 @@
 <main>
   <div class="icon-input">
     <fa-icon [icon]="faLocationDot"></fa-icon>
-    <input placeholder="Lokalizacja" type="text" disabled />
+    <input placeholder="Lokalizacja" type="text" name="location" disabled />
   </div>
   <div class="icon-input">
     <fa-icon [icon]="faSearch"></fa-icon>
-    <input [placeholder]="searchPlaceholder" type="text" [formControl]="searchQuery" />
+    <input [placeholder]="searchPlaceholder" type="text" name="searchQuery" [formControl]="searchQuery" />
     @if (searchQuery.value && searchQuery.value.length > 2) {
     <fa-icon [icon]="faClose" class="icon-close" (click)="resetQuery()"></fa-icon>
     }
@@ -20,7 +20,7 @@
       <form>
         @for (category of categoriesList; track category) {
         <label>
-          <input type="checkbox" value="category" (click)="addCriteria(category)">
+          <input type="checkbox" value="category" (click)="addCriteria(category)" name="category">
           <p class=" radio-text">{{ category }}</p>
         </label>
         }
