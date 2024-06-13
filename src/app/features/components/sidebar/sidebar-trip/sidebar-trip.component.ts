@@ -18,7 +18,7 @@ export class SidebarTripComponent implements OnInit {
 
   currentDate = this.getCurrentDate();
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.places$.subscribe((data) => (this.places = data));
   }
 

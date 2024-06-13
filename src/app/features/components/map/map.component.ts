@@ -39,9 +39,7 @@ export class MapComponent {
   };
 
   ngAfterViewInit(): void {
-    this.objectList$.subscribe((data) => {
-      this.objects = data;
-    });
+    this.objectList$.subscribe((data) => this.objects = data);
     this.updateMap();
 
     this.route$.subscribe((data) => {
@@ -70,8 +68,13 @@ export class MapComponent {
 
   mapRoute() {
     const waypoints: L.LatLng[] = [];
-    for (let i = 0; i < this.route.length; i++) {
-      waypoints.push(Leaflet.latLng(this.route[i][0], this.route[i][1]))
+    this.route.forEach((coordinates) => {
+      waypoints.push(Leaflet.latLng(coordinates))
+    })
+
+    for (let i = 0; i < this.route.length - 1; i++) {
+      const distanceInM = this.map.distance(this.route[i], this.route[i + 1]);
+      console.log((distanceInM / 1000).toFixed(2), "km")
     }
 
     const routeControl = Leaflet.Routing.control({
