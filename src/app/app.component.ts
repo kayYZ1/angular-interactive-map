@@ -12,7 +12,7 @@ import { MapComponent } from './features/components/map/map.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  currentView = 'trip';
+  currentView = 'search';
 
   toggleSidebarView(sidebarView: string) {
     switch (sidebarView) {

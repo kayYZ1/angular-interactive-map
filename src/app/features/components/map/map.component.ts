@@ -2,8 +2,8 @@ import * as Leaflet from 'leaflet';
 import { Component, inject } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Store } from '@ngrx/store';
-import "leaflet-routing-machine";
-import "leaflet-defaulticon-compatibility";
+import 'leaflet-routing-machine';
+import 'leaflet-defaulticon-compatibility';
 import { IObject } from '../../../core/ts/interfaces';
 import { selectObjects } from '../../../core/store/objects';
 import { selectRoute } from '../../../core/store/trip';
@@ -26,6 +26,7 @@ export class MapComponent {
   objectsDistance: string[] = [];
   page = 1;
 
+  routingControl!: Leaflet.Routing.Control;
   map!: Leaflet.Map;
   options = {
     layers: [
@@ -40,57 +41,54 @@ export class MapComponent {
   };
 
   ngAfterViewInit(): void {
-    this.objectList$.subscribe((data) => this.objects = data);
+    this.objectList$.subscribe((data) => (this.objects = data));
     this.updateMap();
 
     this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
-      console.log(this.objectsDistance)
     });
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
+    Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
   }
 
   updateMap() {
-    Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
-
     const icon = new Leaflet.Icon({
       iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
-      shadowUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
-    })
+      shadowUrl:
+        'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
+    });
 
     for (const o of this.objects) {
       const marker = Leaflet.marker(o.coordinates, { icon });
-      marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`)
+      marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`);
     }
   }
 
   mapRoute() {
-    const waypoints: L.LatLng[] = [];
-    this.route.forEach((coordinates) => {
-      waypoints.push(Leaflet.latLng(coordinates))
-    })
+    if (this.routingControl) {
+      const waypoints: Leaflet.LatLng[] = this.route.map((coordinates) =>
+        Leaflet.latLng(coordinates)
+      );
 
-    for (let i = 0; i < this.route.length - 1; i++) {
-      const distanceInM = this.map.distance(this.route[i], this.route[i + 1]);
-      this.objectsDistance.push((distanceInM / 1000).toFixed(2)) //Fix
+      this.routingControl.setWaypoints(waypoints);
+    } else {
+      this.routingControl = Leaflet.Routing.control({
+        waypoints: [],
+        addWaypoints: false,
+        lineOptions: {
+          styles: [{ color: '#242c81', weight: 2 }],
+          extendToWaypoints: false,
+          missingRouteTolerance: 1,
+        },
+        waypointMode: 'connect',
+      });
+
+      this.routingControl.addTo(this.map);
+      this.routingControl.hide();
     }
-
-    const routeControl = Leaflet.Routing.control({
-      waypoints,
-      addWaypoints: false,
-      lineOptions: {
-        styles: [{ color: '#242c81', weight: 2 }],
-        extendToWaypoints: false,
-        missingRouteTolerance: 1,
-      },
-      waypointMode: "connect"
-    })
-
-    routeControl.addTo(this.map);
-    routeControl.hide();
   }
 }

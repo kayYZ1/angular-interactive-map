@@ -9,7 +9,6 @@
 
 .trip-info {
   height: 55vh;
-  overflow-y: scroll;
 }
 
 * {
