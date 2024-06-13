@@ -24,7 +24,6 @@ export class MapComponent {
   objects: IObject[] = [];
   route: [number, number][] = [];
   objectsDistance: string[] = [];
-  page = 1;
 
   routingControl!: Leaflet.Routing.Control;
   map!: Leaflet.Map;
@@ -81,7 +80,7 @@ export class MapComponent {
         addWaypoints: false,
         lineOptions: {
           styles: [{ color: '#242c81', weight: 2 }],
-          extendToWaypoints: false,
+          extendToWaypoints: true,
           missingRouteTolerance: 1,
         },
         waypointMode: 'connect',
