@@ -1,8 +1,8 @@
 <main class="object-list">
   @for
   (object of objects |
-  searchFilter: query |
-  criteriaFilter: criteria |
+  searchFilter: filters.searchQuery |
+  criteriaFilter: filters.criteria |
   paginate: { itemsPerPage: 6, currentPage: page }; track object.id) {
   <li (click)="onClick(object)">
     <img [src]="object.imgUrl" alt="object.id" class="object-img" loading="lazy" />

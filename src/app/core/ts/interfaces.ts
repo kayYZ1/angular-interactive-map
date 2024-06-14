@@ -16,3 +16,8 @@ export interface ITrip {
   route: [number, number][]
   date: string;
 }
+
+export interface IFilters {
+  searchQuery: string;
+  criteria: Categories[];
+}

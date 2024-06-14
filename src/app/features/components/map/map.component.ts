@@ -4,16 +4,16 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Store } from '@ngrx/store';
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
-import { IObject } from '../../../core/ts/interfaces';
-import { selectObjects } from '../../../core/store/objects/objects.selectors';
+import { IFilters, IObject } from '../../../core/ts/interfaces';
 import { selectRoute } from '../../../core/store/trip/trip.selectors';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
-import { Categories } from '../../../core/ts/enums';
+import { selectFilters } from '../../../core/store/filters/filters.selectors';
+import { Objects } from '../../../core/data/objects';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [LeafletModule, CriteriaFilterPipe],
+  imports: [LeafletModule],
   providers: [CriteriaFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
@@ -22,12 +22,12 @@ export class MapComponent {
   private readonly store = inject(Store);
   private criteriaPipe = inject(CriteriaFilterPipe)
 
-  objectList$ = this.store.select(selectObjects);
   route$ = this.store.select(selectRoute);
+  filters$ = this.store.select(selectFilters);
 
-  objects: IObject[] = [];
+  objects: IObject[] = Objects;
   route: [number, number][] = [];
-  objectsDistance: string[] = [];
+  filters!: IFilters;
 
   routingControl!: Leaflet.Routing.Control;
   map!: Leaflet.Map;
@@ -44,23 +44,19 @@ export class MapComponent {
   };
 
   ngAfterViewInit(): void {
-    this.objectList$.subscribe((data) => this.objects = data);
-    this.updateMap();
+    this.filters$.subscribe((data) => {
+      this.filters = data;
+    });
 
     this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
     });
-
-    this.objects = this.criteriaPipe.transform(this.objects, [Categories.PARKI])
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
-  }
-
-  updateMap() {
     const icon = new Leaflet.Icon({
       iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
       shadowUrl:
@@ -79,13 +75,8 @@ export class MapComponent {
         Leaflet.latLng(coordinates)
       );
       this.routingControl.setWaypoints(waypoints);
-
-      for (let i = 0; i < this.route.length; i++) {
-        const distanceInM = this.map.distance(this.route[i], this.route[i + 1]);
-        this.objectsDistance.push((distanceInM / 1000).toFixed(2))
-      }
-
-    } else {
+    }
+    else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: [],
         addWaypoints: false,

@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { selectPlaces, selectTrip } from '../../../../core/store/trip/trip.selectors';
-import { IObject, ITrip } from '../../../../core/ts/interfaces';
+import { selectTrip } from '../../../../core/store/trip/trip.selectors';
+import { ITrip } from '../../../../core/ts/interfaces';
 
 @Component({
   selector: 'app-sidebar-trip',

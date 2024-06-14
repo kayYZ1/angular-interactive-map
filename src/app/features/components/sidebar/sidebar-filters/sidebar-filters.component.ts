@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, SimpleChanges, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Objects } from '../../../../core/data/objects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -11,22 +11,29 @@ import {
   faAngleUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { Categories } from '../../../../core/ts/enums';
-import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
 import { CriteriaFilterPipe } from '../../../../core/pipes/criteria-filter.pipe';
+import { Store } from '@ngrx/store';
+import { clearSearchQuery, removeFromCategory, setCategoryFilter, setSearchQueryFilter } from '../../../../core/store/filters/filters.actions';
+import { selectFilters } from '../../../../core/store/filters/filters.selectors';
+import { IFilters } from '../../../../core/ts/interfaces';
 
 @Component({
   selector: 'app-sidebar-filters',
   standalone: true,
   imports: [
     FontAwesomeModule,
-    SidebarListComponent,
-    ReactiveFormsModule,
+    FormsModule,
     CriteriaFilterPipe,
   ],
   templateUrl: './sidebar-filters.component.html',
   styleUrl: './sidebar-filters.component.css',
 })
 export class SidebarFiltersComponent {
+  private readonly store = inject(Store)
+
+  filters$ = this.store.select(selectFilters);
+  filters!: IFilters;
+
   searchPlaceholder = `${Objects.length} obiektów do zwiedzenia`;
 
   faLocationDot = faLocation;
@@ -40,23 +47,30 @@ export class SidebarFiltersComponent {
 
   categoriesList = Object.values(Categories);
 
-  searchQuery = new FormControl('');
-  searchCriteria: Categories[] = [];
+  searchQuery = ''
+
+  ngOnInit() {
+    this.filters$.subscribe(data => this.filters = data);
+  }
 
   onToggle() {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  onQueryChange() {
+    this.store.dispatch(setSearchQueryFilter({ searchQuery: this.searchQuery }))
+  }
+
   addCriteria(item: Categories) {
-    if (!this.searchCriteria.includes(item)) {
-      this.searchCriteria.push(item);
+    if (!this.filters.criteria.includes(item)) {
+      this.store.dispatch(setCategoryFilter({ searchCriteria: item }))
     } else {
-      const index = this.searchCriteria.indexOf(item);
-      this.searchCriteria.splice(index, 1);
+      this.store.dispatch(removeFromCategory({ item }))
     }
   }
 
   resetQuery() {
-    this.searchQuery.reset();
+    this.searchQuery = '';
+    this.store.dispatch(clearSearchQuery());
   }
 }

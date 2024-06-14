@@ -4,8 +4,8 @@ import { provideState, provideStore } from '@ngrx/store'
 import { provideStoreDevtools } from '@ngrx/store-devtools'
 
 import { routes } from './app.routes';
-import { objectsReducer } from './core/store/objects/objects.reducer';
 import { tripReducer } from './core/store/trip/trip.reducer';
+import { filtersReducer } from './core/store/filters/filters.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,10 +18,10 @@ export const appConfig: ApplicationConfig = {
       connectInZone: true
     }),
     provideState({
-      name: "objects", reducer: objectsReducer
+      name: "trip", reducer: tripReducer
     }),
     provideState({
-      name: "trip", reducer: tripReducer
+      name: "filters", reducer: filtersReducer
     })
   ]
 };
