@@ -4,10 +4,11 @@ import { Categories } from '../../../../../core/ts/enums';
 import { CriteriaFilterPipe } from '../../../../../core/pipes/criteria-filter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Store } from '@ngrx/store';
-import { selectObjects } from '../../../../../core/store/objects';
 import { AsyncPipe } from '@angular/common';
 import { IObject } from '../../../../../core/ts/interfaces';
-import { addToTrip, selectPlaces } from '../../../../../core/store/trip';
+import { selectObjects } from '../../../../../core/store/objects/objects.selectors';
+import { addToTrip } from '../../../../../core/store/trip/trip.actions';
+import { selectPlaces } from '../../../../../core/store/trip/trip.selectors';
 
 @Component({
   selector: 'app-sidebar-list',

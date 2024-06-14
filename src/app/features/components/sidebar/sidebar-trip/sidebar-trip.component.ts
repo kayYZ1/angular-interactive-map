@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectPlaces } from '../../../../core/store/trip';
+
+import { selectPlaces } from '../../../../core/store/trip/trip.selectors';
 import { IObject } from '../../../../core/ts/interfaces';
 
 @Component({

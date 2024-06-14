@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
 import { IObject } from '../../../core/ts/interfaces';
-import { selectObjects } from '../../../core/store/objects';
-import { selectRoute } from '../../../core/store/trip';
+import { selectObjects } from '../../../core/store/objects/objects.selectors';
+import { selectRoute } from '../../../core/store/trip/trip.selectors';
 
 @Component({
   selector: 'app-map',
@@ -87,7 +87,6 @@ export class MapComponent {
       });
 
       this.routingControl.addTo(this.map);
-      this.routingControl.hide();
     }
   }
 }
