@@ -6,15 +6,23 @@
 
 .details-actions {
   display: flex;
+  justify-content: flex-end;
 }
 
 .details-btn {
   display: inline-block;
   cursor: pointer;
   border: none;
+  margin-top: 1vh;
   padding: 0.5vw;
   color: white;
   font-size: small;
   font-weight: 300;
   background-color: #00adef;
+}
+
+.delete-icon {
+  padding-top: 1.5vh;
+  font-size: large;
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
 @for(object of trip.places; track object.id) {
 <div class="trip-object">
   <p>{{ object.title }}</p>
-  <button (click)="onClick(object)">Delete</button>
+  <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
 </div>
 } @empty {
 <p>:(</p>

@@ -26,12 +26,12 @@ export class SidebarTripComponent implements OnInit {
     this.trip$.subscribe((data) => (this.trip = data));
   }
 
-  onClick() {
-    this.detailsClicked = true;
-  }
-
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray([...this.trip.places], event.previousIndex, event.currentIndex);
+  }
+
+  openDetails() {
+    this.detailsClicked = true;
   }
 
   closeDetails() {
