@@ -6,7 +6,9 @@
 
 .details-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
 .details-btn {
@@ -21,8 +23,16 @@
   background-color: #00adef;
 }
 
-.delete-icon {
+fa-icon {
   padding-top: 1.5vh;
+  font-weight: 300;
+}
+
+.delete-icon {
   font-size: large;
   cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: red;
 }

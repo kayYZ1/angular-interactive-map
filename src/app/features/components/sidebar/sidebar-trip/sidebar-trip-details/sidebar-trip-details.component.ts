@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../../core/store/trip/trip.selectors';
 import { IObject, ITrip } from '../../../../../core/ts/interfaces';
 import { removeFromTrip } from '../../../../../core/store/trip/trip.actions';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faHourglass, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -18,6 +18,8 @@ export class SidebarTripDetailsComponent {
   private readonly store = inject(Store)
 
   faTrash = faTrash
+  faHourglass = faHourglass
+  faRoad = faRoad
 
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
