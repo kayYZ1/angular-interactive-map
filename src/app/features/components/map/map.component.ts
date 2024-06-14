@@ -7,16 +7,20 @@ import 'leaflet-defaulticon-compatibility';
 import { IObject } from '../../../core/ts/interfaces';
 import { selectObjects } from '../../../core/store/objects/objects.selectors';
 import { selectRoute } from '../../../core/store/trip/trip.selectors';
+import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
+import { Categories } from '../../../core/ts/enums';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [LeafletModule],
+  imports: [LeafletModule, CriteriaFilterPipe],
+  providers: [CriteriaFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
 export class MapComponent {
   private readonly store = inject(Store);
+  private criteriaPipe = inject(CriteriaFilterPipe)
 
   objectList$ = this.store.select(selectObjects);
   route$ = this.store.select(selectRoute);
@@ -40,13 +44,15 @@ export class MapComponent {
   };
 
   ngAfterViewInit(): void {
-    this.objectList$.subscribe((data) => (this.objects = data));
+    this.objectList$.subscribe((data) => this.objects = data);
     this.updateMap();
 
     this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
     });
+
+    this.objects = this.criteriaPipe.transform(this.objects, [Categories.PARKI])
   }
 
   onMapReady($event: Leaflet.Map) {
@@ -72,8 +78,13 @@ export class MapComponent {
       const waypoints: Leaflet.LatLng[] = this.route.map((coordinates) =>
         Leaflet.latLng(coordinates)
       );
-
       this.routingControl.setWaypoints(waypoints);
+
+      for (let i = 0; i < this.route.length; i++) {
+        const distanceInM = this.map.distance(this.route[i], this.route[i + 1]);
+        this.objectsDistance.push((distanceInM / 1000).toFixed(2))
+      }
+
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: [],

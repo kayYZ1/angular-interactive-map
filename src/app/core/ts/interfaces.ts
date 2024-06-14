@@ -13,5 +13,6 @@ export interface IObject {
 
 export interface ITrip {
   places: IObject[];
-  road: [number, number][]
+  route: [number, number][]
+  date: string;
 }

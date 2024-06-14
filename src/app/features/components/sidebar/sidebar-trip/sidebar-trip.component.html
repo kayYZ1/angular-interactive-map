@@ -4,18 +4,14 @@
       Wycieczka
     </div>
     <div class="trip-date">
-      {{ currentDate }}
+      {{ trip.date }}
     </div>
   </div>
   <hr>
   <div class="trip-info">
-    @for (object of places; track object.id) {
+    @for (object of trip.places; track object.id) {
     <li>
       <img [src]="object.imgUrl" alt="object.id" class="object-img" loading="lazy" />
-      <div class="object-content">
-        <p class="object-title">{{ object.title }}</p>
-        <p class="object-description">{{ object.description }}</p>
-      </div>
     </li>
     }
   </div>

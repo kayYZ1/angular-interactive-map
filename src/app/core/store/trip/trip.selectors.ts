@@ -1,8 +1,7 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 import { TripState } from "./trip.reducer";
 
-
-const selectTrip = createFeatureSelector<TripState>('trip');
+export const selectTrip = createFeatureSelector<TripState>('trip');
 
 export const selectPlaces = createSelector(
   selectTrip,

@@ -8,7 +8,10 @@
 }
 
 .trip-info {
-  height: 55vh;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  padding-bottom: 1.5vh;
 }
 
 * {
@@ -36,37 +39,13 @@ hr {
 li {
   display: flex;
   flex-direction: row;
-  height: 10vh;
   list-style-type: none;
   align-items: center;
   cursor: grab;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
 }
 
 .object-img {
-  width: 7vw;
+  width: 5vw;
   height: 7vh;
-  padding: 1vh;
-}
-
-.object-content {
-  justify-content: center;
-  padding-bottom: 2vh;
-}
-
-.object-title {
-  font-weight: 500;
-  font-size: large;
-  color: #00adef;
-}
-
-.object-description {
-  font-weight: 300;
-  font-size: smaller;
-}
-
-.object-empty {
-  justify-content: center;
-  font-size: larger;
+  padding-right: 0.5vw;
 }
