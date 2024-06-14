@@ -1,3 +1,5 @@
+import { IObject } from "../core/ts/interfaces";
+
 export function getCurrentDate() {
   const today = new Date();
   let date = today.toJSON().slice(0, 10);
@@ -7,3 +9,9 @@ export function getCurrentDate() {
 
   return nDate;
 }
+
+export function swapElements(arr: [number, number][], x: number, y: number) {
+  [arr[x], arr[y]] = [arr[y], arr[x]];
+
+  return arr;
+};

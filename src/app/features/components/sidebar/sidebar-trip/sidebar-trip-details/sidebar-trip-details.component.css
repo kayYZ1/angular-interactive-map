@@ -1,6 +1,11 @@
+.trip-object {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh;
+}
+
 .details-actions {
   display: flex;
-  justify-content: flex-end;
 }
 
 .details-btn {

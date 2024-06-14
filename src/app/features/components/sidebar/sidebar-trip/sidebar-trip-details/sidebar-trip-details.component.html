@@ -1,9 +1,11 @@
 @for(object of trip.places; track object.id) {
-<p>{{ object.title }}</p>
-<button (click)="onClick(object)">Delete</button>
+<div class="trip-object">
+  <p>{{ object.title }}</p>
+  <button (click)="onClick(object)">Delete</button>
+</div>
 } @empty {
 <p>:(</p>
 }
 <span class="details-actions">
-  <button class="details-btn">Wróć</button>
+  <button class="details-btn" (click)="closeDetails(true)">Wróć</button>
 </span>

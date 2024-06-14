@@ -12,6 +12,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   padding-bottom: 1.5vh;
+  gap: 0.5vw
 }
 
 hr {
@@ -19,18 +20,41 @@ hr {
   padding: 2 0 2 0;
 }
 
-li {
+.trip-object-draggable {
   display: flex;
   flex-direction: row;
-  list-style-type: none;
+  justify-content: space-between;
   align-items: center;
-  cursor: grab;
+  box-sizing: border-box;
+  cursor: move;
+  flex-basis: 0;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.trip-object-draggable:last-child {
+  border: none;
+}
+
+.trip-object-draggable.cdk-drop-list-dragging:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .object-img {
   width: 5vw;
   height: 7vh;
-  padding-right: 0.5vw;
   padding-top: 0.75vh;
 }
 

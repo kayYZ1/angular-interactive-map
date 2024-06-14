@@ -10,3 +10,8 @@ export const removeFromTrip = createAction(
   'RemoveFromTrip',
   props<{ object: IObject }>()
 )
+
+export const moveTrip = createAction(
+  'MoveTrip',
+  props<{ array: any, prev: number, curr: number }>()
+)

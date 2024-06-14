@@ -3,7 +3,7 @@ import { createReducer, on } from "@ngrx/store";
 import * as TripActions from "./trip.actions";
 import { IObject } from "../../ts/interfaces";
 
-import { getCurrentDate } from "../../../shared/utilts";
+import { getCurrentDate, swapElements } from "../../../shared/utilts";
 
 export interface TripState {
   places: IObject[];
@@ -33,6 +33,14 @@ export const tripReducer = createReducer(
       ...state,
       places: state.places.filter(item => item !== object),
       route: state.route.filter(item => item !== object.coordinates)
+    }
+
+    return state;
+  }),
+  on(TripActions.moveTrip, (state, { array, prev, curr }) => {
+    state = {
+      ...state,
+      route: swapElements(array, prev, curr)
     }
 
     return state;
