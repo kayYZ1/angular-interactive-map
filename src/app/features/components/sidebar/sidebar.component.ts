@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { SidebarFiltersComponent } from './sidebar-filters/sidebar-filters.component';
 import { SidebarTripComponent } from './sidebar-trip/sidebar-trip.component';
 import { SidebarSaveComponent } from './sidebar-save/sidebar-save.component';
-import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
+import { SidebarListComponent } from './sidebar-filters/sidebar-list/sidebar-list.component';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,0 +1,9 @@
+@for(object of trip.places; track object.id) {
+<p>{{ object.title }}</p>
+<button (click)="onClick(object)">Delete</button>
+} @empty {
+<p>:(</p>
+}
+<span class="details-actions">
+  <button class="details-btn">Wróć</button>
+</span>

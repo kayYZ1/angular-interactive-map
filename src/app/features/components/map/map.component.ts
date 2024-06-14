@@ -31,6 +31,8 @@ export class MapComponent {
 
   routingControl!: Leaflet.Routing.Control;
   map!: Leaflet.Map;
+  waypoints: Leaflet.LatLng[] = [];
+
   options = {
     layers: [
       Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -71,14 +73,14 @@ export class MapComponent {
 
   mapRoute() {
     if (this.routingControl) {
-      const waypoints: Leaflet.LatLng[] = this.route.map((coordinates) =>
+      this.waypoints = this.route.map((coordinates) =>
         Leaflet.latLng(coordinates)
       );
-      this.routingControl.setWaypoints(waypoints);
+      this.routingControl.setWaypoints(this.waypoints);
     }
     else {
       this.routingControl = Leaflet.Routing.control({
-        waypoints: [],
+        waypoints: this.waypoints,
         addWaypoints: false,
         lineOptions: {
           styles: [{ color: '#242c81', weight: 2 }],

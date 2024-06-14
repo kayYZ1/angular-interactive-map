@@ -8,6 +8,7 @@
     </div>
   </div>
   <hr>
+  @if (!detailsClicked) {
   <div class="trip-info">
     @for (object of trip.places; track object.id) {
     <li>
@@ -15,4 +16,12 @@
     </li>
     }
   </div>
+  <div class="trip-actions">
+    <button class="trip-info-btn">Optymalizuj</button>
+    <button class="trip-info-btn" (click)="onClick()">Szczegóły</button>
+  </div>
+  } @else {
+  <app-sidebar-trip-details />
+  }
+  <hr>
 </div>

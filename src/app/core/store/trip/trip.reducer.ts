@@ -27,5 +27,14 @@ export const tripReducer = createReducer(
     };
 
     return state;
+  }),
+  on(TripActions.removeFromTrip, (state, { object }) => {
+    state = {
+      ...state,
+      places: state.places.filter(item => item !== object),
+      route: state.route.filter(item => item !== object.coordinates)
+    }
+
+    return state;
   })
-);
+)

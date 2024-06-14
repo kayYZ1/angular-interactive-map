@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { SearchFilterPipe } from '../../../../core/pipes/search-filter.pipe';
-import { CriteriaFilterPipe } from '../../../../core/pipes/criteria-filter.pipe';
+import { SearchFilterPipe } from '../../../../../core/pipes/search-filter.pipe';
+import { CriteriaFilterPipe } from '../../../../../core/pipes/criteria-filter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
-import { IFilters, IObject } from '../../../../core/ts/interfaces';
-import { addToTrip } from '../../../../core/store/trip/trip.actions';
-import { selectPlaces } from '../../../../core/store/trip/trip.selectors';
-import { selectFilters } from '../../../../core/store/filters/filters.selectors';
-import { Objects } from '../../../../core/data/objects';
+import { IFilters, IObject } from '../../../../../core/ts/interfaces';
+import { addToTrip } from '../../../../../core/store/trip/trip.actions';
+import { selectPlaces } from '../../../../../core/store/trip/trip.selectors';
+import { selectFilters } from '../../../../../core/store/filters/filters.selectors';
+import { Objects } from '../../../../../core/data/objects';
 
 @Component({
   selector: 'app-sidebar-list',

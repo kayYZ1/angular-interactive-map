@@ -5,3 +5,8 @@ export const addToTrip = createAction(
   'AddToTrip',
   props<{ object: IObject }>()
 );
+
+export const removeFromTrip = createAction(
+  'RemoveFromTrip',
+  props<{ object: IObject }>()
+)

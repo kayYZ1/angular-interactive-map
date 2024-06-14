@@ -1,0 +1,15 @@
+.details-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details-btn {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  padding: 0.5vw;
+  color: white;
+  font-size: small;
+  font-weight: 300;
+  background-color: #00adef;
+}
