@@ -9,7 +9,7 @@ import {
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../core/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { updateTripPlaces } from '../../../../core/store/trip/trip.actions';
+import { updateTrip } from '../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-trip',
@@ -31,9 +31,13 @@ export class SidebarTripComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    const newPlaces = [...this.trip.places];
-    moveItemInArray(newPlaces, event.previousIndex, event.currentIndex);
-    this.store.dispatch(updateTripPlaces({ places: newPlaces }));
+    const updatedPlaces = [...this.trip.places];
+    const updatedRoute = [...this.trip.route];
+    moveItemInArray(updatedPlaces, event.previousIndex, event.currentIndex);
+    moveItemInArray(updatedRoute, event.previousIndex, event.currentIndex);
+    this.store.dispatch(
+      updateTrip({ places: updatedPlaces, route: updatedRoute })
+    );
   }
 
   openDetails() {

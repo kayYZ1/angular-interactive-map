@@ -6,7 +6,6 @@ import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
 import { IFilters, IObject } from '../../../core/ts/interfaces';
 import { selectRoute } from '../../../core/store/trip/trip.selectors';
-import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 
@@ -14,13 +13,11 @@ import { Objects } from '../../../core/data/objects';
   selector: 'app-map',
   standalone: true,
   imports: [LeafletModule],
-  providers: [CriteriaFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
 export class MapComponent {
   private readonly store = inject(Store);
-  private criteriaPipe = inject(CriteriaFilterPipe)
 
   route$ = this.store.select(selectRoute);
   filters$ = this.store.select(selectFilters);
@@ -77,8 +74,7 @@ export class MapComponent {
         Leaflet.latLng(coordinates)
       );
       this.routingControl.setWaypoints(this.waypoints);
-    }
-    else {
+    } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
         addWaypoints: false,

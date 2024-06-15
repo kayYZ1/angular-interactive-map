@@ -11,7 +11,7 @@ export const removeFromTrip = createAction(
   props<{ object: IObject }>()
 );
 
-export const updateTripPlaces = createAction(
+export const updateTrip = createAction(
   '[Trip] Update places',
-  props<{ places: IObject[] }>()
+  props<{ places: IObject[]; route: [number, number][] }>()
 );

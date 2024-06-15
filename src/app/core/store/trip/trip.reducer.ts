@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as TripActions from './trip.actions';
 import { IObject } from '../../ts/interfaces';
 
-import { getCurrentDate, swapElements } from '../../../shared/utilts';
+import { getCurrentDate } from '../../../shared/utilts';
 
 export interface TripState {
   places: IObject[];
@@ -37,8 +37,9 @@ export const tripReducer = createReducer(
 
     return state;
   }),
-  on(TripActions.updateTripPlaces, (state, { places }) => ({
+  on(TripActions.updateTrip, (state, { places, route }) => ({
     ...state,
     places: places,
+    route: route,
   }))
 );
