@@ -9,18 +9,12 @@ import {
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../core/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { BidiModule } from '@angular/cdk/bidi';
-import { CommonModule } from '@angular/common';
+import { updateTripPlaces } from '../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-trip',
   standalone: true,
-  imports: [
-    SidebarTripDetailsComponent,
-    DragDropModule,
-    BidiModule,
-    CommonModule,
-  ],
+  imports: [SidebarTripDetailsComponent, DragDropModule],
   templateUrl: './sidebar-trip.component.html',
   styleUrl: './sidebar-trip.component.css',
 })
@@ -37,11 +31,9 @@ export class SidebarTripComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(
-      [...this.trip.places],
-      event.previousIndex,
-      event.currentIndex
-    );
+    const newPlaces = [...this.trip.places];
+    moveItemInArray(newPlaces, event.previousIndex, event.currentIndex);
+    this.store.dispatch(updateTripPlaces({ places: newPlaces }));
   }
 
   openDetails() {

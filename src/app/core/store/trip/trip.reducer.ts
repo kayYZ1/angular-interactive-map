@@ -1,9 +1,9 @@
-import { createReducer, on } from "@ngrx/store";
+import { createReducer, on } from '@ngrx/store';
 
-import * as TripActions from "./trip.actions";
-import { IObject } from "../../ts/interfaces";
+import * as TripActions from './trip.actions';
+import { IObject } from '../../ts/interfaces';
 
-import { getCurrentDate, swapElements } from "../../../shared/utilts";
+import { getCurrentDate, swapElements } from '../../../shared/utilts';
 
 export interface TripState {
   places: IObject[];
@@ -14,7 +14,7 @@ export interface TripState {
 const initialState: TripState = {
   places: [],
   route: [],
-  date: getCurrentDate()
+  date: getCurrentDate(),
 };
 
 export const tripReducer = createReducer(
@@ -31,18 +31,14 @@ export const tripReducer = createReducer(
   on(TripActions.removeFromTrip, (state, { object }) => {
     state = {
       ...state,
-      places: state.places.filter(item => item !== object),
-      route: state.route.filter(item => item !== object.coordinates)
-    }
+      places: state.places.filter((item) => item !== object),
+      route: state.route.filter((item) => item !== object.coordinates),
+    };
 
     return state;
   }),
-  on(TripActions.moveTrip, (state, { array, prev, curr }) => {
-    state = {
-      ...state,
-      route: swapElements(array, prev, curr)
-    }
-
-    return state;
-  })
-)
+  on(TripActions.updateTripPlaces, (state, { places }) => ({
+    ...state,
+    places: places,
+  }))
+);

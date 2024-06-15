@@ -9,7 +9,7 @@
   </div>
   <hr>
   @if (!detailsClicked) {
-  <div dir="ltr" cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
+  <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
     @for (object of trip.places; track object.id) {
     <div class="trip-object-draggable" cdkDrag>
       <img [src]="object.imgUrl" alt="object.id" class="object-img" />

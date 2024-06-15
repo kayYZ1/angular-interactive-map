@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { IObject } from "../../ts/interfaces";
+import { createAction, props } from '@ngrx/store';
+import { IObject } from '../../ts/interfaces';
 
 export const addToTrip = createAction(
   'AddToTrip',
@@ -9,9 +9,9 @@ export const addToTrip = createAction(
 export const removeFromTrip = createAction(
   'RemoveFromTrip',
   props<{ object: IObject }>()
-)
+);
 
-export const moveTrip = createAction(
-  'MoveTrip',
-  props<{ array: any, prev: number, curr: number }>()
-)
+export const updateTripPlaces = createAction(
+  '[Trip] Update places',
+  props<{ places: IObject[] }>()
+);
