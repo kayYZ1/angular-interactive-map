@@ -61,6 +61,7 @@ p {
   font-size: small;
   font-weight: bold;
   background-color: #00adef;
+  margin-left: 0.5vw;
 }
 
 .delete-icon {
@@ -73,7 +74,7 @@ p {
   color: red;
 }
 
-.trip-object-return {
+.trip-object-actions {
   display: flex;
   justify-content: flex-end;
 }
