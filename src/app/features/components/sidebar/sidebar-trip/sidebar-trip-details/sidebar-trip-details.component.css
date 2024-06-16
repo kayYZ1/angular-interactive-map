@@ -1,61 +1,79 @@
+.trip-object-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .trip-object {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1vh;
+  align-items: center;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.trip-object-content {
+  display: flex;
+  align-items: center;
 }
 
 .trip-object-img {
   border-radius: 50%;
-  width: 5vw;
-  height: 7vh;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
+  margin-right: 0.5vw;
 }
 
-.trip-object-content {
-  max-width: 20vw;
+.trip-object-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1vh;
 }
 
-.trip-object-title {
+h1 {
   margin: 0;
   font-size: medium;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
-.trip-object-description {
+p {
   margin-top: 10px;
   font-size: small;
   color: #555;
 }
 
-.details-actions {
+.trip-object-details {
   display: flex;
-  justify-content: space-between;
-  padding-left: 1vw;
+  justify-content: center;
+}
+
+.details-icon {
+  padding: 1vh 1vw 1vh 1vw;
 }
 
 .details-btn {
-  display: inline-block;
   cursor: pointer;
   border: none;
   margin-top: 1vh;
   padding: 0.5vw;
   color: white;
   font-size: small;
-  font-weight: 300;
+  font-weight: bold;
   background-color: #00adef;
-}
-
-fa-icon {
-  padding-top: 1.5vh;
-  font-weight: 300;
 }
 
 .delete-icon {
   font-size: large;
   cursor: pointer;
+  padding: 6px;
 }
 
 .delete-icon:hover {
   color: red;
+}
+
+.trip-object-return {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -13,7 +13,7 @@
 .sidebar-scrollable {
   padding: 1vh;
   height: 75vh;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 * {

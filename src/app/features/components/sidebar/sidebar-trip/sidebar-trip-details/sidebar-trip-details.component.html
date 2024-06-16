@@ -1,17 +1,23 @@
-@for(object of trip.places; track object.id) {
-<div class="trip-object">
-  <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
-  <div class="trip-object-content">
-    <h1 class="trip-object-title">{{ object.title }}</h1>
-    <p class="trip-object-description">{{ object.phone }}</p>
+<div class="trip-object-list">
+  @for(object of trip.places; track object.id) {
+  <div class="trip-object">
+    <div class="trip-object-content">
+      <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
+      <div class="trip-object-text">
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.description }} / {{ object.phone }}</p>
+      </div>
+    </div>
+    <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
   </div>
-  <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
+  } @empty {
+  <p>:(</p>
+  }
 </div>
-} @empty {
-<p>:(</p>
-}
-<span class="details-actions">
-  <fa-icon [icon]="faRoad"></fa-icon>
-  <fa-icon [icon]="faHourglass"></fa-icon>
+<div class="trip-object-details">
+  <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
+  <fa-icon [icon]="faHourglass" class="details-icon"></fa-icon>
+</div>
+<div class="trip-object-return">
   <button class="details-btn" (click)="closeDetails(true)">Wróć</button>
-</span>
+</div>
