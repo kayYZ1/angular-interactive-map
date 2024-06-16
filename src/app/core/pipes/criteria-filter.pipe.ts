@@ -5,10 +5,15 @@ import { Categories } from '../ts/enums';
 @Pipe({
   name: 'criteriaFilter',
   standalone: true,
-  pure: false
+  pure: false,
 })
 export class CriteriaFilterPipe implements PipeTransform {
-  transform(array: IObject[], criteria: Categories[]) {
-    return criteria.length === 0 ? array : array.filter(item => criteria.includes(item.category))
+  transform(objects: IObject[], criteria: Categories[]): IObject[] {
+    if (!criteria || criteria.length === 0) {
+      return objects;
+    }
+    return objects.filter((object) =>
+      criteria.some((criterion) => object.category.includes(criterion))
+    );
   }
 }

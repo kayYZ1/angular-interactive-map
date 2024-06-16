@@ -55,8 +55,10 @@ label {
 
 .categories-input {
   font-size: medium;
+  font-weight: 300;
   box-sizing: border-box;
-  padding-left: 1vh;
+  padding-left: 0.5vw;
+  padding-top: 0.1vh;
 }
 
 .collapsible .content {
