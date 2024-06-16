@@ -1,6 +1,10 @@
 @for(object of trip.places; track object.id) {
 <div class="trip-object">
-  <p>{{ object.title }}</p>
+  <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
+  <div class="trip-object-content">
+    <h1 class="trip-object-title">{{ object.title }}</h1>
+    <p class="trip-object-description">{{ object.phone }}</p>
+  </div>
   <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
 </div>
 } @empty {

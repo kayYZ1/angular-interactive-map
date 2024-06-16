@@ -1,14 +1,37 @@
 .trip-object {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 1vh;
+}
+
+.trip-object-img {
+  border-radius: 50%;
+  width: 5vw;
+  height: 7vh;
+  object-fit: cover;
+}
+
+.trip-object-content {
+  max-width: 20vw;
+}
+
+.trip-object-title {
+  margin: 0;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.trip-object-description {
+  margin-top: 10px;
+  font-size: small;
+  color: #555;
 }
 
 .details-actions {
   display: flex;
   justify-content: space-between;
   padding-left: 1vw;
-  padding-right: 1vw;
 }
 
 .details-btn {

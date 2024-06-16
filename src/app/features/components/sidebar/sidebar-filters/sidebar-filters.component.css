@@ -46,10 +46,6 @@ label {
   padding-left: 2vh;
 }
 
-label:nth-child(even) {
-  background-color: #eee;
-}
-
 .radio-text {
   padding-left: 0.5vh;
   opacity: 0.7;
@@ -58,7 +54,6 @@ label:nth-child(even) {
 }
 
 .categories-input {
-  color: #8e8e8e;
   font-size: medium;
   box-sizing: border-box;
   padding-left: 1vh;

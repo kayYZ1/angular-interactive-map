@@ -44,5 +44,7 @@ li:nth-child(odd) {
 }
 
 .pagination-controls {
+  padding-left: 2vw;
   justify-content: center;
+  align-items: center;
 }
