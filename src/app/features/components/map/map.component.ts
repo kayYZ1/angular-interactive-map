@@ -78,12 +78,14 @@ export class MapComponent {
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
       shadowUrl:
         'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
+      iconSize: [27, 43],
+      iconAnchor: [13, 0]
     });
 
-    for (const o of objects) {
-      const marker = Leaflet.marker(o.coordinates, { icon });
-      marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`).on("click", () => {
-        this.store.dispatch(addToTrip({ object: o }))
+    for (const object of objects) {
+      const marker = Leaflet.marker(object.coordinates, { icon });
+      marker.addTo(this.map).bindTooltip(`<p>${object.title}</p>`).on("click", () => {
+        this.store.dispatch(addToTrip({ object }))
       });
       this.markers.push(marker);
     }
@@ -102,18 +104,20 @@ export class MapComponent {
       );
       this.routingControl.setWaypoints(this.waypoints);
       this.routingControl.on("routesfound", (e) => {
-        const distance = e.routes[0].summary.totalDistance;
-        const time = e.routes[0].summary.totalTime;
-        this.store.dispatch(setSummary({ distance, time }))
+        this.store.dispatch(setSummary({
+          distance: e.routes[0].summary.totalDistance,
+          time: e.routes[0].summary.totalTime
+        }))
       })
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
-        addWaypoints: false,
         lineOptions: {
-          styles: [{ color: '#00adef', weight: 3 }],
+          styles: [{ color: '#00adef', opacity: 0.9, weight: 3 }],
           extendToWaypoints: true,
+          addWaypoints: false,
           missingRouteTolerance: 1,
+
         },
         waypointMode: 'connect',
       });

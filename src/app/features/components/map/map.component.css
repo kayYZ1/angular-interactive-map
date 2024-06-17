@@ -2,17 +2,17 @@
   width: 100vw;
   max-width: 100%;
   box-sizing: border-box;
-  position: relative;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .map-container {
-    height: 70vh;
+    height: 79vh;
   }
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
   .map-container {
     height: 80vh;
+    width: 99vw;
   }
 }

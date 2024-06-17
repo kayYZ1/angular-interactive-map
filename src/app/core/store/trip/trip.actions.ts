@@ -2,12 +2,12 @@ import { createAction, props } from '@ngrx/store';
 import { IObject } from '../../ts/interfaces';
 
 export const addToTrip = createAction(
-  'AddToTrip',
+  '[Trip] Add to trip',
   props<{ object: IObject }>()
 );
 
 export const removeFromTrip = createAction(
-  'RemoveFromTrip',
+  '[Trip] Remove from trip',
   props<{ object: IObject }>()
 );
 

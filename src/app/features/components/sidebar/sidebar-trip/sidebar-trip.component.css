@@ -16,7 +16,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   padding-bottom: 1.5vh;
-  gap: 0.5vw
+  gap: 0.5vw;
 }
 
 hr {
@@ -72,8 +72,7 @@ hr {
   display: inline-block;
   cursor: pointer;
   border: none;
-  padding: 0.5vw;
+  padding: 1vh 1vw 1vh 1vw;
   color: white;
-  font-size: smaller;
   background-color: #00adef;
 }
