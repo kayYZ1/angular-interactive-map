@@ -4,6 +4,11 @@
   padding-top: 1vh;
 }
 
+hr {
+  opacity: 0.2;
+  margin: 1vh 0 1vh 0;
+}
+
 .header-icons {
   font-size: large;
   cursor: pointer;
@@ -13,14 +18,21 @@
   color: #00adef;
 }
 
+span {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
 .object-info-content {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  flex-wrap: nowrap;
 }
 
 .object-info-img {
-  width: 20vw;
-  height: 15vh;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 2px solid #00adef;
 }

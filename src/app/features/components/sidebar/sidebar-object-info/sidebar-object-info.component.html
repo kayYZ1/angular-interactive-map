@@ -1,10 +1,12 @@
 <div class="object-info-header">
   <fa-icon [icon]="faReturn" class="header-icons" (click)="onClick()"></fa-icon>
-  <fa-icon [icon]="faClose" class="header-icons"></fa-icon>
+  <span>{{ object.category }}</span>
 </div>
+<hr>
 <div class="object-info-content">
-  <div>
-    {{ object.title }}
-  </div>
   <img [src]="object.imgUrl" alt="object.title" class="object-info-img" />
+  <h2>{{ object.title }}</h2>
+  <h4>{{ object.description }}</h4>
+  <p>{{ object.email }}</p>
+  <p>{{ object.phone }}</p>
 </div>

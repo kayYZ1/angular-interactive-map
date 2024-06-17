@@ -5,7 +5,7 @@
       <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
       <div class="trip-object-text">
         <h1>{{ object.title }}</h1>
-        <p>{{ object.description }} / {{ object.phone }}</p>
+        <p>{{ object.category }}</p>
       </div>
     </div>
     <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
@@ -20,7 +20,7 @@
     {{ (trip.totalDistance / 1000) | number:'1.0-1' }}km
   </span>
   <span>
-    <fa-icon [icon]="faHourglass" class="details-icon"></fa-icon>
+    <fa-icon [icon]="faCar" class="details-icon"></fa-icon>
     {{ (trip.totalTime / 60) | number:'1.0-0' }}m
   </span>
 </div>

@@ -18,7 +18,7 @@ const initialState: TripState = {
   route: [],
   date: getCurrentDate(),
   totalDistance: 0,
-  totalTime: 0
+  totalTime: 0,
 };
 
 export const tripReducer = createReducer(
