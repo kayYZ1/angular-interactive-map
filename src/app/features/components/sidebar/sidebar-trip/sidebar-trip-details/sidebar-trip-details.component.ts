@@ -3,23 +3,27 @@ import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../../core/store/trip/trip.selectors';
 import { IObject, ITrip } from '../../../../../core/ts/interfaces';
 import { removeFromTrip } from '../../../../../core/store/trip/trip.actions';
-import { faTrash, faHourglass, faRoad } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faHourglass, faRoad, faA, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { clearSummaries } from '../../../../../core/store/trip/trip.actions';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-trip-details',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, CommonModule],
   templateUrl: './sidebar-trip-details.component.html',
   styleUrl: './sidebar-trip-details.component.css'
 })
 export class SidebarTripDetailsComponent {
-  private readonly store = inject(Store)
+  private readonly store = inject(Store);
 
-  faTrash = faTrash
-  faHourglass = faHourglass
-  faRoad = faRoad
+  faTrash = faTrash;
+  faHourglass = faHourglass;
+  faRoad = faRoad;
+  faReturn = faArrowLeft;
+  faSave = faSave;
 
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;

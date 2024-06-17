@@ -60,13 +60,20 @@ span {
 .details-btn {
   cursor: pointer;
   border: none;
-  margin-top: 1vh;
   padding: 0.5vw;
   color: white;
   font-size: small;
-  font-weight: bold;
   background-color: #00adef;
   margin-left: 0.5vw;
+}
+
+.return-icon {
+  cursor: pointer;
+  padding-top: 1vh;
+}
+
+.return-icon:hover {
+  color: #00adef;
 }
 
 .delete-icon {
@@ -81,5 +88,11 @@ span {
 
 .trip-object-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding-top: 1vh;
+}
+
+.trip-object-save {
+  cursor: pointer;
+  padding-right: 0.5vw;
 }

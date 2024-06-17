@@ -115,7 +115,7 @@ export class MapComponent {
       });
 
       this.routingControl.addTo(this.map);
-      //this.routingControl.hide();
+      this.routingControl.hide();
     }
   }
 }

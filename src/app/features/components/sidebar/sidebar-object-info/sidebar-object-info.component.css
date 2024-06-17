@@ -1,0 +1,26 @@
+.object-info-header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1vh;
+}
+
+.header-icons {
+  font-size: large;
+  cursor: pointer;
+}
+
+.header-icons:hover {
+  color: #00adef;
+}
+
+.object-info-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.object-info-img {
+  width: 20vw;
+  height: 15vh;
+}

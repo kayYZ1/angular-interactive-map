@@ -17,14 +17,17 @@
 <div class="trip-object-details">
   <span>
     <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
-    {{ (trip.totalDistance / 1000).toFixed(2) }}km
+    {{ (trip.totalDistance / 1000) | number:'1.0-1' }}km
   </span>
   <span>
     <fa-icon [icon]="faHourglass" class="details-icon"></fa-icon>
-    {{ (trip.totalTime / 60).toFixed(2) }}m
+    {{ (trip.totalTime / 60) | number:'1.0-0' }}m
   </span>
 </div>
 <div class="trip-object-actions">
-  <button class="details-btn" (click)="closeDetails(true)">Wróć</button>
-  <button class="details-btn">Zapisz</button>
+  <fa-icon [icon]="faReturn" class="return-icon" (click)="closeDetails(true)"></fa-icon>
+  <button class="details-btn">
+    Zapisz
+    <fa-icon [icon]="faSave" style="padding-left: 0.3vw"></fa-icon>
+  </button>
 </div>

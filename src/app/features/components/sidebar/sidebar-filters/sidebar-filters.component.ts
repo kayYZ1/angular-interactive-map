@@ -1,5 +1,5 @@
-import { Component, SimpleChanges, inject } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Objects } from '../../../../core/data/objects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -15,7 +15,9 @@ import { CriteriaFilterPipe } from '../../../../core/pipes/criteria-filter.pipe'
 import { Store } from '@ngrx/store';
 import { clearSearchQuery, removeFromCategory, setCategoryFilter, setSearchQueryFilter } from '../../../../core/store/filters/filters.actions';
 import { selectFilters } from '../../../../core/store/filters/filters.selectors';
-import { IFilters } from '../../../../core/ts/interfaces';
+import { IFilters, IObject } from '../../../../core/ts/interfaces';
+import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
+import { SidebarObjectInfoComponent } from '../sidebar-object-info/sidebar-object-info.component';
 
 @Component({
   selector: 'app-sidebar-filters',
@@ -24,6 +26,8 @@ import { IFilters } from '../../../../core/ts/interfaces';
     FontAwesomeModule,
     FormsModule,
     CriteriaFilterPipe,
+    SidebarListComponent,
+    SidebarObjectInfoComponent
   ],
   templateUrl: './sidebar-filters.component.html',
   styleUrl: './sidebar-filters.component.css',
@@ -49,6 +53,9 @@ export class SidebarFiltersComponent {
 
   searchQuery = ''
 
+  objectInfo = false;
+  object!: IObject;
+
   ngOnInit() {
     this.filters$.subscribe(data => this.filters = data);
   }
@@ -72,5 +79,14 @@ export class SidebarFiltersComponent {
   resetQuery() {
     this.searchQuery = '';
     this.store.dispatch(clearSearchQuery());
+  }
+
+  openObjectInfo(object: IObject) {
+    this.objectInfo = true;
+    this.object = object;
+  }
+
+  closeObjectInfo() {
+    this.objectInfo = false;
   }
 }

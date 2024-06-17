@@ -1,0 +1,10 @@
+<div class="object-info-header">
+  <fa-icon [icon]="faReturn" class="header-icons" (click)="onClick()"></fa-icon>
+  <fa-icon [icon]="faClose" class="header-icons"></fa-icon>
+</div>
+<div class="object-info-content">
+  <div>
+    {{ object.title }}
+  </div>
+  <img [src]="object.imgUrl" alt="object.title" class="object-info-img" />
+</div>

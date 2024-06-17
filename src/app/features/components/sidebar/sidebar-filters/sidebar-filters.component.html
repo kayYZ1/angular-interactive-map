@@ -1,4 +1,5 @@
 <main>
+  @if (!objectInfo) {
   <div class="icon-input">
     <fa-icon [icon]="faLocationDot"></fa-icon>
     <input placeholder="Opole" type="text" name="location" disabled />
@@ -28,4 +29,8 @@
       </form>
     </div>
   </div>
+  <app-sidebar-list (showObjectInfo)="openObjectInfo($event)" />
+  } @else {
+  <app-sidebar-object-info [object]="object" (closeObjectInfo)="closeObjectInfo()" />
+  }
 </main>
