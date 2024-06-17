@@ -10,7 +10,7 @@ import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
-import { setSummary } from '../../../core/store/trip/trip.actions';
+import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-map',
@@ -44,6 +44,8 @@ export class MapComponent {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }),
     ],
+    maxZoom: 18,
+    minZoom: 8,
     zoom: 14,
     zoomControl: false,
     center: { lat: 50.6667, lng: 17.91 },
@@ -73,14 +75,16 @@ export class MapComponent {
     this.markers = [];
 
     const icon = new Leaflet.Icon({
-      iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
       shadowUrl:
         'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
     });
 
     for (const o of objects) {
       const marker = Leaflet.marker(o.coordinates, { icon });
-      marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`);
+      marker.addTo(this.map).bindTooltip(`<p>${o.title}</p>`).on("click", () => {
+        this.store.dispatch(addToTrip({ object: o }))
+      });
       this.markers.push(marker);
     }
   }

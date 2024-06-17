@@ -89,7 +89,7 @@ span {
 
 .trip-object-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-top: 1vh;
 }
 

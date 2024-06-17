@@ -19,13 +19,17 @@ export const filtersReducer = createReducer(
     ...state,
     searchQuery,
   })),
-  on(FilterActions.setCategoryFilter, (state, { searchCriteria }) => ({
-    ...state,
-    criteria: [...state.criteria, searchCriteria],
-  })),
-  on(FilterActions.removeFromCategory, (state, action) => ({
-    ...state,
-    criteria: state.criteria.filter((item) => item !== action.item),
-  })),
+  on(FilterActions.setCategoryFilter, (state, { searchCriteria }) => {
+    if (!state.criteria.includes(searchCriteria)) {
+      return {
+        ...state,
+        criteria: [...state.criteria, searchCriteria],
+      }
+    }
+    return {
+      ...state,
+      criteria: state.criteria.filter((item) => item !== searchCriteria),
+    }
+  }),
   on(FilterActions.clearSearchQuery, (state) => ({ ...state, searchQuery: '' }))
 );

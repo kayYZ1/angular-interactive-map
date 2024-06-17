@@ -13,7 +13,7 @@ import {
 import { Categories } from '../../../../core/ts/enums';
 import { CriteriaFilterPipe } from '../../../../core/pipes/criteria-filter.pipe';
 import { Store } from '@ngrx/store';
-import { clearSearchQuery, removeFromCategory, setCategoryFilter, setSearchQueryFilter } from '../../../../core/store/filters/filters.actions';
+import { clearSearchQuery, setCategoryFilter, setSearchQueryFilter } from '../../../../core/store/filters/filters.actions';
 import { selectFilters } from '../../../../core/store/filters/filters.selectors';
 import { IFilters, IObject } from '../../../../core/ts/interfaces';
 import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
@@ -69,11 +69,7 @@ export class SidebarFiltersComponent {
   }
 
   addCriteria(item: Categories) {
-    if (!this.filters.criteria.includes(item)) {
-      this.store.dispatch(setCategoryFilter({ searchCriteria: item }))
-    } else {
-      this.store.dispatch(removeFromCategory({ item }))
-    }
+    this.store.dispatch(setCategoryFilter({ searchCriteria: item }))
   }
 
   resetQuery() {

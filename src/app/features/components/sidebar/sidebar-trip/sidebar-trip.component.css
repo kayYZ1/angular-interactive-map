@@ -1,3 +1,7 @@
+.trip-container {
+  padding: 1vh 1vw 1vh 1vw;
+}
+
 .trip-header {
   display: flex;
   justify-content: space-between;

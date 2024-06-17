@@ -24,23 +24,20 @@ const initialState: TripState = {
 export const tripReducer = createReducer(
   initialState,
   on(TripActions.addToTrip, (state, { object }) => {
-    state = {
-      ...state,
-      places: [...state.places, object],
-      route: [...state.route, object.coordinates],
-    };
-
-    return state;
+    if (!state.places.includes(object)) {
+      return {
+        ...state,
+        places: [...state.places, object],
+        route: [...state.route, object.coordinates],
+      }
+    }
+    return state
   }),
-  on(TripActions.removeFromTrip, (state, { object }) => {
-    state = {
-      ...state,
-      places: state.places.filter((item) => item !== object),
-      route: state.route.filter((item) => item !== object.coordinates),
-    };
-
-    return state;
-  }),
+  on(TripActions.removeFromTrip, (state, { object }) => ({
+    ...state,
+    places: state.places.filter((item) => item !== object),
+    route: state.route.filter((item) => item !== object.coordinates)
+  })),
   on(TripActions.updateTrip, (state, { places, route }) => ({
     ...state,
     places: places,

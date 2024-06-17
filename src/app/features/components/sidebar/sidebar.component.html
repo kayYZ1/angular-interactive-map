@@ -1,15 +1,15 @@
 <aside class="sidebar-main">
+  @switch (view) {
+  @case ("search") {
   <div class="sidebar-scrollable">
-    @switch (view) {
-    @case ("search") {
     <app-sidebar-filters />
-    }
-    @case ("trip") {
-    <app-sidebar-trip />
-    }
-    @default {
-    <app-sidebar-save />
-    }
-    }
   </div>
+  }
+  @case ("trip") {
+  <app-sidebar-trip />
+  }
+  @default {
+  <app-sidebar-save />
+  }
+  }
 </aside>

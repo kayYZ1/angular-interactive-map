@@ -23,7 +23,6 @@ import { Objects } from '../../../../../core/data/objects';
 export class SidebarListComponent implements OnInit {
   private readonly store = inject(Store);
 
-  places$ = this.store.select(selectPlaces);
   filters$ = this.store.select(selectFilters);
 
   objects: IObject[] = Objects;
@@ -35,14 +34,11 @@ export class SidebarListComponent implements OnInit {
   @Output() showObjectInfo: EventEmitter<IObject> = new EventEmitter();
 
   ngOnInit(): void {
-    this.places$.subscribe((data) => (this.places = data));
     this.filters$.subscribe((data) => (this.filters = data));
   }
 
   addObjectToTrip(object: IObject) {
-    if (!this.places.includes(object)) {
-      this.store.dispatch(addToTrip({ object }));
-    }
+    this.store.dispatch(addToTrip({ object }));
   }
 
   onClick(object: IObject) {
