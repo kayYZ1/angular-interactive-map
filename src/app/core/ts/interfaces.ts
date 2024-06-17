@@ -15,6 +15,8 @@ export interface ITrip {
   places: IObject[];
   route: [number, number][]
   date: string;
+  totalDistance: number;
+  totalTime: number;
 }
 
 export interface IFilters {

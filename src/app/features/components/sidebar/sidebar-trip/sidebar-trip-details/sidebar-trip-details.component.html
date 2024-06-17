@@ -15,8 +15,14 @@
   }
 </div>
 <div class="trip-object-details">
-  <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
-  <fa-icon [icon]="faHourglass" class="details-icon"></fa-icon>
+  <span>
+    <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
+    {{ (trip.totalDistance / 1000).toFixed(2) }}km
+  </span>
+  <span>
+    <fa-icon [icon]="faHourglass" class="details-icon"></fa-icon>
+    {{ (trip.totalTime / 60).toFixed(2) }}m
+  </span>
 </div>
 <div class="trip-object-actions">
   <button class="details-btn" (click)="closeDetails(true)">Wróć</button>

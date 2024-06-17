@@ -10,6 +10,7 @@ import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
+import { setSummary } from '../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-map',
@@ -96,12 +97,17 @@ export class MapComponent {
         Leaflet.latLng(coordinates)
       );
       this.routingControl.setWaypoints(this.waypoints);
+      this.routingControl.on("routesfound", (e) => {
+        const distance = e.routes[0].summary.totalDistance;
+        const time = e.routes[0].summary.totalTime;
+        this.store.dispatch(setSummary({ distance, time }))
+      })
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
         addWaypoints: false,
         lineOptions: {
-          styles: [{ color: '#242c81', weight: 2 }],
+          styles: [{ color: '#00adef', weight: 3 }],
           extendToWaypoints: true,
           missingRouteTolerance: 1,
         },
@@ -109,6 +115,7 @@ export class MapComponent {
       });
 
       this.routingControl.addTo(this.map);
+      //this.routingControl.hide();
     }
   }
 }

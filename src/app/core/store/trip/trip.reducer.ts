@@ -9,12 +9,16 @@ export interface TripState {
   places: IObject[];
   route: [number, number][];
   date: string;
+  totalDistance: number;
+  totalTime: number;
 }
 
 const initialState: TripState = {
   places: [],
   route: [],
   date: getCurrentDate(),
+  totalDistance: 0,
+  totalTime: 0
 };
 
 export const tripReducer = createReducer(
@@ -41,5 +45,7 @@ export const tripReducer = createReducer(
     ...state,
     places: places,
     route: route,
-  }))
+  })),
+  on(TripActions.setSummary, (state, { distance, time }) => ({ ...state, totalDistance: distance, totalTime: time })),
+  on(TripActions.clearSummaries, (state) => ({ ...state, totalDistance: 0, totalTime: 0 }))
 );

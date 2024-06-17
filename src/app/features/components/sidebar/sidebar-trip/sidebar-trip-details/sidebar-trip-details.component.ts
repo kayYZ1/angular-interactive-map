@@ -5,7 +5,7 @@ import { IObject, ITrip } from '../../../../../core/ts/interfaces';
 import { removeFromTrip } from '../../../../../core/store/trip/trip.actions';
 import { faTrash, faHourglass, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { clearSummaries } from '../../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-trip-details',
@@ -32,6 +32,9 @@ export class SidebarTripDetailsComponent {
 
   onClick(object: IObject) {
     this.store.dispatch(removeFromTrip({ object }))
+    if (this.trip.places.length < 2) {
+      this.store.dispatch(clearSummaries());
+    }
   }
 
   closeDetails(close: boolean) {

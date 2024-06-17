@@ -45,11 +45,16 @@ p {
 
 .trip-object-details {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .details-icon {
-  padding: 1vh 1vw 1vh 1vw;
+  padding: 0 1vw 0 1vw;
+}
+
+span {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 
 .details-btn {

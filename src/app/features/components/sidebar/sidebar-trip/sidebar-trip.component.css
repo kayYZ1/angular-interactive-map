@@ -61,7 +61,7 @@ hr {
 .trip-actions {
   padding-top: 1vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .trip-info-btn {
@@ -71,6 +71,6 @@ hr {
   padding: 0.5vw;
   color: white;
   font-size: small;
-  font-weight: bold;
+  font-weight: 400;
   background-color: #00adef;
 }

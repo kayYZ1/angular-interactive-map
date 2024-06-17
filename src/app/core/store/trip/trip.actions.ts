@@ -15,3 +15,12 @@ export const updateTrip = createAction(
   '[Trip] Update places',
   props<{ places: IObject[]; route: [number, number][] }>()
 );
+
+export const setSummary = createAction(
+  '[Trip] Set route summaries',
+  props<{ distance: number, time: number }>()
+)
+
+export const clearSummaries = createAction(
+  '[Trip] Clear route summaries',
+)
