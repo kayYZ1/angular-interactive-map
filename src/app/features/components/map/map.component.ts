@@ -9,18 +9,20 @@ import { selectRoute } from '../../../core/store/trip/trip.selectors';
 import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
+import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
 
 @Component({
   selector: 'app-map',
   standalone: true,
   imports: [LeafletModule],
-  providers: [CriteriaFilterPipe],
+  providers: [CriteriaFilterPipe, SearchFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
 export class MapComponent {
   private readonly store = inject(Store);
   private criteriaPipe = inject(CriteriaFilterPipe);
+  private searchPipe = inject(SearchFilterPipe);
 
   route$ = this.store.select(selectRoute);
   filters$ = this.store.select(selectFilters);
@@ -46,14 +48,10 @@ export class MapComponent {
     center: { lat: 50.6667, lng: 17.91 },
   };
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.filters$.subscribe((data) => {
       this.filters = data;
-      this.objects = this.criteriaPipe.transform(
-        this.objects,
-        this.filters.criteria
-      );
-      this.updateFilteredObjects();
+      this.setFilteredData(this.filters);
     });
 
     this.route$.subscribe((data) => {
@@ -62,10 +60,11 @@ export class MapComponent {
     });
   }
 
-  updateFilteredObjects() {
-    this.objects = this.criteriaPipe.transform(Objects, this.filters.criteria);
-    console.log('Filtered objects:', this.objects);
-    this.updateMarkers(this.objects);
+  setFilteredData(filters: IFilters) {
+    let filteredObjects: IObject[] = [];
+    if (filters.criteria) filteredObjects = this.criteriaPipe.transform(Objects, filters.criteria);
+    if (filters.searchQuery) filteredObjects = this.searchPipe.transform(Objects, filters.searchQuery);
+    this.updateMarkers(filteredObjects);
   }
 
   updateMarkers(objects: IObject[]) {
@@ -88,7 +87,6 @@ export class MapComponent {
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
-
     this.updateMarkers(this.objects);
   }
 
