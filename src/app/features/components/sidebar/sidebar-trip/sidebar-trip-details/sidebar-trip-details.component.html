@@ -1,6 +1,6 @@
-<div class="trip-object-list">
+<div class="trip-object-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
   @for(object of trip.places; track object.id) {
-  <div class="trip-object">
+  <div class="trip-object" cdkDrag>
     <div class="trip-object-content">
       <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
       <div class="trip-object-text">

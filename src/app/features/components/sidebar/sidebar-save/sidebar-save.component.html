@@ -1,13 +1,12 @@
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti eos saepe a at iste error quas, repellat,
-  recusandae explicabo dolorem laudantium et enim deleniti. Porro soluta numquam accusamus commodi repudiandae quam
-  rerum maiores officia quaerat. Facere iusto nam, ullam magni perspiciatis sit quasi vel aut ea neque? Saepe architecto
-  laborum quo, dignissimos mollitia minima nobis! Enim, dolore ratione iure minus commodi asperiores sit mollitia
-  laboriosam rerum dolores consequuntur esse culpa quidem nobis odio tempore fuga amet voluptas laborum eligendi!
-  Perspiciatis, laborum! Saepe modi explicabo quisquam deserunt incidunt qui, earum expedita ab laborum nobis fugiat
-  voluptatibus quod nemo ipsa harum animi itaque, voluptates natus fugit ut consequuntur facilis. Soluta eaque modi,
-  quibusdam placeat non necessitatibus consequatur, neque ipsa consectetur unde optio dignissimos, nisi enim voluptates
-  dolor excepturi at ducimus provident quas ad tempora voluptatibus minus magnam nam! Cumque aperiam, illum cum officiis
-  veritatis vel voluptatem eum reprehenderit dolore in, aliquam officia quod molestiae necessitatibus accusantium
-  nostrum fuga velit, minima nihil tenetur eveniet. Neque fugit, aut alias minus quam praesentium tenetur ea quidem
-  nostrum ipsam natus cum, cumque nisi rem quae ab optio odit rerum velit voluptas vero, quasi perferendis. Odio ratione
-  fugiat doloremque dolores eveniet voluptas molestias et tempore animi assumenda!</p>
+<div class="trip-save-container">
+  <label>Nazwa wycieczki:</label>
+  <input type="text" [placeholder]="trip.name" [(ngModel)]="tripName" (ngModelChange)="onChange(tripName)"
+    class="trip-name-input" />
+  <div class="trip-save-actions">
+    <button class="trip-save-btn" id="btn-first">Zapisz</button>
+    <button class="trip-save-btn">Zapisz 2</button>
+    <button class="trip-save-btn">Zapisz 3</button>
+    <button class="trip-save-btn">Zapisz 4</button>
+    <button class="trip-save-btn">Zapisz 5</button>
+  </div>
+</div>

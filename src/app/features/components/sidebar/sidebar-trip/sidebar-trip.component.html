@@ -1,7 +1,7 @@
 <div class="trip-container">
   <div class="trip-header">
     <div>
-      Wycieczka
+      {{ trip.name }}
     </div>
     <div class="trip-date">
       {{ trip.date }}
@@ -19,7 +19,7 @@
     }
   </div>
   <div class="trip-actions">
-    <button class="trip-info-btn">Optymalizuj</button>
+    <button class="trip-info-btn" id="first-btn" disabled>Optymalizuj</button>
     <button class="trip-info-btn" (click)="openDetails()">Szczegóły</button>
   </div>
   } @else {

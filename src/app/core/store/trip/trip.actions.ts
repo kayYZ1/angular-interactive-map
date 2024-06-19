@@ -24,3 +24,8 @@ export const setSummary = createAction(
 export const clearSummaries = createAction(
   '[Trip] Clear route summaries',
 )
+
+export const setName = createAction(
+  '[Trip] Set trip name',
+  props<{ name: string }>()
+)

@@ -77,4 +77,14 @@ export const Objects: IObject[] = [
     imgUrl:
       'https://www.opole.pl/sites/default/files/styles/vphoto_gallery_large/public/galerie/Atrakcje/Teatr%20Kochanowskiego%20-%20scena.jpg?itok=7ayseLz5',
   },
+  {
+    id: 8,
+    title: 'Wieza Piastowska',
+    description: 'Wysoka wieza',
+    phone: '12 321 32 12',
+    email: '123@gmail.com',
+    category: Categories.TURYSTYKA,
+    coordinates: [50.67253149324137, 17.920404822895513],
+    imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3-8JS5Nh6Fjjvd1ChRqu3q04Z7PTYY-Fg&s'
+  },
 ];

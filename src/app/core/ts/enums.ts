@@ -3,12 +3,6 @@ export enum Categories {
   ROZRYWKA = 'rozrywka',
   PARKI = 'parki',
   GASTRONOMIA = 'gastronomia',
-  HANDEL = 'handel'
-}
-
-export enum View {
-  MAP = 'map',
-  SEARCH = 'search',
-  TRIP = 'trip',
-  SAVE = 'save'
+  HANDEL = 'handel',
+  TURYSTYKA = 'turystyka'
 }

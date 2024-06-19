@@ -1,0 +1,56 @@
+.trip-save-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5vh;
+}
+
+label {
+  padding-bottom: 1vh;
+  font-size: small;
+}
+
+.trip-name-input {
+  width: 22vw;
+  margin-bottom: 2vh;
+  border-color: transparent;
+  font-size: medium;
+  padding: 0.5vh 0.2vw 0.5vh;
+  font-weight: 400;
+  line-height: 1.28;
+  box-shadow: transparent 0px 0px 0px 1px;
+  border-radius: 3px;
+  border-bottom: 1px solid #00adef;
+}
+
+.trip-name-input:hover:not(:focus) {
+  background-color: rgb(235, 236, 240);
+}
+
+.trip-name-input:focus {
+  outline: none;
+}
+
+.trip-save-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 11vw);
+  gap: 1vw;
+}
+
+.trip-save-btn {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  padding: 1vh 1vw 1vh 1vw;
+  color: white;
+  background-color: #00adef;
+}
+
+.trip-save-btn:hover {
+  background-color: #0391c9fd;
+}
+
+#btn-first {
+  grid-column: span 2;
+}

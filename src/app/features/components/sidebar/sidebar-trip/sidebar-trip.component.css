@@ -63,9 +63,14 @@ hr {
 }
 
 .trip-actions {
-  padding-top: 1vh;
+  padding-top: 2vh;
   display: flex;
   justify-content: space-evenly;
+}
+
+#first-btn {
+  background-color: rgb(185, 176, 176);
+  cursor: not-allowed;
 }
 
 .trip-info-btn {
@@ -75,4 +80,8 @@ hr {
   padding: 1vh 1vw 1vh 1vw;
   color: white;
   background-color: #00adef;
+}
+
+.trip-info-btn:hover {
+  background-color: #0391c9fd;
 }

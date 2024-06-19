@@ -12,6 +12,7 @@ export interface IObject {
 }
 
 export interface ITrip {
+  name: string;
   places: IObject[];
   route: [number, number][]
   date: string;

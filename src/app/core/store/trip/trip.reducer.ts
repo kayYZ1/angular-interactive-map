@@ -6,6 +6,7 @@ import { IObject } from '../../ts/interfaces';
 import { getCurrentDate } from '../../../shared/utilts';
 
 export interface TripState {
+  name: string;
   places: IObject[];
   route: [number, number][];
   date: string;
@@ -14,6 +15,7 @@ export interface TripState {
 }
 
 const initialState: TripState = {
+  name: "Wycieczka",
   places: [],
   route: [],
   date: getCurrentDate(),
@@ -44,5 +46,14 @@ export const tripReducer = createReducer(
     route: route,
   })),
   on(TripActions.setSummary, (state, { distance, time }) => ({ ...state, totalDistance: distance, totalTime: time })),
-  on(TripActions.clearSummaries, (state) => ({ ...state, totalDistance: 0, totalTime: 0 }))
+  on(TripActions.clearSummaries, (state) => ({ ...state, totalDistance: 0, totalTime: 0 })),
+  on(TripActions.setName, (state, { name }) => {
+    if (name.length > 3) {
+      return {
+        ...state,
+        name
+      }
+    }
+    return state
+  })
 );
