@@ -11,11 +11,13 @@ import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
 import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTruckPickup } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [LeafletModule],
+  imports: [LeafletModule, FontAwesomeModule],
   providers: [CriteriaFilterPipe, SearchFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
@@ -36,6 +38,8 @@ export class MapComponent {
   map!: Leaflet.Map;
   waypoints: Leaflet.LatLng[] = [];
   markers: Leaflet.Marker[] = [];
+
+  faIcon = faTruckPickup
 
   options = {
     layers: [
@@ -80,7 +84,7 @@ export class MapComponent {
         'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
       iconSize: [27, 43],
       iconAnchor: [13, 0]
-    });
+    })
 
     for (const object of objects) {
       const marker = Leaflet.marker(object.coordinates, { icon });
@@ -112,14 +116,13 @@ export class MapComponent {
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
+        fitSelectedRoutes: true,
         lineOptions: {
           styles: [{ color: '#00adef', opacity: 0.9, weight: 3 }],
           extendToWaypoints: true,
           addWaypoints: false,
           missingRouteTolerance: 1,
-
         },
-        waypointMode: 'connect',
       });
 
       this.routingControl.addTo(this.map);

@@ -18,6 +18,7 @@ import { selectFilters } from '../../../../core/store/filters/filters.selectors'
 import { IFilters, IObject } from '../../../../core/ts/interfaces';
 import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
 import { SidebarObjectInfoComponent } from '../sidebar-object-info/sidebar-object-info.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-filters',
@@ -27,7 +28,7 @@ import { SidebarObjectInfoComponent } from '../sidebar-object-info/sidebar-objec
     FormsModule,
     CriteriaFilterPipe,
     SidebarListComponent,
-    SidebarObjectInfoComponent
+    SidebarObjectInfoComponent,
   ],
   templateUrl: './sidebar-filters.component.html',
   styleUrl: './sidebar-filters.component.css',
