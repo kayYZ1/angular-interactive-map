@@ -51,7 +51,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: 'parkopo@gmail.com',
     category: Categories.HANDEL,
-    coordinates: [50.673329439288906, 17.926613371482905],
+    coordinates: [50.670779921648545, 17.92611468909471],
     imgUrl:
       'https://opolska360.pl/wp-content/uploads/2023/01/Ozimska-Park-w-Opolu-1120x570.jpg',
   },
@@ -85,6 +85,29 @@ export const Objects: IObject[] = [
     email: '123@gmail.com',
     category: Categories.TURYSTYKA,
     coordinates: [50.67253149324137, 17.920404822895513],
-    imgUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3-8JS5Nh6Fjjvd1ChRqu3q04Z7PTYY-Fg&s'
+    imgUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3-8JS5Nh6Fjjvd1ChRqu3q04Z7PTYY-Fg&s',
+  },
+  {
+    id: 9,
+    title: 'Opolski Rynek',
+    description: 'Rynek w opolu',
+    phone: '',
+    email: '',
+    category: Categories.TURYSTYKA,
+    coordinates: [50.66906667007652, 17.922558241937775],
+    imgUrl:
+      'https://lh5.googleusercontent.com/p/AF1QipOK4lQJfSrM42cOctPUl_ww9a-ynF6r6CBhUoia=w408-h544-k-no',
+  },
+  {
+    id: 10,
+    title: 'Turawa Park',
+    description: 'Centrum handlowe Turawa Park',
+    phone: '22 333 11 21',
+    email: '',
+    category: Categories.HANDEL,
+    coordinates: [50.686168442514195, 17.979492543092476],
+    imgUrl:
+      'https://omnichannelnews.pl/wp-content/uploads/2022/01/turawa-park-centrum-handlowe-opole.jpg',
   },
 ];

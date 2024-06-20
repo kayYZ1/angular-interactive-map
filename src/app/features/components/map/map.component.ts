@@ -12,7 +12,7 @@ import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
 import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTruckPickup } from '@fortawesome/free-solid-svg-icons';
+import { customMarker } from './styles';
 
 @Component({
   selector: 'app-map',
@@ -38,8 +38,6 @@ export class MapComponent {
   map!: Leaflet.Map;
   waypoints: Leaflet.LatLng[] = [];
   markers: Leaflet.Marker[] = [];
-
-  faIcon = faTruckPickup
 
   options = {
     layers: [
@@ -69,8 +67,10 @@ export class MapComponent {
 
   setFilteredData(filters: IFilters) {
     let filteredObjects: IObject[] = [];
-    if (filters.criteria) filteredObjects = this.criteriaPipe.transform(Objects, filters.criteria);
-    if (filters.searchQuery) filteredObjects = this.searchPipe.transform(Objects, filters.searchQuery);
+    if (filters.criteria)
+      filteredObjects = this.criteriaPipe.transform(Objects, filters.criteria);
+    if (filters.searchQuery)
+      filteredObjects = this.searchPipe.transform(Objects, filters.searchQuery);
     this.updateMarkers(filteredObjects);
   }
 
@@ -78,50 +78,32 @@ export class MapComponent {
     this.markers.forEach((marker) => marker.remove());
     this.markers = [];
 
-    /*const icon = new Leaflet.Icon({
-      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
-      shadowUrl:
-        'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
-      iconSize: [27, 43],
-      iconAnchor: [13, 0]
-    })*/
-
     for (const object of objects) {
-      const markerHtmlStyles = `
-        position: absolute;
-        background-color: white;
-        transform: rotate(45deg);
-        padding: 1px;
-        width: 48px;
-        height: 48px;
-        margin: -40px 0 0 -15px;
-        display: block;
-        border-radius: 3rem 3rem 0;
-        border: 3px solid #00adef;
-      `
-
       const imgDiv = `
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
         transform: rotate(-45deg);
         border-radius: 3rem;
         background-image: url(${object.imgUrl});
         background-size: cover;
-      `
+        border: 2px solid #fff;
+      `;
 
       const icon = Leaflet.divIcon({
-        iconAnchor: [0, 24],
         html: `
-          <div style="${markerHtmlStyles}">
+          <div style="${customMarker}">
             <div style="${imgDiv}"></div>
           </div>
-        `
-      })
+        `,
+      });
 
       const marker = Leaflet.marker(object.coordinates, { icon });
-      marker.addTo(this.map).bindTooltip(`<p>${object.title}</p>`).on("click", () => {
-        this.store.dispatch(addToTrip({ object }))
-      });
+      marker
+        .addTo(this.map)
+        .bindTooltip(`<p>${object.title}</p>`)
+        .on('click', () => {
+          this.store.dispatch(addToTrip({ object }));
+        });
       this.markers.push(marker);
     }
   }
@@ -138,12 +120,14 @@ export class MapComponent {
         Leaflet.latLng(coordinates)
       );
       this.routingControl.setWaypoints(this.waypoints);
-      this.routingControl.on("routesfound", (e) => {
-        this.store.dispatch(setSummary({
-          distance: e.routes[0].summary.totalDistance,
-          time: e.routes[0].summary.totalTime
-        }))
-      })
+      this.routingControl.on('routesfound', (e) => {
+        this.store.dispatch(
+          setSummary({
+            distance: e.routes[0].summary.totalDistance,
+            time: e.routes[0].summary.totalTime,
+          })
+        );
+      });
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
