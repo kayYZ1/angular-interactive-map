@@ -78,15 +78,46 @@ export class MapComponent {
     this.markers.forEach((marker) => marker.remove());
     this.markers = [];
 
-    const icon = new Leaflet.Icon({
+    /*const icon = new Leaflet.Icon({
       iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
       shadowUrl:
         'https://unpkg.com/leaflet@1.0.3/dist/images/marker-shadow.png',
       iconSize: [27, 43],
       iconAnchor: [13, 0]
-    })
+    })*/
 
     for (const object of objects) {
+      const markerHtmlStyles = `
+        position: absolute;
+        background-color: white;
+        transform: rotate(45deg);
+        padding: 1px;
+        width: 48px;
+        height: 48px;
+        margin: -40px 0 0 -15px;
+        display: block;
+        border-radius: 3rem 3rem 0;
+        border: 3px solid #00adef;
+      `
+
+      const imgDiv = `
+        width: 100%;
+        height: 100%;
+        transform: rotate(-45deg);
+        border-radius: 3rem;
+        background-image: url(${object.imgUrl});
+        background-size: cover;
+      `
+
+      const icon = Leaflet.divIcon({
+        iconAnchor: [0, 24],
+        html: `
+          <div style="${markerHtmlStyles}">
+            <div style="${imgDiv}"></div>
+          </div>
+        `
+      })
+
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker.addTo(this.map).bindTooltip(`<p>${object.title}</p>`).on("click", () => {
         this.store.dispatch(addToTrip({ object }))

@@ -16,3 +16,15 @@
     width: 99vw;
   }
 }
+
+.marker-icon {
+  box-sizing: border-box;
+  display: block;
+  width: 30px;
+  height: 40px;
+  padding: 0;
+  margin: -40px 0 0 -15px;
+  background-color: transparent;
+  border-width: 0;
+  transform-origin: bottom center;
+}
