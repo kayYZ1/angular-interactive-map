@@ -13,7 +13,7 @@ export class CriteriaFilterPipe implements PipeTransform {
       return objects;
     }
     return objects.filter((object) =>
-      criteria.some((criterion) => object.category.includes(criterion))
+      criteria.some((item) => object.category.includes(item))
     );
   }
 }

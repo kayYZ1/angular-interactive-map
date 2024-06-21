@@ -1,6 +1,7 @@
 import * as Leaflet from 'leaflet';
+import "leaflet.markercluster";
 import { Component, inject } from '@angular/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngrx/store';
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
@@ -13,11 +14,12 @@ import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
 import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { customMarker } from './styles';
+import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [LeafletModule, FontAwesomeModule],
+  imports: [LeafletModule, LeafletMarkerClusterModule, FontAwesomeModule],
   providers: [CriteriaFilterPipe, SearchFilterPipe],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
@@ -52,6 +54,10 @@ export class MapComponent {
     zoomControl: false,
     center: { lat: 50.6667, lng: 17.91 },
   };
+
+  markerClusterGroup!: Leaflet.MarkerClusterGroup;
+  markerClusterData: Leaflet.Marker[] = [];
+  markerClusterOptions!: Leaflet.MarkerClusterGroupOptions;
 
   ngAfterViewInit() {
     this.filters$.subscribe((data) => {
@@ -99,19 +105,23 @@ export class MapComponent {
 
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker
-        .addTo(this.map)
-        .bindTooltip(`<p>${object.title}</p>`)
         .on('click', () => {
           this.store.dispatch(addToTrip({ object }));
         });
+
       this.markers.push(marker);
     }
+    this.markerClusterData = this.markers;
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
     this.updateMarkers(this.objects);
+  }
+
+  markerClusterReady(group: Leaflet.MarkerClusterGroup) {
+    this.markerClusterGroup = group;
   }
 
   mapRoute() {
