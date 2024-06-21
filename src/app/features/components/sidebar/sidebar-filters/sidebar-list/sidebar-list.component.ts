@@ -5,9 +5,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Store } from '@ngrx/store';
 import { IFilters, IObject } from '../../../../../core/ts/interfaces';
 import { addToTrip } from '../../../../../core/store/trip/trip.actions';
-import { selectPlaces } from '../../../../../core/store/trip/trip.selectors';
 import { selectFilters } from '../../../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../../../core/data/objects';
+import { ShortenDescriptionPipe } from '../../../../../core/pipes/shorten-description.pipe';
 
 @Component({
   selector: 'app-sidebar-list',
@@ -15,6 +15,7 @@ import { Objects } from '../../../../../core/data/objects';
   imports: [
     SearchFilterPipe,
     CriteriaFilterPipe,
+    ShortenDescriptionPipe,
     NgxPaginationModule,
   ],
   templateUrl: './sidebar-list.component.html',

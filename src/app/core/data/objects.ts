@@ -5,7 +5,7 @@ export const Objects: IObject[] = [
   {
     id: 1,
     title: 'Stadion Odry Opole',
-    description: 'Najlepsze miejsce do zwiedzania',
+    description: 'Najlepsze miejsce do zwiedzania w Opolu 111111',
     phone: '57 222 72 12',
     email: 'fajnemiejsce@gmail.com',
     category: Categories.ROZRYWKA,
