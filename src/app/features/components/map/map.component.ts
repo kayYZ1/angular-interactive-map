@@ -57,7 +57,6 @@ export class MapComponent {
 
   markerClusterGroup!: Leaflet.MarkerClusterGroup;
   markerClusterData: Leaflet.Marker[] = [];
-  markerClusterOptions!: Leaflet.MarkerClusterGroupOptions;
 
   ngAfterViewInit() {
     this.filters$.subscribe((data) => {
@@ -107,7 +106,8 @@ export class MapComponent {
       marker
         .on('click', () => {
           this.store.dispatch(addToTrip({ object }));
-        });
+        })
+        .bindTooltip(`<p>${object.title}</p>`)
 
       this.markers.push(marker);
     }
@@ -117,6 +117,7 @@ export class MapComponent {
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
+
     this.updateMarkers(this.objects);
   }
 
