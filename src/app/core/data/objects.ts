@@ -57,14 +57,14 @@ export const Objects: IObject[] = [
   },
   {
     id: 6,
-    title: 'Restauracja na wzgórzu',
+    title: 'Restauracja TRIO',
     description: 'Restauracja',
     phone: '12 321 32 12',
-    email: 'parkopo@gmail.com',
+    email: '3@gmail.com',
     category: Categories.GASTRONOMIA,
-    coordinates: [50.668546493233805, 17.92210716456905],
+    coordinates: [50.68218999947739, 17.884776209848482],
     imgUrl:
-      'https://opole-news.pl/wp-content/uploads/2021/11/czeska_gospoda.jpg',
+      'https://lh3.googleusercontent.com/p/AF1QipN-pylKegl0dU1V5EYlBnITBF7zPuLUjlIpuNDq=s138-w138-h108-n-k-no',
   },
   {
     id: 7,

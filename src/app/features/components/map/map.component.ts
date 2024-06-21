@@ -57,6 +57,10 @@ export class MapComponent {
 
   markerClusterGroup!: Leaflet.MarkerClusterGroup;
   markerClusterData: Leaflet.Marker[] = [];
+  markerClusterOptions: Leaflet.MarkerClusterGroupOptions = ({
+    disableClusteringAtZoom: 13,
+    showCoverageOnHover: false
+  })
 
   ngAfterViewInit() {
     this.filters$.subscribe((data) => {
