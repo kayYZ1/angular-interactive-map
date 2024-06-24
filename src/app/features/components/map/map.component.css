@@ -4,27 +4,15 @@
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .map-container {
-    height: 79vh;
+    height: 79.5vh;
   }
 }
 
 @media (max-width: 1200px) {
   .map-container {
-    height: 80vh;
-    width: 99vw;
+    height: 78.5vh;
+    width: 100vw;
   }
-}
-
-.marker-icon {
-  box-sizing: border-box;
-  display: block;
-  width: 30px;
-  height: 40px;
-  padding: 0;
-  margin: -40px 0 0 -15px;
-  background-color: transparent;
-  border-width: 0;
-  transform-origin: bottom center;
 }

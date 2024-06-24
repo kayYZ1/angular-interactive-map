@@ -63,14 +63,14 @@ export class MapComponent {
   })
 
   ngAfterViewInit() {
-    this.filters$.subscribe((data) => {
-      this.filters = data;
-      this.setFilteredData(this.filters);
-    });
-
     this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
+    });
+
+    this.filters$.subscribe((data) => {
+      this.filters = data;
+      this.setFilteredData(this.filters);
     });
   }
 
@@ -123,10 +123,6 @@ export class MapComponent {
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
     this.updateMarkers(this.objects);
-  }
-
-  markerClusterReady(group: Leaflet.MarkerClusterGroup) {
-    this.markerClusterGroup = group;
   }
 
   mapRoute() {
