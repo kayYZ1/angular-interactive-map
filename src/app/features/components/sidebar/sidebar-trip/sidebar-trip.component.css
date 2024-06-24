@@ -7,10 +7,6 @@
   justify-content: space-between;
 }
 
-.trip-date {
-  color: #00adef;
-}
-
 .trip-info {
   display: flex;
   flex-direction: row;
@@ -84,4 +80,13 @@ hr {
 
 .trip-info-btn:hover {
   background-color: #0391c9fd;
+}
+
+.trip-datepicker {
+  border: none;
+  color: #00adef;
+  font-weight: 500;
+  font-size: 15px;
+  outline: none;
+  font-family: "Lato", "sans-serif";
 }

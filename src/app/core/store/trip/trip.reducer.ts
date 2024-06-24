@@ -2,7 +2,6 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as TripActions from './trip.actions';
 import { IObject } from '../../ts/interfaces';
-
 import { getCurrentDate } from '../../../shared/utilts';
 
 export interface TripState {
@@ -55,5 +54,8 @@ export const tripReducer = createReducer(
       }
     }
     return state
-  })
+  }),
+  on(TripActions.setDate, (state, { date }) => ({
+    ...state, date
+  }))
 );

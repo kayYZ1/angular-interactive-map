@@ -29,3 +29,8 @@ export const setName = createAction(
   '[Trip] Set trip name',
   props<{ name: string }>()
 )
+
+export const setDate = createAction(
+  '[Trip] Set date',
+  props<{ date: string }>()
+)
