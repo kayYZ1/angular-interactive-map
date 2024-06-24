@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IObject } from '../ts/interfaces';
-import { Categories } from '../ts/enums';
+import { IObject } from '../../shared/ts/interfaces';
+import { Categories } from '../../shared/ts/enums';
 
 @Pipe({
   name: 'criteriaFilter',

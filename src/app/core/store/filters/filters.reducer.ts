@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Categories } from '../../ts/enums';
+import { Categories } from '../../../shared/ts/enums';
 
 import * as FilterActions from './filters.actions';
 

@@ -8,7 +8,7 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
-import { ITrip } from '../../../../core/ts/interfaces';
+import { ITrip } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
 import { setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
 import { getCurrentDate } from '../../../../shared/utilts';
@@ -33,7 +33,6 @@ export class SidebarTripComponent implements OnInit {
 
   ngOnInit() {
     this.trip$.subscribe((data) => (this.trip = data));
-    console.log(this.trip.date)
   }
 
   drop(event: CdkDragDrop<string[]>) {

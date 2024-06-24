@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../../core/store/trip/trip.selectors';
-import { IObject, ITrip } from '../../../../../core/ts/interfaces';
+import { IObject, ITrip } from '../../../../../shared/ts/interfaces';
 import { removeFromTrip } from '../../../../../core/store/trip/trip.actions';
 import { faTrash, faRoad, faSave, faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

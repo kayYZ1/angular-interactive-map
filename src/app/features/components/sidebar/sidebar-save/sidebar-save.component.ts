@@ -1,7 +1,7 @@
 import { Component, NgModule, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
-import { ITrip } from '../../../../core/ts/interfaces';
+import { ITrip } from '../../../../shared/ts/interfaces';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';

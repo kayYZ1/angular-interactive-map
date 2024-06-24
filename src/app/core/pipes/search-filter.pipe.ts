@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IObject } from '../ts/interfaces';
+import { IObject } from '../../shared/ts/interfaces';
 
 @Pipe({
   name: 'searchFilter',

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IObject } from '../../ts/interfaces';
+import { IObject } from '../../../shared/ts/interfaces';
 
 export const addToTrip = createAction(
   '[Trip] Add to trip',

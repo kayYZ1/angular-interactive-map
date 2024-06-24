@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { SearchFilterPipe } from '../../../../../core/pipes/search-filter.pipe';
 import { CriteriaFilterPipe } from '../../../../../core/pipes/criteria-filter.pipe';
-import { IFilters, IObject } from '../../../../../core/ts/interfaces';
+import { IFilters, IObject } from '../../../../../shared/ts/interfaces';
 import { addToTrip } from '../../../../../core/store/trip/trip.actions';
 import { selectFilters } from '../../../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../../../core/data/objects';

@@ -5,7 +5,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngrx/store';
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
-import { IFilters, IObject } from '../../../core/ts/interfaces';
+import { IFilters, IObject } from '../../../shared/ts/interfaces';
 import { selectRoute } from '../../../core/store/trip/trip.selectors';
 import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';

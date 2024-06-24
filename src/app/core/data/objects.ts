@@ -1,5 +1,5 @@
-import { Categories } from '../ts/enums';
-import { IObject } from '../ts/interfaces';
+import { Categories } from '../../shared/ts/enums';
+import { IObject } from '../../shared/ts/interfaces';
 
 export const Objects: IObject[] = [
   {

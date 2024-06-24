@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IObject } from '../../../../core/ts/interfaces';
+import { IObject } from '../../../../shared/ts/interfaces';
 import { faArrowLeft, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
