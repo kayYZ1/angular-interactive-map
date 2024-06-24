@@ -6,8 +6,8 @@
   </div>
   <div class="icon-input">
     <fa-icon [icon]="faSearch"></fa-icon>
-    <input [placeholder]="searchPlaceholder" type="text" [(ngModel)]="searchQuery" (ngModelChange)="onQueryChange()"
-      name="searchQuery" />
+    <input [placeholder]="searchPlaceholder" type="text" [ngModel]="searchQuery"
+      (ngModelChange)="onQueryChange(searchQuery = $event)" name="searchQuery" />
     @if (searchQuery && searchQuery.length > 2) {
     <fa-icon [icon]="faClose" class="icon-close" (click)="resetQuery()"></fa-icon>
     }

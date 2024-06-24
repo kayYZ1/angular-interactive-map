@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as TripActions from './trip.actions';
 import { IObject } from '../../../shared/ts/interfaces';
-import { getCurrentDate } from '../../../shared/utilts';
+import { getCurrentDate } from '../../../shared/utils';
 
 export interface TripState {
   name: string;

@@ -11,7 +11,7 @@ import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
 import { setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
-import { getCurrentDate } from '../../../../shared/utilts';
+import { getCurrentDate } from '../../../../shared/utils';
 
 @Component({
   selector: 'app-sidebar-trip',
@@ -33,6 +33,7 @@ export class SidebarTripComponent implements OnInit {
 
   ngOnInit() {
     this.trip$.subscribe((data) => (this.trip = data));
+    console.log(this.trip.date);
   }
 
   drop(event: CdkDragDrop<string[]>) {

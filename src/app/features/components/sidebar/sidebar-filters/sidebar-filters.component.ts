@@ -65,7 +65,7 @@ export class SidebarFiltersComponent {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  onQueryChange() {
+  onQueryChange(searchQuery: string) {
     this.store.dispatch(setSearchQueryFilter({ searchQuery: this.searchQuery }))
   }
 
