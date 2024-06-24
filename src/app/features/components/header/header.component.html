@@ -11,8 +11,10 @@
         <a class="navbar-list-item-text">Szukaj</a>
       </span>
       <span class="navbar-list-item" (click)="changeSidebarView('trip')">
-        <fa-icon [icon]="faPersonWalking">
-        </fa-icon>
+        <div class="icon-span">
+          <fa-icon [icon]="faPersonWalking"></fa-icon>
+          <span class="notif-badge">1</span>
+        </div>
         <a class="navbar-list-item-text">Wycieczka</a>
       </span>
       <span class="navbar-list-item" (click)="changeSidebarView('save')">

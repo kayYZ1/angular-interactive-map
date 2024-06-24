@@ -21,6 +21,7 @@
 
 .navbar-list-item {
   display: inline-block;
+  position: relative;
   border: 1px;
   padding: 1.5vh;
   width: 25vh;
@@ -43,6 +44,10 @@
   border-left: 1px solid rgba(255, 255, 255, .2);
 }
 
+.navbar-list-item-text {
+  padding-left: 0.5vw;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -59,6 +64,21 @@ fa-icon {
 
   fa-icon {
     font-size: 2.5vh;
-    padding: 1vh;
   }
+}
+
+.icon-span {
+  display: inline-block;
+  position: relative;
+}
+
+.notif-badge {
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  padding: 1px 3px;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
