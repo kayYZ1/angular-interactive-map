@@ -1,10 +1,10 @@
 import * as Leaflet from 'leaflet';
 import "leaflet.markercluster";
+import 'leaflet-routing-machine';
+import 'leaflet-defaulticon-compatibility';
 import { Component, inject } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngrx/store';
-import 'leaflet-routing-machine';
-import 'leaflet-defaulticon-compatibility';
 import { IFilters, IObject } from '../../../shared/ts/interfaces';
 import { selectRoute } from '../../../core/store/trip/trip.selectors';
 import { selectFilters } from '../../../core/store/filters/filters.selectors';
