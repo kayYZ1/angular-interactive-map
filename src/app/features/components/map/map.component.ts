@@ -62,6 +62,8 @@ export class MapComponent {
     showCoverageOnHover: false
   })
 
+  timelineArray: number[] = [];
+
   ngAfterViewInit() {
     this.route$.subscribe((data) => {
       this.route = data;
@@ -132,10 +134,12 @@ export class MapComponent {
       );
       this.routingControl.setWaypoints(this.waypoints);
       this.routingControl.on('routesfound', (e) => {
+        const distance = e.routes[0].summary.totalDistance;
+        const time = e.routes[0].summary.totalTime;
+
         this.store.dispatch(
           setSummary({
-            distance: e.routes[0].summary.totalDistance,
-            time: e.routes[0].summary.totalTime,
+            distance, time
           })
         );
       });

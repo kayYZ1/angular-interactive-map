@@ -18,7 +18,7 @@ import { selectFilters } from '../../../../core/store/filters/filters.selectors'
 import { IFilters, IObject } from '../../../../shared/ts/interfaces';
 import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
 import { SidebarObjectInfoComponent } from '../sidebar-object-info/sidebar-object-info.component';
-import { CommonModule } from '@angular/common';
+import { selectRoute } from '../../../../core/store/trip/trip.selectors';
 
 @Component({
   selector: 'app-sidebar-filters',
@@ -37,7 +37,10 @@ export class SidebarFiltersComponent {
   private readonly store = inject(Store)
 
   filters$ = this.store.select(selectFilters);
+  route$ = this.store.select(selectRoute);
+
   filters!: IFilters;
+  route!: [number, number][];
 
   searchPlaceholder = `${Objects.length} obiektów do zwiedzenia`;
 
@@ -59,6 +62,7 @@ export class SidebarFiltersComponent {
 
   ngOnInit() {
     this.filters$.subscribe(data => this.filters = data);
+    this.route$.subscribe(data => this.route = data);
   }
 
   onToggle() {
@@ -66,7 +70,7 @@ export class SidebarFiltersComponent {
   }
 
   onQueryChange(searchQuery: string) {
-    this.store.dispatch(setSearchQueryFilter({ searchQuery: this.searchQuery }))
+    this.store.dispatch(setSearchQueryFilter({ searchQuery }))
   }
 
   addCriteria(item: Categories) {

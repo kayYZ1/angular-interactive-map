@@ -28,12 +28,13 @@ export class SidebarTripComponent implements OnInit {
 
   detailsClicked: boolean = false;
 
-  tripDate = "";
+  tripDate!: string;
   currentDate = getCurrentDate();
 
   ngOnInit() {
     this.trip$.subscribe((data) => (this.trip = data));
-    console.log(this.trip.date);
+
+    this.tripDate = this.trip.date;
   }
 
   drop(event: CdkDragDrop<string[]>) {

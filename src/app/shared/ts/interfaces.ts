@@ -15,7 +15,7 @@ export interface ITrip {
   name: string;
   places: IObject[];
   route: [number, number][]
-  date: string | null;
+  date: string;
   totalDistance: number;
   totalTime: number;
 }
