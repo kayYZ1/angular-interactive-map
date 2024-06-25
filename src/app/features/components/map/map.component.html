@@ -1,2 +1,3 @@
 <div class="map-container" leaflet [leafletMarkerCluster]="markerClusterData" [leafletOptions]="options"
-  (leafletMapReady)="onMapReady($event)" [leafletMarkerClusterOptions]="markerClusterOptions"></div>
+  (leafletMapReady)="onMapReady($event)" [leafletMarkerClusterOptions]="markerClusterOptions"
+  oncontextmenu="return false"></div>

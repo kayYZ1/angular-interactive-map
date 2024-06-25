@@ -14,7 +14,7 @@ export interface TripState {
 }
 
 const initialState: TripState = {
-  name: "Wycieczka",
+  name: "Moja wycieczka",
   places: [],
   route: [],
   date: getCurrentDate(),
