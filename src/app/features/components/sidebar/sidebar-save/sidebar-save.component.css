@@ -4,6 +4,17 @@
   align-items: center;
   flex-direction: column;
   padding-top: 5vh;
+  animation: fade-in 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 label {

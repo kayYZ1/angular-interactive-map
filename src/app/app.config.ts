@@ -11,7 +11,6 @@ import { filtersReducer } from './core/store/filters/filters.reducer';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideAnimations(),
     provideRouter(routes),
     provideStore(),
     provideStoreDevtools({

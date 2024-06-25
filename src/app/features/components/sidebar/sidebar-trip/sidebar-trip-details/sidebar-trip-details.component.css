@@ -11,7 +11,6 @@
   align-items: center;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  padding-right: 1vw;
   cursor: move;
 }
 
@@ -84,7 +83,7 @@ span {
 .delete-icon {
   font-size: large;
   cursor: pointer;
-  padding: 6px;
+  padding: 1.5px;
 }
 
 .delete-icon:hover {
@@ -94,11 +93,6 @@ span {
 .trip-object-actions {
   display: flex;
   justify-content: flex-start;
-}
-
-.trip-object-save {
-  cursor: pointer;
-  padding-right: 0.5vw;
 }
 
 ::-webkit-scrollbar {

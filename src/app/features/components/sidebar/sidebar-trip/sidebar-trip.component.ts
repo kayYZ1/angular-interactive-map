@@ -57,6 +57,5 @@ export class SidebarTripComponent implements OnInit {
 
   onChange(date: string) {
     this.store.dispatch(setDate({ date }))
-    console.log(date);
   }
 }

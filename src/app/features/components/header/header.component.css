@@ -23,7 +23,7 @@
   display: inline-block;
   position: relative;
   border: 1px;
-  padding: 1.5vh;
+  padding: 1.5vh 1vw 1.5vh 1vw;
   width: 25vh;
   text-align: center;
   text-transform: uppercase;
@@ -74,9 +74,8 @@ fa-icon {
 
 .notif-badge {
   background-color: black;
-  border-radius: 90%;
-  color: white;
-  padding: 1px 3px;
+  border-radius: 50%;
+  padding: 1px 4px 2px 4px;
   font-size: 10px;
   position: absolute;
   top: 0;
