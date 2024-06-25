@@ -10,3 +10,14 @@ export const customMarker = `
         border-radius: 3rem 3rem 0;
         border: 3px solid #00adef;
       `;
+
+
+export const popupStyle = `
+  display: flex;
+  justiy-content: center;
+`
+
+export const popupHeader = `
+  display: flex;
+  justify-content: space-between;
+`

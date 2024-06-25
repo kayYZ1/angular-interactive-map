@@ -13,7 +13,7 @@ import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
 import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { customMarker } from './styles';
+import { customMarker, popupHeader, popupStyle } from './styles';
 import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
 
 @Component({
@@ -113,7 +113,16 @@ export class MapComponent {
         .on('click', () => {
           this.store.dispatch(addToTrip({ object }));
         })
-        .bindTooltip(`<p>${object.title}</p>`)
+        .bindTooltip(`<div style=${popupStyle}>
+            <div style=${popupHeader}>
+              <b>${object.title}</b>
+              <small style='text-transform: uppercase; padding-left: 0.5vw;'>${object.category}</small>
+            </div>
+            <div>
+              <p>${object.email}</p>
+              <a href=${object.phone} style='color: #00adef'>${object.phone}</a>
+            </div>
+          </div>`)
 
       this.markers.push(marker);
     }
