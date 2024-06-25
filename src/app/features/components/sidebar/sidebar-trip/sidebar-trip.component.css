@@ -101,3 +101,7 @@ hr {
   outline: none;
   font-family: "Lato", "sans-serif";
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
