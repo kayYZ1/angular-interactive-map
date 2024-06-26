@@ -25,8 +25,6 @@ export class SidebarObjectInfoComponent {
   faReturn = faArrowLeft;
   faClose = faClose;
 
-  isAddedToTripDay = false;
-
   ngOnInit() {
     this.tripDays$.subscribe(data => {
       this.tripDays = data
@@ -41,7 +39,5 @@ export class SidebarObjectInfoComponent {
     this.store.dispatch(addObjectToTripDay({
       object, id
     }))
-    this.isAddedToTripDay = true
   }
-
 }
