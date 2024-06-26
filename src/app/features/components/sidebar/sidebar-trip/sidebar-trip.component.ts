@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
+import { recoverRoute, setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
 import { getCurrentDate } from '../../../../shared/utils';
 
 @Component({
@@ -33,8 +33,17 @@ export class SidebarTripComponent implements OnInit {
 
   ngOnInit() {
     this.trip$.subscribe((data) => (this.trip = data));
-
     this.tripDate = this.trip.date;
+
+    this.recoverTripRoute();
+  }
+
+  recoverTripRoute() {
+    const route = [...this.trip.route];
+    for (const object of this.trip.places) {
+      if (!route.includes(object.coordinates)) route.push(object.coordinates);
+    }
+    this.store.dispatch(recoverRoute({ route }))
   }
 
   drop(event: CdkDragDrop<string[]>) {

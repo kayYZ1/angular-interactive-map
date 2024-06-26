@@ -16,6 +16,11 @@ export const updateTrip = createAction(
   props<{ places: IObject[]; route: [number, number][] }>()
 );
 
+export const recoverRoute = createAction(
+  '[Trip] Recover trip route',
+  props<{ route: [number, number][] }>()
+)
+
 export const setSummary = createAction(
   '[Trip] Set route summaries',
   props<{ distance: number, time: number }>()

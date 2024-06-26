@@ -34,7 +34,7 @@ export class SidebarTripDetailsComponent {
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngOnInit(): void {
-    this.trip$.subscribe(data => this.trip = data)
+    this.trip$.subscribe(data => this.trip = data);
   }
 
   onClick(object: IObject) {

@@ -44,6 +44,10 @@ export const tripReducer = createReducer(
     places: places,
     route: route,
   })),
+  on(TripActions.recoverRoute, (state, { route }) => ({
+    ...state,
+    route: route
+  })),
   on(TripActions.setSummary, (state, { distance, time }) => ({ ...state, totalDistance: distance, totalTime: time })),
   on(TripActions.clearSummaries, (state) => ({ ...state, totalDistance: 0, totalTime: 0 })),
   on(TripActions.setName, (state, { name }) => {

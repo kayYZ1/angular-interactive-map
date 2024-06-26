@@ -62,8 +62,6 @@ export class MapComponent {
     showCoverageOnHover: false
   })
 
-  timelineArray: number[] = [];
-
   ngAfterViewInit() {
     this.route$.subscribe((data) => {
       this.route = data;
@@ -72,6 +70,7 @@ export class MapComponent {
 
     this.filters$.subscribe((data) => {
       this.filters = data;
+      this.clearRoute();
       this.setFilteredData(this.filters);
     });
   }
@@ -83,6 +82,11 @@ export class MapComponent {
     if (filters.searchQuery)
       filteredObjects = this.searchPipe.transform(Objects, filters.searchQuery);
     this.updateMarkers(filteredObjects);
+  }
+
+  clearRoute() {
+    this.route = [];
+    this.mapRoute();
   }
 
   updateMarkers(objects: IObject[]) {
@@ -145,7 +149,6 @@ export class MapComponent {
       this.routingControl.on('routesfound', (e) => {
         const distance = e.routes[0].summary.totalDistance;
         const time = e.routes[0].summary.totalTime;
-
         this.store.dispatch(
           setSummary({
             distance, time
