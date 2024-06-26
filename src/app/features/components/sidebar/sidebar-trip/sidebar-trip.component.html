@@ -3,8 +3,6 @@
     <div>
       {{ trip.name }}
     </div>
-    <input type="date" [defaultValue]="trip.date" [min]="currentDate" [ngModel]="tripDate"
-      (ngModelChange)="onChange(tripDate = $event)" class="trip-datepicker" />
   </div>
   <hr>
   @if (!detailsClicked) {

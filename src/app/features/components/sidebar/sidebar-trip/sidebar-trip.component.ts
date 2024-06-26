@@ -5,18 +5,16 @@ import {
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { FormsModule } from '@angular/forms';
 
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
 import { recoverRoute, setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
-import { getCurrentDate } from '../../../../shared/utils';
 
 @Component({
   selector: 'app-sidebar-trip',
   standalone: true,
-  imports: [SidebarTripDetailsComponent, DragDropModule, FormsModule],
+  imports: [SidebarTripDetailsComponent, DragDropModule],
   templateUrl: './sidebar-trip.component.html',
   styleUrl: './sidebar-trip.component.css',
 })
@@ -28,13 +26,8 @@ export class SidebarTripComponent implements OnInit {
 
   detailsClicked: boolean = false;
 
-  tripDate!: string;
-  currentDate = getCurrentDate();
-
   ngOnInit() {
     this.trip$.subscribe((data) => (this.trip = data));
-    this.tripDate = this.trip.date;
-
     this.recoverTripRoute();
   }
 

@@ -1,3 +1,21 @@
+.trip-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-datepicker {
+  border: none;
+  color: #00adef;
+  font-weight: 500;
+  font-size: 15px;
+  outline: none;
+  font-family: "Lato", "sans-serif";
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 .trip-object-list {
   display: flex;
   flex-direction: column;

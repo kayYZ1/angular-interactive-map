@@ -10,12 +10,14 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { updateTrip } from '../../../../../core/store/trip/trip.actions';
+import { updateTrip, setDate } from '../../../../../core/store/trip/trip.actions';
+import { getCurrentDate } from '../../../../../shared/utils';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar-trip-details',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, DragDropModule],
+  imports: [FontAwesomeModule, CommonModule, DragDropModule, FormsModule],
   templateUrl: './sidebar-trip-details.component.html',
   styleUrl: './sidebar-trip-details.component.css'
 })
@@ -31,10 +33,15 @@ export class SidebarTripDetailsComponent {
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
 
+  tripDate!: string;
+  currentDate = getCurrentDate();
+
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.trip$.subscribe(data => this.trip = data);
+
+    this.tripDate = this.trip.date;
   }
 
   onClick(object: IObject) {
@@ -58,4 +65,7 @@ export class SidebarTripDetailsComponent {
     );
   }
 
+  onChange(date: string) {
+    this.store.dispatch(setDate({ date }))
+  }
 }

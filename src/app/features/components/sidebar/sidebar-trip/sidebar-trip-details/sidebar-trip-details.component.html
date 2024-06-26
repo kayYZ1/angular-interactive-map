@@ -1,3 +1,8 @@
+<div class="trip-date">
+  <fa-icon [icon]="faCar" style="color: #00adef;"></fa-icon>
+  <input type="date" [defaultValue]="trip.date" [min]="currentDate" [ngModel]="tripDate"
+    (ngModelChange)="onChange(tripDate = $event)" class="trip-datepicker" />
+</div>
 <div class="trip-object-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
   @for(object of trip.places; track object.id) {
   <div class="trip-object" cdkDrag>
@@ -13,16 +18,16 @@
   } @empty {
   <p>...</p>
   }
-</div>
-<div class="trip-object-details">
-  <span>
-    <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
-    {{ (trip.totalDistance / 1000) | number:'1.0-1' }}km
-  </span>
-  <span>
-    <fa-icon [icon]="faCar" class="details-icon"></fa-icon>
-    {{ (trip.totalTime / 60) | number:'1.0-0' }}m
-  </span>
+  <div class="trip-object-details">
+    <span>
+      <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
+      {{ (trip.totalDistance / 1000) | number:'1.0-1' }}km
+    </span>
+    <span>
+      <fa-icon [icon]="faCar" class="details-icon"></fa-icon>
+      {{ (trip.totalTime / 60) | number:'1.0-0' }}m
+    </span>
+  </div>
 </div>
 <div class="trip-object-actions">
   <fa-icon [icon]="faReturn" class="return-icon" (click)="closeDetails(true)"></fa-icon>
