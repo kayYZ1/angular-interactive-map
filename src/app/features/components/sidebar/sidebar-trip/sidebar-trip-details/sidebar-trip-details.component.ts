@@ -1,7 +1,7 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../../core/store/trip/trip.selectors';
-import { IObject, ITrip } from '../../../../../shared/ts/interfaces';
+import { IObject, ITripDay } from '../../../../../shared/ts/interfaces';
 import { removeFromTrip } from '../../../../../core/store/trip/trip.actions';
 import { faTrash, faRoad, faSave, faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-sidebar-trip-details',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, DragDropModule, FormsModule],
+  imports: [FontAwesomeModule, CommonModule, DragDropModule],
   templateUrl: './sidebar-trip-details.component.html',
   styleUrl: './sidebar-trip-details.component.css'
 })
@@ -31,18 +31,10 @@ export class SidebarTripDetailsComponent {
   faSave = faSave;
 
   trip$ = this.store.select(selectTrip);
-  trip!: ITrip;
+  trip!: ITripDay;
 
-  tripDate!: string;
-  currentDate = getCurrentDate();
-
+  @Input() tripDayDetails!: ITripDay;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  ngOnInit(): void {
-    this.trip$.subscribe(data => this.trip = data);
-
-    this.tripDate = this.trip.date;
-  }
 
   onClick(object: IObject) {
     this.store.dispatch(removeFromTrip({ object }))
@@ -63,9 +55,5 @@ export class SidebarTripDetailsComponent {
     this.store.dispatch(
       updateTrip({ places: updatedPlaces, route: updatedRoute })
     );
-  }
-
-  onChange(date: string) {
-    this.store.dispatch(setDate({ date }))
   }
 }

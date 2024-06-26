@@ -5,11 +5,11 @@ export const selectTrip = createFeatureSelector<TripState>('trip');
 
 export const selectPlaces = createSelector(
   selectTrip,
-  (state: TripState) => state.places
+  (state: TripState) => state.days[0].places
 );
 
 export const selectRoute = createSelector(
   selectTrip,
-  (state: TripState) => state.route
+  (state: TripState) => state.days[0].route
 );
 

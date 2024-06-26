@@ -1,6 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { IObject } from '../../../shared/ts/interfaces';
 
+export const addTripDay = createAction(
+  '[Trip] Add trip day',
+)
+
+export const removeTripDay = createAction(
+  '[Trip] Remove trip day',
+  props<{ id: number }>()
+)
+
 export const addToTrip = createAction(
   '[Trip] Add to trip',
   props<{ object: IObject }>()
@@ -37,5 +46,5 @@ export const setName = createAction(
 
 export const setDate = createAction(
   '[Trip] Set date',
-  props<{ date: string }>()
+  props<{ id: number, date: string }>()
 )

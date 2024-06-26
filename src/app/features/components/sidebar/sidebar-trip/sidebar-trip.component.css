@@ -18,6 +18,30 @@
   justify-content: space-between;
 }
 
+.trip-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-datepicker {
+  border: none;
+  color: #00adef;
+  font-weight: 500;
+  font-size: 15px;
+  outline: none;
+  font-family: "Lato", "sans-serif";
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.trip-day {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid #00adef;
+}
+
 .trip-info {
   display: flex;
   flex-direction: row;
@@ -75,9 +99,15 @@ hr {
   justify-content: space-evenly;
 }
 
-#first-btn {
-  background-color: rgb(185, 176, 176);
-  cursor: not-allowed;
+#trash-btn {
+  font-size: large;
+  cursor: pointer;
+  padding: 1.5px;
+  border: none;
+}
+
+#trash-btn:hover {
+  color: red;
 }
 
 .trip-info-btn {
@@ -90,5 +120,25 @@ hr {
 }
 
 .trip-info-btn:hover {
+  background-color: #0391c9fd;
+}
+
+.new-trip-day {
+  display: flex;
+  justify-content: center;
+}
+
+#add-btn {
+  display: inline-block;
+  border: none;
+  background-color: #00adef;
+  margin-top: 1vh;
+  height: 48px;
+  width: 48px;
+  color: white;
+  cursor: pointer;
+}
+
+#add-btn:hover {
   background-color: #0391c9fd;
 }

@@ -6,20 +6,36 @@
   </div>
   <hr>
   @if (!detailsClicked) {
-  <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
-    @for (object of trip.places; track object.id) {
-    <div class="trip-object-draggable" cdkDrag>
-      <img [src]="object.imgUrl" [alt]="object.title" class="object-img" />
+  @for (tripDay of trip.days; track tripDay.id) {
+  <div class="trip-day">
+    <div class="trip-date">
+      <fa-icon [icon]="faCar" style="color: #00adef;"></fa-icon>
+      <input type="date" [defaultValue]="tripDay.date" [min]="currentDate" [ngModel]="tripDay.date"
+        class="trip-datepicker" />
     </div>
-    } @empty {
-    <p>...</p>
+    @for (object of tripDay.places; track object.id) {
+    <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
+      <div class="trip-object-draggable" cdkDrag>
+        <img [src]="object.imgUrl" [alt]="object.title" class="object-img" />
+      </div>
+    </div>
     }
+    <div class="trip-actions">
+      <button class="trip-info-btn" (click)="handleDetails(tripDay)">Szczegóły</button>
+      @if (trip.days.length !== 1) {
+      <button id="trash-btn" (click)="removeTripDay(tripDay.id)">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+      }
+    </div>
   </div>
-  <div class="trip-actions">
-    <button class="trip-info-btn" id="first-btn" disabled>Optymalizuj</button>
-    <button class="trip-info-btn" (click)="handleDetails()">Szczegóły</button>
+  }
+  <div class="new-trip-day">
+    <button id="add-btn" (click)="addNewTripDay()">
+      <fa-icon [icon]="faPlus" style="font-size: 16px;"></fa-icon>
+    </button>
   </div>
   } @else {
-  <app-sidebar-trip-details (close)="handleDetails()" />
+  <app-sidebar-trip-details (close)="handleDetails(null)" [tripDayDetails]="tripDayDetails" />
   }
 </div>

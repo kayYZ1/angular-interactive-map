@@ -13,6 +13,11 @@ export interface IObject {
 
 export interface ITrip {
   name: string;
+  days: ITripDay[];
+}
+
+export interface ITripDay {
+  id: number;
   places: IObject[];
   route: [number, number][]
   date: string;
