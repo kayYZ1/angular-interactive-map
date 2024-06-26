@@ -19,9 +19,9 @@
   </div>
   <div class="trip-actions">
     <button class="trip-info-btn" id="first-btn" disabled>Optymalizuj</button>
-    <button class="trip-info-btn" (click)="openDetails()">Szczegóły</button>
+    <button class="trip-info-btn" (click)="handleDetails()">Szczegóły</button>
   </div>
   } @else {
-  <app-sidebar-trip-details (close)="closeDetails()" />
+  <app-sidebar-trip-details (close)="handleDetails()" />
   }
 </div>

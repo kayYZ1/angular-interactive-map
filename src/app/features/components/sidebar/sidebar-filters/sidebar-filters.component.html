@@ -29,8 +29,8 @@
       </form>
     </div>
   </div>
-  <app-sidebar-list (showObjectInfo)="openObjectInfo($event)" />
+  <app-sidebar-list (showObjectInfo)="handleObjectInfo($event)" />
   } @else {
-  <app-sidebar-object-info [object]="object" (closeObjectInfo)="closeObjectInfo()" />
+  <app-sidebar-object-info [object]="object" (closeObjectInfo)="handleObjectInfo(null)" />
   }
 </main>

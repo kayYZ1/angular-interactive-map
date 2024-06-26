@@ -56,12 +56,8 @@ export class SidebarTripComponent implements OnInit {
     );
   }
 
-  openDetails() {
-    this.detailsClicked = true;
-  }
-
-  closeDetails() {
-    this.detailsClicked = false;
+  handleDetails() {
+    this.detailsClicked = !this.detailsClicked;
   }
 
   onChange(date: string) {

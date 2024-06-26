@@ -55,7 +55,7 @@ export class SidebarFiltersComponent {
 
   categoriesList = Object.values(Categories);
 
-  searchQuery = ''
+  searchQuery = "";
 
   objectInfo = false;
   object!: IObject;
@@ -82,12 +82,8 @@ export class SidebarFiltersComponent {
     this.store.dispatch(clearSearchQuery());
   }
 
-  openObjectInfo(object: IObject) {
-    this.objectInfo = true;
-    this.object = object;
-  }
-
-  closeObjectInfo() {
-    this.objectInfo = false;
+  handleObjectInfo(object: IObject | null) {
+    this.objectInfo = !this.objectInfo;
+    this.object = object!;
   }
 }
