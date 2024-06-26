@@ -62,6 +62,10 @@ export class MapComponent {
     showCoverageOnHover: false
   })
 
+  ngOnInit() {
+    this.updateMarkers(this.objects);
+  }
+
   ngAfterViewInit() {
     this.route$.subscribe((data) => {
       this.route = data;
@@ -136,8 +140,6 @@ export class MapComponent {
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
     Leaflet.control.zoom({ position: 'bottomright' }).addTo(this.map);
-
-    this.updateMarkers(this.objects);
   }
 
   mapRoute() {
