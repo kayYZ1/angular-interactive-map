@@ -30,7 +30,6 @@ export class SidebarObjectInfoComponent {
   ngOnInit() {
     this.tripDays$.subscribe(data => {
       this.tripDays = data
-      this.alreadyAddedToTrip(this.object);
     })
   }
 
@@ -42,13 +41,7 @@ export class SidebarObjectInfoComponent {
     this.store.dispatch(addObjectToTripDay({
       object, id
     }))
+    this.isAddedToTripDay = true
   }
 
-  alreadyAddedToTrip(object: IObject) {
-    for (const tripDay of this.tripDays) {
-      if (tripDay.objects.includes(object)) {
-        this.isAddedToTripDay = true;
-      }
-    }
-  }
 }

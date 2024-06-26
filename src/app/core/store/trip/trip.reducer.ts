@@ -40,17 +40,20 @@ export const tripReducer = createReducer(
   })),
   on(TripActions.addObjectToTripDay, (state, { object, id }) => {
     const tripDay = state.days.find(day => day.id === id);
-
     if (tripDay && !tripDay.objects.includes(object)) {
       const updatedTripDay = {
         ...tripDay,
         objects: [...tripDay.objects, object]
       }
+      const updatedDays = [...state.days];
+      updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+
       return {
         ...state,
-        days: [...state.days.filter(day => day.id !== id), updatedTripDay]
+        days: updatedDays
       }
     }
+
     return state;
   }),
   on(TripActions.removeObjectFromTripDay, (state, { object, id }) => {
