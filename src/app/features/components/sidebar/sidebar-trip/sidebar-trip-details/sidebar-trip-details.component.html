@@ -1,5 +1,5 @@
 <div class="trip-object-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
-  @for(object of tripDayDetails.places; track object.id) {
+  @for(object of tripDayDetails.objects; track object.id) {
   <div class="trip-object" cdkDrag>
     <div class="trip-object-content">
       <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
@@ -8,7 +8,7 @@
         <p>{{ object.category }}</p>
       </div>
     </div>
-    <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
+    <fa-icon [icon]="faTrash" (click)="onClick(object, tripDayDetails.id)" class="delete-icon"></fa-icon>
   </div>
   } @empty {
   <p>...</p>

@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { IObject } from '../../../shared/ts/interfaces';
+import { IObject, ITripDay } from '../../../shared/ts/interfaces';
 
 export const addTripDay = createAction(
   '[Trip] Add trip day',
+  props<{ tripDay: ITripDay }>()
 )
 
 export const removeTripDay = createAction(
@@ -10,14 +11,14 @@ export const removeTripDay = createAction(
   props<{ id: number }>()
 )
 
-export const addToTrip = createAction(
+export const addObjectToTripDay = createAction(
   '[Trip] Add to trip',
-  props<{ object: IObject }>()
+  props<{ object: IObject, id: number }>()
 );
 
-export const removeFromTrip = createAction(
+export const removeObjectFromTripDay = createAction(
   '[Trip] Remove from trip',
-  props<{ object: IObject }>()
+  props<{ object: IObject, id: number }>()
 );
 
 export const updateTrip = createAction(

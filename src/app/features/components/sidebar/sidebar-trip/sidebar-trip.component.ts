@@ -12,7 +12,7 @@ import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip
 import { addTripDay, recoverRoute, removeTripDay, updateTrip } from '../../../../core/store/trip/trip.actions';
 import { getCurrentDate } from '../../../../shared/utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCar, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -28,7 +28,6 @@ export class SidebarTripComponent implements OnInit {
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
 
-  faCar = faCar;
   faPlus = faPlus;
   faTrash = faTrash;
 
@@ -42,8 +41,8 @@ export class SidebarTripComponent implements OnInit {
     this.recoverTripRoute();
   }
 
-  addNewTripDay() {
-    this.store.dispatch(addTripDay());
+  addNewTripDay(tripDay: ITripDay) {
+    this.store.dispatch(addTripDay({ tripDay }));
   }
 
   removeTripDay(id: number) {
@@ -52,14 +51,14 @@ export class SidebarTripComponent implements OnInit {
 
   recoverTripRoute() {
     const route = [...this.trip.days[0].route];
-    for (const object of this.trip.days[0].places) {
+    for (const object of this.trip.days[0].objects) {
       if (!route.includes(object.coordinates)) route.push(object.coordinates);
     }
     this.store.dispatch(recoverRoute({ route }))
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    const updatedPlaces = [...this.trip.days[0].places];
+    const updatedPlaces = [...this.trip.days[0].objects];
     const updatedRoute = [...this.trip.days[0].route];
     moveItemInArray(updatedPlaces, event.previousIndex, event.currentIndex);
     moveItemInArray(updatedRoute, event.previousIndex, event.currentIndex);

@@ -18,7 +18,7 @@ export interface ITrip {
 
 export interface ITripDay {
   id: number;
-  places: IObject[];
+  objects: IObject[];
   route: [number, number][]
   date: string;
   totalDistance: number;

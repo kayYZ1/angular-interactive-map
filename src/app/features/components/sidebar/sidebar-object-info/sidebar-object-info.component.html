@@ -3,6 +3,14 @@
   <span>{{ object.category }}</span>
 </div>
 <hr>
+<div class="object-info-trip-days">
+  @for (tripDay of tripDays; track tripDay.id) {
+  <button [class.isAddedToTripDay]="isAddedToTripDay" class="trip-day-btn"
+    (click)="addObjectToTripDay(object, tripDay.id)">
+    {{ tripDay.date.substring(8, 10) }}
+  </button>
+  }
+</div>
 <div class="object-info-content">
   <img [src]="object.imgUrl" alt="object.title" class="object-info-img" />
   <h2>{{ object.title }}</h2>

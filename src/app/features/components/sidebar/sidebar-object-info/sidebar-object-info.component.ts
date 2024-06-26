@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IObject } from '../../../../shared/ts/interfaces';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { IObject, ITripDay } from '../../../../shared/ts/interfaces';
 import { faArrowLeft, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
+import { selectTripDays } from '../../../../core/store/trip/trip.selectors';
+import { addObjectToTripDay } from '../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-object-info',
@@ -11,14 +14,41 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrl: './sidebar-object-info.component.css'
 })
 export class SidebarObjectInfoComponent {
-  @Input() object!: IObject;
+  private readonly store = inject(Store);
+  tripDays$ = this.store.select(selectTripDays);
 
+  @Input() object!: IObject;
   @Output() closeObjectInfo: EventEmitter<boolean> = new EventEmitter();
+
+  tripDays!: ITripDay[];
 
   faReturn = faArrowLeft;
   faClose = faClose;
 
+  isAddedToTripDay = false;
+
+  ngOnInit() {
+    this.tripDays$.subscribe(data => {
+      this.tripDays = data
+      this.alreadyAddedToTrip(this.object);
+    })
+  }
+
   onClick() {
     this.closeObjectInfo.emit(true);
+  }
+
+  addObjectToTripDay(object: IObject, id: number) {
+    this.store.dispatch(addObjectToTripDay({
+      object, id
+    }))
+  }
+
+  alreadyAddedToTrip(object: IObject) {
+    for (const tripDay of this.tripDays) {
+      if (tripDay.objects.includes(object)) {
+        this.isAddedToTripDay = true;
+      }
+    }
   }
 }

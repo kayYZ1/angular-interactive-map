@@ -11,7 +11,7 @@ import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
-import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
+import { setSummary } from '../../../core/store/trip/trip.actions';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { customMarker, popupHeader, popupStyle } from './styles';
 import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
@@ -119,7 +119,6 @@ export class MapComponent {
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker
         .on('click', () => {
-          this.store.dispatch(addToTrip({ object }));
         })
         .bindTooltip(`<div style=${popupStyle}>
             <div style=${popupHeader}>

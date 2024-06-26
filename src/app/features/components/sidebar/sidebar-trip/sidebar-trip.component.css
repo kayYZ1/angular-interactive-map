@@ -20,7 +20,7 @@
 
 .trip-date {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .trip-datepicker {
@@ -37,9 +37,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .trip-day {
-  padding-top: 2vh;
   padding-bottom: 2vh;
-  border-bottom: 1px solid #00adef;
 }
 
 .trip-info {

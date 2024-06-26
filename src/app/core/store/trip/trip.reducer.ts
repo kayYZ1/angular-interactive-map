@@ -1,24 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
 
 import * as TripActions from './trip.actions';
-import { ITripDay } from '../../../shared/ts/interfaces';
+import { ITrip, ITripDay } from '../../../shared/ts/interfaces';
 import { addDaysToDate, generateId, getCurrentDate } from '../../../shared/utils';
-
-export interface TripState {
-  name: string;
-  days: ITripDay[];
-}
 
 const defaultTripDay: ITripDay[] = [{
   id: generateId(),
-  places: [],
+  objects: [],
   route: [],
   date: getCurrentDate(),
   totalDistance: 0,
   totalTime: 0,
 }]
 
-const initialState: TripState = {
+const initialState: ITrip = {
   name: "Moja wycieczka",
   days: defaultTripDay
 };
@@ -31,7 +26,7 @@ export const tripReducer = createReducer(
       ...state.days,
       {
         id: generateId(),
-        places: [],
+        objects: [],
         route: [],
         date: addDaysToDate(state.days[state.days.length - 1].date),
         totalDistance: 0,
@@ -43,16 +38,38 @@ export const tripReducer = createReducer(
     ...state,
     days: state.days.filter((day) => day.id !== id)
   })),
-  /* on(TripActions.addToTrip, (state, { object }) => {
-     if (!state.places.includes(object)) {
-       return {
-         ...state,
-         places: [...state.places, object],
-         route: [...state.route, object.coordinates],
-       }
-     }
-     return state
-   }),
+  on(TripActions.addObjectToTripDay, (state, { object, id }) => {
+    const tripDay = state.days.find(day => day.id === id);
+
+    if (tripDay && !tripDay.objects.includes(object)) {
+      const updatedTripDay = {
+        ...tripDay,
+        objects: [...tripDay.objects, object]
+      }
+      return {
+        ...state,
+        days: [...state.days.filter(day => day.id !== id), updatedTripDay]
+      }
+    }
+    return state;
+  }),
+  on(TripActions.removeObjectFromTripDay, (state, { object, id }) => {
+    const tripDay = state.days.find(day => day.id === id);
+
+    if (!tripDay) return state;
+
+    const updatedTripDay = {
+      ...tripDay,
+      objects: tripDay.objects.filter(o => o !== object),
+      route: tripDay.route.filter(r => r !== object.coordinates)
+    }
+
+    return {
+      ...state,
+      days: [...state.days.filter(day => day.id !== id), updatedTripDay]
+    }
+  }),
+  /*
    on(TripActions.removeFromTrip, (state, { object }) => ({
      ...state,
      places: state.places.filter((item) => item !== object),
