@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { IObject, ITripDay } from '../../../../shared/ts/interfaces';
 import { faArrowLeft, faClose, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,7 +13,7 @@ import { addObjectToTripDay, addTripDay, setActiveTripDay } from '../../../../co
   templateUrl: './sidebar-object-info.component.html',
   styleUrl: './sidebar-object-info.component.css'
 })
-export class SidebarObjectInfoComponent {
+export class SidebarObjectInfoComponent implements OnInit {
   private readonly store = inject(Store);
   tripDays$ = this.store.select(selectTripDays);
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Objects } from '../../../../core/data/objects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -33,7 +33,7 @@ import { selectRoute } from '../../../../core/store/trip/trip.selectors';
   templateUrl: './sidebar-filters.component.html',
   styleUrl: './sidebar-filters.component.css',
 })
-export class SidebarFiltersComponent {
+export class SidebarFiltersComponent implements OnInit {
   private readonly store = inject(Store)
 
   filters$ = this.store.select(selectFilters);

@@ -2,7 +2,7 @@ import * as Leaflet from 'leaflet';
 import "leaflet.markercluster";
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngrx/store';
 import { IFilters, IObject, ITripDay } from '../../../shared/ts/interfaces';
@@ -24,7 +24,7 @@ import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster"
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
-export class MapComponent {
+export class MapComponent implements OnInit, AfterViewInit {
   private readonly store = inject(Store);
   private criteriaPipe = inject(CriteriaFilterPipe);
   private searchPipe = inject(SearchFilterPipe);

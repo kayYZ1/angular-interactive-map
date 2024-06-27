@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { clearSummaries, removeObjectFromTripDay } from '../../../../../core/store/trip/trip.actions';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar-trip-details',

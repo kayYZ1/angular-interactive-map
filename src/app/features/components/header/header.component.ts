@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLocationDot, faMagnifyingGlass, faPersonWalking, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { selectTrip } from '../../../core/store/trip/trip.selectors';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   private store = inject(Store);
 
   trip$ = this.store.select(selectTrip);

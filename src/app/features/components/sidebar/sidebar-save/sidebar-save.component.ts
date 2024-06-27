@@ -1,4 +1,4 @@
-import { Component, NgModule, inject } from '@angular/core';
+import { Component, NgModule, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../shared/ts/interfaces';
@@ -14,7 +14,7 @@ import { setName } from '../../../../core/store/trip/trip.actions';
   templateUrl: './sidebar-save.component.html',
   styleUrl: './sidebar-save.component.css'
 })
-export class SidebarSaveComponent {
+export class SidebarSaveComponent implements OnInit {
   private readonly store = inject(Store);
 
   trip$ = this.store.select(selectTrip);
