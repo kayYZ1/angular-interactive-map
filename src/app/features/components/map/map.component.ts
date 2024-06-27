@@ -30,7 +30,7 @@ export class MapComponent {
   private searchPipe = inject(SearchFilterPipe);
 
   activeTripDay$ = this.store.select(selectActiveTripDay);
-  route$ = this.store.select(selectRoute)
+  route$ = this.store.select(selectRoute);
   filters$ = this.store.select(selectFilters);
 
   objects: IObject[] = Objects;
@@ -67,16 +67,15 @@ export class MapComponent {
 
   ngOnInit() {
     this.updateMarkers(this.objects);
-    this.activeTripDay$.subscribe(data => {
-      this.activeTripDay = data
-    });
   }
 
   ngAfterViewInit() {
-    this.route$.subscribe((data) => {
+    this.activeTripDay$.subscribe(data => this.activeTripDay = data);
+
+    this.route$.subscribe(data => {
       this.route = data;
       this.mapRoute();
-    });
+    })
 
     this.filters$.subscribe((data) => {
       this.filters = data;

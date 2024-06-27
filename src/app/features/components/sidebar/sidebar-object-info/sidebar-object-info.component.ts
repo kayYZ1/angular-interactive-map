@@ -34,9 +34,9 @@ export class SidebarObjectInfoComponent {
   }
 
   addObjectToTripDay(object: IObject, tripDay: ITripDay) {
-    this.store.dispatch(addObjectToTripDay({
-      object, tDay: tripDay
-    }))
     this.store.dispatch(setActiveTripDay({ tripDay }))
+    this.store.dispatch(addObjectToTripDay({
+      object
+    }))
   }
 }
