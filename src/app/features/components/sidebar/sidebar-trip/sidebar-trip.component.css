@@ -1,6 +1,8 @@
 .trip-container {
   padding: 1vh 1vw 1vh 1vw;
   animation: fade-in 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  overflow-y: auto;
+  max-height: 75vh;
 }
 
 @keyframes fade-in {
@@ -97,10 +99,11 @@ hr {
 .trip-actions {
   padding-top: 2vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 #trash-btn {
+  background-color: transparent;
   font-size: large;
   cursor: pointer;
   padding: 1.5px;
@@ -142,4 +145,21 @@ hr {
 
 #add-btn:hover {
   background-color: #0391c9fd;
+}
+
+* {
+  scrollbar-width: 3px;
+  scrollbar-color: #095768;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #095768;
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
 }

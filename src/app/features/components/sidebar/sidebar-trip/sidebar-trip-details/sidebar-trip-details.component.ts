@@ -37,13 +37,11 @@ export class SidebarTripDetailsComponent implements OnInit {
   }
 
   recoverTripRoute() {
-    if (this.activeTripDay.objects.length !== 0 && this.activeTripDay.route.length === 0) {
-      const route = [...this.activeTripDay.route];
-      for (const object of this.activeTripDay.objects) {
-        if (!route.includes(object.coordinates)) route.push(object.coordinates);
-      }
-      this.store.dispatch(recoverRoute({ route }))
+    const route = [...this.activeTripDay.route];
+    for (const object of this.activeTripDay.objects) {
+      if (!route.includes(object.coordinates)) route.push(object.coordinates);
     }
+    this.store.dispatch(recoverRoute({ route }))
   }
 
   onClick(object: IObject, id: number) {

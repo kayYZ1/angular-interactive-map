@@ -18,7 +18,6 @@ import { selectFilters } from '../../../../core/store/filters/filters.selectors'
 import { IFilters, IObject } from '../../../../shared/ts/interfaces';
 import { SidebarListComponent } from './sidebar-list/sidebar-list.component';
 import { SidebarObjectInfoComponent } from '../sidebar-object-info/sidebar-object-info.component';
-import { selectRoute } from '../../../../core/store/trip/trip.selectors';
 
 @Component({
   selector: 'app-sidebar-filters',

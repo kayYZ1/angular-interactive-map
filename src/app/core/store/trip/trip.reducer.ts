@@ -25,20 +25,22 @@ export const tripReducer = createReducer(
     ...state,
     activeTripDay: tripDay
   })),
-  on(TripActions.addTripDay, (state) => ({
-    ...state,
-    days: [
-      ...state.days,
-      {
-        id: generateId(),
-        objects: [],
-        route: [],
-        date: addDaysToDate(state.days[state.days.length - 1].date),
-        distance: 0,
-        time: 0
-      }
-    ]
-  })),
+  on(TripActions.addTripDay, (state) => {
+    return state.days.length > 6 ? state : {
+      ...state,
+      days: [
+        ...state.days,
+        {
+          id: generateId(),
+          objects: [],
+          route: [],
+          date: addDaysToDate(state.days[state.days.length - 1].date),
+          distance: 0,
+          time: 0
+        }
+      ]
+    }
+  }),
   on(TripActions.removeTripDay, (state, { id }) => ({
     ...state,
     days: state.days.filter((day) => day.id !== id)
