@@ -4,7 +4,7 @@ import { faArrowLeft, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { selectTripDays } from '../../../../core/store/trip/trip.selectors';
-import { addObjectToTripDay } from '../../../../core/store/trip/trip.actions';
+import { addObjectToTripDay, setActiveTripDay } from '../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-object-info',
@@ -33,9 +33,10 @@ export class SidebarObjectInfoComponent {
     this.closeObjectInfo.emit(true);
   }
 
-  addObjectToTripDay(object: IObject, id: number) {
+  addObjectToTripDay(object: IObject, tripDay: ITripDay) {
     this.store.dispatch(addObjectToTripDay({
-      object, id
+      object, tDay: tripDay
     }))
+    this.store.dispatch(setActiveTripDay({ tripDay }))
   }
 }

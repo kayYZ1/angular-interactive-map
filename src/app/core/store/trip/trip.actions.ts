@@ -1,9 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 import { IObject, ITripDay } from '../../../shared/ts/interfaces';
 
+export const setActiveTripDay = createAction(
+  '[Trip] Set active trip day',
+  props<{ tripDay: ITripDay }>()
+)
+
 export const addTripDay = createAction(
   '[Trip] Add trip day',
-  props<{ tripDay: ITripDay }>()
 )
 
 export const removeTripDay = createAction(
@@ -13,7 +17,7 @@ export const removeTripDay = createAction(
 
 export const addObjectToTripDay = createAction(
   '[Trip] Add to trip',
-  props<{ object: IObject, id: number }>()
+  props<{ object: IObject, tDay: ITripDay }>()
 );
 
 export const removeObjectFromTripDay = createAction(
@@ -21,9 +25,9 @@ export const removeObjectFromTripDay = createAction(
   props<{ object: IObject, id: number }>()
 );
 
-export const updateTrip = createAction(
-  '[Trip] Update places',
-  props<{ places: IObject[]; route: [number, number][] }>()
+export const updateTripDayRoute = createAction(
+  '[Trip] Update route',
+  props<{ id: number, objects: IObject[]; route: [number, number][] }>()
 );
 
 export const recoverRoute = createAction(
@@ -33,11 +37,12 @@ export const recoverRoute = createAction(
 
 export const setSummary = createAction(
   '[Trip] Set route summaries',
-  props<{ distance: number, time: number }>()
+  props<{ id: number, distance: number, time: number }>()
 )
 
 export const clearSummaries = createAction(
   '[Trip] Clear route summaries',
+  props<{ id: number }>()
 )
 
 export const setName = createAction(
@@ -45,7 +50,7 @@ export const setName = createAction(
   props<{ name: string }>()
 )
 
-export const setDate = createAction(
+export const setTripDate = createAction(
   '[Trip] Set date',
-  props<{ id: number, date: string }>()
+  props<{ date: string }>()
 )

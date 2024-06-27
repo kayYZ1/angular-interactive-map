@@ -62,7 +62,7 @@ export class SidebarFiltersComponent {
 
   ngOnInit() {
     this.filters$.subscribe(data => this.filters = data);
-    this.route$.subscribe(data => this.route = data);
+    //this.route$.subscribe(data => this.route = data);
   }
 
   onToggle() {

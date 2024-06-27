@@ -9,17 +9,22 @@ const defaultTripDay: ITripDay[] = [{
   objects: [],
   route: [],
   date: getCurrentDate(),
-  totalDistance: 0,
-  totalTime: 0,
+  distance: 0,
+  time: 0,
 }]
 
 const initialState: ITrip = {
   name: "Moja wycieczka",
-  days: defaultTripDay
+  days: defaultTripDay,
+  activeTripDay: defaultTripDay[0]
 };
 
 export const tripReducer = createReducer(
   initialState,
+  on(TripActions.setActiveTripDay, (state, { tripDay }) => ({
+    ...state,
+    activeTripDay: tripDay
+  })),
   on(TripActions.addTripDay, (state) => ({
     ...state,
     days: [
@@ -29,8 +34,8 @@ export const tripReducer = createReducer(
         objects: [],
         route: [],
         date: addDaysToDate(state.days[state.days.length - 1].date),
-        totalDistance: 0,
-        totalTime: 0
+        distance: 0,
+        time: 0
       }
     ]
   })),
@@ -38,13 +43,14 @@ export const tripReducer = createReducer(
     ...state,
     days: state.days.filter((day) => day.id !== id)
   })),
-  on(TripActions.addObjectToTripDay, (state, { object, id }) => {
-    const tripDay = state.days.find(day => day.id === id);
+  on(TripActions.addObjectToTripDay, (state, { object, tDay }) => {
+    const tripDay = state.days.find(day => day.id === tDay.id);
 
     if (tripDay && !tripDay.objects.includes(object)) {
       const updatedTripDay = {
         ...tripDay,
-        objects: [...tripDay.objects, object]
+        objects: [...tripDay.objects, object],
+        route: [...tripDay.route, object.coordinates]
       }
       const updatedDays = [...state.days];
       updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
@@ -67,23 +73,74 @@ export const tripReducer = createReducer(
       route: tripDay.route.filter(r => r !== object.coordinates)
     }
 
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+
     return {
       ...state,
-      days: [...state.days.filter(day => day.id !== id), updatedTripDay]
+      days: updatedDays
     }
   }),
-  /*
-   on(TripActions.updateTrip, (state, { places, route }) => ({
-     ...state,
-     places: places,
-     route: route,
-   })),*/
-  on(TripActions.recoverRoute, (state, { route }) => ({
+  on(TripActions.updateTripDayRoute, (state, { id, objects, route }) => {
+    const tripDay = state.days.find(day => day.id === id);
+
+    if (!tripDay) return state;
+
+    const updatedTripDay = {
+      ...tripDay,
+      objects,
+      route
+    }
+
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+
+    return {
+      ...state,
+      days: updatedDays
+    }
+  }),
+  /*on(TripActions.recoverRoute, (state, { route }) => ({
     ...state,
     route: route
-  })),
-  on(TripActions.setSummary, (state, { distance, time }) => ({ ...state, totalDistance: distance, totalTime: time })),
-  on(TripActions.clearSummaries, (state) => ({ ...state, totalDistance: 0, totalTime: 0 })),
+  })),*/
+  on(TripActions.setSummary, (state, { id, distance, time }) => {
+    const tripDay = state.days.find(day => day.id === id);
+
+    if (!tripDay) return state;
+
+    const updatedTripDay = {
+      ...tripDay,
+      distance,
+      time
+    }
+
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+
+    return {
+      ...state,
+      days: updatedDays
+    }
+  }),
+  on(TripActions.clearSummaries, (state, { id }) => {
+    const tripDay = state.days.find(day => day.id === id);
+    if (!tripDay) return state;
+
+    const updatedTripDay = {
+      ...tripDay,
+      distance: 0,
+      time: 0
+    }
+
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+
+    return {
+      ...state,
+      days: updatedDays
+    }
+  }),
   on(TripActions.setName, (state, { name }) => {
     if (name.length > 3) {
       return {

@@ -5,8 +5,8 @@ import 'leaflet-defaulticon-compatibility';
 import { Component, inject } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Store } from '@ngrx/store';
-import { IFilters, IObject } from '../../../shared/ts/interfaces';
-import { selectRoute } from '../../../core/store/trip/trip.selectors';
+import { IFilters, IObject, ITripDay } from '../../../shared/ts/interfaces';
+import { selectActiveTripDay, selectRoute } from '../../../core/store/trip/trip.selectors';
 import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
@@ -29,11 +29,14 @@ export class MapComponent {
   private criteriaPipe = inject(CriteriaFilterPipe);
   private searchPipe = inject(SearchFilterPipe);
 
-  route$ = this.store.select(selectRoute);
+  activeTripDay$ = this.store.select(selectActiveTripDay);
+  route$ = this.store.select(selectRoute)
   filters$ = this.store.select(selectFilters);
 
   objects: IObject[] = Objects;
-  route: [number, number][] = [];
+
+  activeTripDay!: ITripDay;
+  route!: [number, number][];
   filters!: IFilters;
 
   routingControl!: Leaflet.Routing.Control;
@@ -64,6 +67,9 @@ export class MapComponent {
 
   ngOnInit() {
     this.updateMarkers(this.objects);
+    this.activeTripDay$.subscribe(data => {
+      this.activeTripDay = data
+    });
   }
 
   ngAfterViewInit() {
@@ -118,8 +124,6 @@ export class MapComponent {
 
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker
-        .on('click', () => {
-        })
         .bindTooltip(`<div style=${popupStyle}>
             <div style=${popupHeader}>
               <b>${object.title}</b>
@@ -151,9 +155,7 @@ export class MapComponent {
         const distance = e.routes[0].summary.totalDistance;
         const time = e.routes[0].summary.totalTime;
         this.store.dispatch(
-          setSummary({
-            distance, time
-          })
+          setSummary({ id: this.activeTripDay.id, distance, time })
         );
       });
     } else {

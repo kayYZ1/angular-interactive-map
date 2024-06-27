@@ -14,6 +14,7 @@ export interface IObject {
 export interface ITrip {
   name: string;
   days: ITripDay[];
+  activeTripDay: ITripDay;
 }
 
 export interface ITripDay {
@@ -21,8 +22,8 @@ export interface ITripDay {
   objects: IObject[];
   route: [number, number][]
   date: string;
-  totalDistance: number;
-  totalTime: number;
+  distance: number;
+  time: number;
 }
 
 export interface IFilters {

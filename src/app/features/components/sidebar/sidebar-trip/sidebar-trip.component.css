@@ -21,6 +21,8 @@
 .trip-date {
   display: flex;
   justify-content: flex-end;
+  font-size: smaller;
+  color: #00adef;
 }
 
 .trip-datepicker {

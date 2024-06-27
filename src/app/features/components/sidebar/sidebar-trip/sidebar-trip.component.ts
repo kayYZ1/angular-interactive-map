@@ -9,7 +9,7 @@ import {
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip, ITripDay } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { addTripDay, recoverRoute, removeTripDay, setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
+import { addTripDay, recoverRoute, removeTripDay, setActiveTripDay, updateTripDayRoute } from '../../../../core/store/trip/trip.actions';
 import { getCurrentDate } from '../../../../shared/utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +32,6 @@ export class SidebarTripComponent implements OnInit {
   faTrash = faTrash;
 
   detailsClicked: boolean = false;
-  tripDayDetails!: ITripDay;
 
   tripDate = "";
   currentDate = getCurrentDate();
@@ -42,8 +41,8 @@ export class SidebarTripComponent implements OnInit {
     this.recoverTripRoute();
   }
 
-  addNewTripDay(tripDay: ITripDay) {
-    this.store.dispatch(addTripDay({ tripDay }));
+  addNewTripDay() {
+    this.store.dispatch(addTripDay());
   }
 
   removeTripDay(id: number) {
@@ -58,24 +57,20 @@ export class SidebarTripComponent implements OnInit {
     this.store.dispatch(recoverRoute({ route }))
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    const updatedPlaces = [...this.trip.days[0].objects];
-    const updatedRoute = [...this.trip.days[0].route];
-    moveItemInArray(updatedPlaces, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<string[]>, tripDay: ITripDay) {
+    const updatedObjects = [...tripDay.objects];
+    const updatedRoute = [...tripDay.route];
+    moveItemInArray(updatedObjects, event.previousIndex, event.currentIndex);
     moveItemInArray(updatedRoute, event.previousIndex, event.currentIndex);
     this.store.dispatch(
-      updateTrip({ places: updatedPlaces, route: updatedRoute })
+      updateTripDayRoute({ id: tripDay.id, objects: updatedObjects, route: updatedRoute })
     );
   }
 
-  handleDetails(tripDayDetails: ITripDay | null) {
-    if (tripDayDetails) {
-      this.tripDayDetails = tripDayDetails;
+  handleDetails(tripDay: ITripDay | null) {
+    if (tripDay) {
+      this.store.dispatch(setActiveTripDay({ tripDay }))
     }
-    this.detailsClicked = !this.detailsClicked;
-  }
-
-  setTripDate(date: string) {
-    this.store.dispatch(setDate({ date, id: this.tripDayDetails.id }))
+    this.detailsClicked = !this.detailsClicked
   }
 }
