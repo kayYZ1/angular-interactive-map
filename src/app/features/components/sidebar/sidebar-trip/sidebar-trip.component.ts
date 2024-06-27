@@ -14,11 +14,12 @@ import { getCurrentDate } from '../../../../shared/utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-trip',
   standalone: true,
-  imports: [SidebarTripDetailsComponent, DragDropModule, FontAwesomeModule, FormsModule],
+  imports: [SidebarTripDetailsComponent, DragDropModule, FontAwesomeModule, FormsModule, CommonModule],
   templateUrl: './sidebar-trip.component.html',
   styleUrl: './sidebar-trip.component.css',
 })

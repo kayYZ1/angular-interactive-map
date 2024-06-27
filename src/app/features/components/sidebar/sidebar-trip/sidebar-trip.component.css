@@ -21,7 +21,8 @@
 .trip-date {
   display: flex;
   justify-content: flex-end;
-  font-size: smaller;
+  font-size: 14px;
+  letter-spacing: 0.33px;
   color: #00adef;
 }
 

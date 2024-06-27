@@ -37,10 +37,8 @@ export class SidebarFiltersComponent {
   private readonly store = inject(Store)
 
   filters$ = this.store.select(selectFilters);
-  route$ = this.store.select(selectRoute);
 
   filters!: IFilters;
-  route!: [number, number][];
 
   searchPlaceholder = `${Objects.length} obiektów do zwiedzenia`;
 
@@ -62,7 +60,6 @@ export class SidebarFiltersComponent {
 
   ngOnInit() {
     this.filters$.subscribe(data => this.filters = data);
-    //this.route$.subscribe(data => this.route = data);
   }
 
   onToggle() {

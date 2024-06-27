@@ -10,7 +10,7 @@
   @for (tripDay of trip.days; track tripDay.id) {
   <div class="trip-day">
     <div class="trip-date">
-      {{ tripDay.date }}
+      {{ tripDay.date | date: 'dd.MM.yyyy'}}
     </div>
     <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event, tripDay)">
       @for (object of tripDay.objects; track object.id) {
