@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { IObject, ITripDay } from '../../../../shared/ts/interfaces';
-import { faArrowLeft, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faClose, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { selectTripDays } from '../../../../core/store/trip/trip.selectors';
-import { addObjectToTripDay, setActiveTripDay } from '../../../../core/store/trip/trip.actions';
+import { addObjectToTripDay, addTripDay, setActiveTripDay } from '../../../../core/store/trip/trip.actions';
 
 @Component({
   selector: 'app-sidebar-object-info',
@@ -24,6 +24,7 @@ export class SidebarObjectInfoComponent {
 
   faReturn = faArrowLeft;
   faClose = faClose;
+  faPlus = faPlus;
 
   ngOnInit() {
     this.tripDays$.subscribe(data => this.tripDays = data)
@@ -31,6 +32,10 @@ export class SidebarObjectInfoComponent {
 
   onClick() {
     this.closeObjectInfo.emit(true);
+  }
+
+  addNewTripDay() {
+    this.store.dispatch(addTripDay());
   }
 
   addObjectToTripDay(object: IObject, tripDay: ITripDay) {
