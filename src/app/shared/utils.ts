@@ -19,14 +19,12 @@ export function addDaysToDate(date: string) {
   let formattedDate = convertToDate(date);
   let result = new Date();
   result.setDate(formattedDate.getDate() + 1);
-  console.log(result)
 
   let d = result.toJSON().slice(0, 10);
   let nDate = d.slice(0, 4) + '-'
     + d.slice(5, 7) + '-'
     + d.slice(8, 10);
 
-  console.log(nDate)
   return nDate;
 }
 

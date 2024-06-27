@@ -3,14 +3,17 @@
     <div>
       {{ trip.name }}
     </div>
+    <div class="trip-date">
+      <input type="date" [value]="currentDate" [min]="currentDate" [ngModel]="tripDate"
+        (ngModelChange)="setTripDate(tripDate = $event)" class="trip-datepicker" />
+    </div>
   </div>
   <hr>
   @if (!detailsClicked) {
   @for (tripDay of trip.days; track tripDay.id) {
   <div class="trip-day">
     <div class="trip-date">
-      <input type="date" [defaultValue]="tripDay.date" [min]="currentDate" [ngModel]="tripDay.date"
-        class="trip-datepicker" />
+      <p style="color: #00adef;">{{ tripDate }}</p>
     </div>
     <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
       @for (object of tripDay.objects; track object.id) {

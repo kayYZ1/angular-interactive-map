@@ -26,9 +26,7 @@ export class SidebarObjectInfoComponent {
   faClose = faClose;
 
   ngOnInit() {
-    this.tripDays$.subscribe(data => {
-      this.tripDays = data
-    })
+    this.tripDays$.subscribe(data => this.tripDays = data)
   }
 
   onClick() {
