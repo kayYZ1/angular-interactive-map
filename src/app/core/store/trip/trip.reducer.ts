@@ -88,10 +88,20 @@ export const tripReducer = createReducer(
       activeTripDay: updatedTd
     }
   }),
-  /*on(TripActions.recoverRoute, (state, { route }) => ({
-    ...state,
-    route: route
-  })),*/
+  on(TripActions.recoverRoute, (state, { route }) => {
+    const updatedTd = {
+      ...state.activeTripDay,
+      route
+    }
+
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(state.activeTripDay)] = updatedTd;
+    return {
+      ...state,
+      days: updatedDays,
+      activeTripDay: updatedTd
+    }
+  }),
   on(TripActions.setSummary, (state, { id, distance, time }) => {
     const tripDay = state.days.find(day => day.id === id);
 

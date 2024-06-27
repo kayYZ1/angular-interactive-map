@@ -2,6 +2,7 @@ import { Component, EventEmitter, inject, Output, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectActiveTripDay } from '../../../../../core/store/trip/trip.selectors';
 import { IObject, ITripDay } from '../../../../../shared/ts/interfaces';
+import { recoverRoute } from '../../../../../core/store/trip/trip.actions';
 import { faTrash, faRoad, faSave, faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { clearSummaries, removeObjectFromTripDay } from '../../../../../core/store/trip/trip.actions';
@@ -31,7 +32,18 @@ export class SidebarTripDetailsComponent implements OnInit {
   activeTripDay!: ITripDay;
 
   ngOnInit() {
-    this.activeTripDay$.subscribe(data => this.activeTripDay = data)
+    this.activeTripDay$.subscribe(data => this.activeTripDay = data);
+    this.recoverTripRoute();
+  }
+
+  recoverTripRoute() {
+    if (this.activeTripDay.objects.length !== 0 && this.activeTripDay.route.length === 0) {
+      const route = [...this.activeTripDay.route];
+      for (const object of this.activeTripDay.objects) {
+        if (!route.includes(object.coordinates)) route.push(object.coordinates);
+      }
+      this.store.dispatch(recoverRoute({ route }))
+    }
   }
 
   onClick(object: IObject, id: number) {
