@@ -1,20 +1,23 @@
-import * as Leaflet from 'leaflet';
+import * as Leaflet from "leaflet";
+
 import "leaflet.markercluster";
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
+
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { Store } from '@ngrx/store';
-import { IFilters, IObject, ITripDay } from '../../../shared/ts/interfaces';
-import { selectActiveTripDay, selectRoute } from '../../../core/store/trip/trip.selectors';
-import { selectFilters } from '../../../core/store/filters/filters.selectors';
-import { Objects } from '../../../core/data/objects';
-import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
-import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
-import { addObjectToTripDay, setActiveTripDay, setSummary } from '../../../core/store/trip/trip.actions';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IFilters, IObject, ITripDay } from '@/shared/ts/interfaces';
+import { addObjectToTripDay, setSummary } from '@/core/store/trip/trip.actions';
 import { customMarker, popupHeader, popupStyle } from './styles';
+import { selectActiveTripDay, selectRoute } from '@/core/store/trip/trip.selectors';
+
+import { CriteriaFilterPipe } from '@/core/pipes/criteria-filter.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
+import { Objects } from '@/core/data/objects';
+import { SearchFilterPipe } from '@/core/pipes/search-filter.pipe';
+import { Store } from '@ngrx/store';
+import { selectFilters } from '@/core/store/filters/filters.selectors';
 
 @Component({
   selector: 'app-map',

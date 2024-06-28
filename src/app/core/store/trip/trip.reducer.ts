@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
-import * as TripActions from './trip.actions';
-import { ITrip, ITripDay } from '../../../shared/ts/interfaces';
-import { addDaysToDate, generateId, getCurrentDate } from '../../../shared/utils';
+import * as TripActions from "@/core/store/trip/trip.actions"
+import { ITrip, ITripDay } from '@/shared/ts/interfaces';
+import { addDaysToDate, generateId, getCurrentDate } from '@/shared/utils';
 
 const defaultTripDay: ITripDay[] = [{
   id: generateId(),

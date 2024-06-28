@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import * as FilterActions from './filters.actions';
-import { IFilters } from '../../../shared/ts/interfaces';
+import * as FilterActions from "@/core/store/filters/filters.actions"
+import { IFilters } from '@/shared/ts/interfaces';
 
 const initialState: IFilters = {
   searchQuery: '',

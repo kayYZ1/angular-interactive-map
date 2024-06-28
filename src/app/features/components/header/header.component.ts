@@ -2,8 +2,9 @@ import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLocationDot, faMagnifyingGlass, faPersonWalking, faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
-import { ITrip } from '../../../shared/ts/interfaces';
-import { selectTrip } from '../../../core/store/trip/trip.selectors';
+
+import { ITrip } from '@/shared/ts/interfaces';
+import { selectTrip } from '@/core/store/trip/trip.selectors';
 
 @Component({
   selector: 'app-header',

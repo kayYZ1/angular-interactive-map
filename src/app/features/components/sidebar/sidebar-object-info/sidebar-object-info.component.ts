@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { IObject, ITripDay } from '../../../../shared/ts/interfaces';
+import { Store } from '@ngrx/store';
 import { faArrowLeft, faClose, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Store } from '@ngrx/store';
-import { selectTripDays } from '../../../../core/store/trip/trip.selectors';
-import { addObjectToTripDay, addTripDay, setActiveTripDay } from '../../../../core/store/trip/trip.actions';
+
+import { IObject, ITripDay } from '@/shared/ts/interfaces';
+import { selectTripDays } from "@/core/store/trip/trip.selectors";
+import { addObjectToTripDay, addTripDay, setActiveTripDay } from "@/core/store/trip/trip.actions";
 
 @Component({
   selector: 'app-sidebar-object-info',

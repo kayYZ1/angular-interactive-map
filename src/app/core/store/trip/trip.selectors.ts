@@ -1,5 +1,6 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { ITrip, ITripDay } from "../../../shared/ts/interfaces";
+
+import { ITrip, ITripDay } from "@/shared/ts/interfaces";
 
 export const selectTrip = createFeatureSelector<ITrip>('trip');
 
