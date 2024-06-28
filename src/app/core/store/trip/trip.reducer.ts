@@ -47,7 +47,8 @@ export const tripReducer = createReducer(
   })),
   on(TripActions.addObjectToTripDay, (state, { object, id }) => {
     const tdToUpdate = state.days.find(day => day.id === id);
-    if (!tdToUpdate) return state;
+
+    if (!tdToUpdate || tdToUpdate.objects.includes(object)) return state;
 
     const updatedTd = {
       ...state.activeTripDay,
