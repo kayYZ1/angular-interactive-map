@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectActiveTripDay } from '../../../../../core/store/trip/trip.selectors';
 import { IObject, ITripDay } from '../../../../../shared/ts/interfaces';
-import { recoverRoute } from '../../../../../core/store/trip/trip.actions';
+import { recoverRoute, clearSummaries, removeObjectFromTripDay } from '../../../../../core/store/trip/trip.actions';
 import { faTrash, faRoad, faSave, faCar, faSuitcaseRolling } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { clearSummaries, removeObjectFromTripDay } from '../../../../../core/store/trip/trip.actions';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

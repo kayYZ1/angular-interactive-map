@@ -64,6 +64,8 @@ p {
 span {
   padding-top: 1vh;
   padding-bottom: 1vh;
+  font-size: smaller;
+  opacity: 0.8;
 }
 
 .return-icon {
