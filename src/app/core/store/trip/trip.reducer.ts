@@ -34,7 +34,8 @@ export const tripReducer = createReducer(
           id: generateId(),
           objects: [],
           route: [],
-          date: addDaysToDate(state.days[state.days.length - 1].date, parseInt(state.days[0].date.slice(5, 7), 10)),
+          date: addDaysToDate(state.days[state.days.length - 1].date,
+            parseInt(state.days[state.days.length - 1].date.slice(5, 7), 10)),
           distance: 0,
           time: 0
         }

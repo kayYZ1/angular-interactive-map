@@ -12,18 +12,19 @@ export function getCurrentDate() {
 export function addDaysToDate(date: string, month: number) {
   let formattedDate = convertToDate(date);
   let result = new Date();
-  result.setDate(formattedDate.getDate() + 1);
+
   result.setMonth(month - 1)
 
-  const newDate = convertToString(result);
+  result.setDate(formattedDate.getDate() + 1);
 
+  const newDate = convertToString(result);
   return newDate;
 }
 
 function convertToDate(dateString: string) {
-  let d = dateString.split("/");
-  let dat = new Date(d[2] + '/' + d[1] + '/' + d[0]);
-  return dat;
+  let dateFormat = dateString.split("/");
+  let date = new Date(dateFormat[2] + '/' + dateFormat[1] + '/' + dateFormat[0]);
+  return date;
 }
 
 function convertToString(date: Date) {

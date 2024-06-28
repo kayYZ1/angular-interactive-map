@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   CdkDragDrop,
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
 
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip, ITripDay } from '../../../../shared/ts/interfaces';
@@ -13,8 +15,6 @@ import { addTripDay, removeTripDay, setActiveTripDay, setTripDate, updateTripDay
 import { getCurrentDate } from '../../../../shared/utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-trip',
