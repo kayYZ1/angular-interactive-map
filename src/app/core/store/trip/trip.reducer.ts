@@ -118,18 +118,18 @@ export const tripReducer = createReducer(
 
     if (!tripDay) return state;
 
-    const updatedTripDay = {
+    const updatedTd = {
       ...tripDay,
       distance,
       time
     }
 
     const updatedDays = [...state.days];
-    updatedDays[updatedDays.indexOf(tripDay)] = updatedTripDay;
+    updatedDays[updatedDays.indexOf(tripDay)] = updatedTd;
     return {
       ...state,
       days: updatedDays,
-      activeTripDay: updatedTripDay
+      activeTripDay: updatedTd
     }
   }),
   on(TripActions.clearSummaries, (state) => {
