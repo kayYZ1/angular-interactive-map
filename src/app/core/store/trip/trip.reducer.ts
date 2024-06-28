@@ -45,15 +45,18 @@ export const tripReducer = createReducer(
     ...state,
     days: state.days.filter((day) => day.id !== id)
   })),
-  on(TripActions.addObjectToTripDay, (state, { object }) => {
+  on(TripActions.addObjectToTripDay, (state, { object, id }) => {
+    const tdToUpdate = state.days.find(day => day.id === id);
+    if (!tdToUpdate) return state;
+
     const updatedTd = {
       ...state.activeTripDay,
       objects: [...state.activeTripDay.objects, object],
       route: [...state.activeTripDay.route, object.coordinates]
     }
 
-    const updatedDays = [...state.days]
-    updatedDays[updatedDays.indexOf(state.activeTripDay)] = updatedTd;
+    const updatedDays = [...state.days];
+    updatedDays[updatedDays.indexOf(tdToUpdate)] = updatedTd;
     return {
       ...state,
       days: updatedDays,

@@ -17,7 +17,7 @@ export const removeTripDay = createAction(
 
 export const addObjectToTripDay = createAction(
   '[Trip] Add to trip',
-  props<{ object: IObject }>()
+  props<{ object: IObject, id: number }>()
 );
 
 export const removeObjectFromTripDay = createAction(

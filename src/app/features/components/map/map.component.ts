@@ -11,7 +11,7 @@ import { selectFilters } from '../../../core/store/filters/filters.selectors';
 import { Objects } from '../../../core/data/objects';
 import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
 import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
-import { setSummary } from '../../../core/store/trip/trip.actions';
+import { addObjectToTripDay, setActiveTripDay, setSummary } from '../../../core/store/trip/trip.actions';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { customMarker, popupHeader, popupStyle } from './styles';
 import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
@@ -123,6 +123,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker
+        .on("click", () => {
+          this.store.dispatch(addObjectToTripDay({ object, id: this.activeTripDay.id }))
+        })
         .bindTooltip(`<div style=${popupStyle}>
             <div style=${popupHeader}>
               <b>${object.title}</b>
