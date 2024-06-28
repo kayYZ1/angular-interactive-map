@@ -7,7 +7,7 @@
     <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
     <div class="trip-object-text">
       <h1>{{ object.title }}</h1>
-      <p>{{ object.category }}</p>
+      <p>Czas zwiedzania: {{ object.visitingTimeInMinutes }}m</p>
     </div>
   </div>
   <fa-icon [icon]="faTrash" (click)="onClick(object, activeTripDay.id)" class="delete-icon"></fa-icon>

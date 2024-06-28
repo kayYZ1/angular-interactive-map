@@ -10,6 +10,7 @@ export const Objects: IObject[] = [
     email: 'fajnemiejsce@gmail.com',
     category: Categories.ROZRYWKA,
     coordinates: [50.67705830189504, 17.932003400937973],
+    visitingTimeInMinutes: 30,
     imgUrl:
       'https://odraopole.pl/wp-content/uploads/2019/01/odra_siarka_stadion-e1521573323355-1-300x225.jpg',
   },
@@ -21,6 +22,7 @@ export const Objects: IObject[] = [
     email: 'zooopole@gmail.com',
     category: Categories.PARKI,
     coordinates: [50.65968668224407, 17.92377490933834],
+    visitingTimeInMinutes: 180,
     imgUrl:
       'https://atrakcje.info.pl/web/files/travel/e20f3a4e4102d2beffb7ea4524ae93ccopole-zoo.JPG',
   },
@@ -31,6 +33,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: 'parkopo@gmail.com',
     category: Categories.PARKI,
+    visitingTimeInMinutes: 60,
     coordinates: [50.66131918348528, 17.918126239701888],
     imgUrl: 'https://radio.opole.pl//public/121/2017/121_149604728914.jpg',
   },
@@ -41,6 +44,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: 'parkopo@gmail.com',
     category: Categories.NOCLEGI,
+    visitingTimeInMinutes: 60,
     coordinates: [50.66721431123094, 17.927206368137547],
     imgUrl: 'https://meteor-turystyka.pl/images/base/2/1578/12187_40.jpg',
   },
@@ -51,6 +55,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: 'parkopo@gmail.com',
     category: Categories.HANDEL,
+    visitingTimeInMinutes: 90,
     coordinates: [50.670779921648545, 17.92611468909471],
     imgUrl:
       'https://opolska360.pl/wp-content/uploads/2023/01/Ozimska-Park-w-Opolu-1120x570.jpg',
@@ -62,6 +67,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: '3@gmail.com',
     category: Categories.GASTRONOMIA,
+    visitingTimeInMinutes: 60,
     coordinates: [50.68218999947739, 17.884776209848482],
     imgUrl:
       'https://lh3.googleusercontent.com/p/AF1QipN-pylKegl0dU1V5EYlBnITBF7zPuLUjlIpuNDq=s138-w138-h108-n-k-no',
@@ -73,6 +79,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: 'parkopo@gmail.com',
     category: Categories.ROZRYWKA,
+    visitingTimeInMinutes: 60,
     coordinates: [50.66655956910213, 17.922351760468285],
     imgUrl:
       'https://www.opole.pl/sites/default/files/styles/vphoto_gallery_large/public/galerie/Atrakcje/Teatr%20Kochanowskiego%20-%20scena.jpg?itok=7ayseLz5',
@@ -84,6 +91,7 @@ export const Objects: IObject[] = [
     phone: '12 321 32 12',
     email: '123@gmail.com',
     category: Categories.TURYSTYKA,
+    visitingTimeInMinutes: 30,
     coordinates: [50.67253149324137, 17.920404822895513],
     imgUrl:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3-8JS5Nh6Fjjvd1ChRqu3q04Z7PTYY-Fg&s',
@@ -95,6 +103,7 @@ export const Objects: IObject[] = [
     phone: '',
     email: '',
     category: Categories.TURYSTYKA,
+    visitingTimeInMinutes: 45,
     coordinates: [50.66906667007652, 17.922558241937775],
     imgUrl:
       'https://lh5.googleusercontent.com/p/AF1QipOK4lQJfSrM42cOctPUl_ww9a-ynF6r6CBhUoia=w408-h544-k-no',
@@ -106,6 +115,7 @@ export const Objects: IObject[] = [
     phone: '22 333 11 21',
     email: '',
     category: Categories.HANDEL,
+    visitingTimeInMinutes: 90,
     coordinates: [50.686168442514195, 17.979492543092476],
     imgUrl:
       'https://omnichannelnews.pl/wp-content/uploads/2022/01/turawa-park-centrum-handlowe-opole.jpg',

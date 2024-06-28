@@ -1,13 +1,13 @@
 import { Component, EventEmitter, inject, Output, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectActiveTripDay } from '../../../../../core/store/trip/trip.selectors';
 import { IObject, ITripDay } from '../../../../../shared/ts/interfaces';
 import { recoverRoute } from '../../../../../core/store/trip/trip.actions';
-import { faTrash, faRoad, faSave, faCar } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faRoad, faSave, faCar, faSuitcaseRolling } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { clearSummaries, removeObjectFromTripDay } from '../../../../../core/store/trip/trip.actions';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-trip-details',
@@ -24,6 +24,7 @@ export class SidebarTripDetailsComponent implements OnInit {
   faRoad = faRoad;
   faReturn = faArrowLeft;
   faSave = faSave;
+  faSuitcase = faSuitcaseRolling;
 
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -31,9 +32,12 @@ export class SidebarTripDetailsComponent implements OnInit {
 
   activeTripDay!: ITripDay;
 
+  totalVisitingTime = 0;
+
   ngOnInit() {
     this.activeTripDay$.subscribe(data => this.activeTripDay = data);
     this.recoverTripRoute();
+
   }
 
   recoverTripRoute() {

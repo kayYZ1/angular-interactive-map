@@ -7,6 +7,7 @@ export interface IObject {
   phone: string;
   email: string;
   category: Categories;
+  visitingTimeInMinutes: number;
   coordinates: [number, number];
   imgUrl: string;
 }

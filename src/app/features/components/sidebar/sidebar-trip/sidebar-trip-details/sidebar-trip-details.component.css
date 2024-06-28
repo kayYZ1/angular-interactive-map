@@ -49,13 +49,12 @@ h1 {
 p {
   margin-top: 10px;
   font-size: small;
-  text-transform: capitalize;
   color: #555;
 }
 
 .trip-object-details {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .details-icon {
