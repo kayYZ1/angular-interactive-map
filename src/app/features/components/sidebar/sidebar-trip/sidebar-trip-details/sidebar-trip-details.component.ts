@@ -32,8 +32,6 @@ export class SidebarTripDetailsComponent implements OnInit {
 
   activeTripDay!: ITripDay;
 
-  totalVisitingTime = 0;
-
   ngOnInit() {
     this.activeTripDay$.subscribe(data => this.activeTripDay = data);
     this.recoverTripRoute();
