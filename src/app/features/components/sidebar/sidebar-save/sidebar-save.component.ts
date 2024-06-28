@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip } from '../../../../shared/ts/interfaces';
@@ -20,7 +20,7 @@ export class SidebarSaveComponent implements OnInit {
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
 
-  tripName = ""
+  tripName = "";
 
   faSave = faSave;
 

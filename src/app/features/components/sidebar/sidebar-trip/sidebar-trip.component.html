@@ -4,7 +4,8 @@
     <div>
       {{ trip.name }}
     </div>
-    <input type="date" [defaultValue]="trip.days[0].date" [min]="currentDate" class="trip-datepicker" />
+    <input type="date" [defaultValue]="trip.days[0].date" [ngModel]="tripDate" [min]="currentDate"
+      (ngModelChange)="setDate(tripDate = $event)" class="trip-datepicker" />
   </div>
   <hr>
   @for (tripDay of trip.days; track tripDay.id) {

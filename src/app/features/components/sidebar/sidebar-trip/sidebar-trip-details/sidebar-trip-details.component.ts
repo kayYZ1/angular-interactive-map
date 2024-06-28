@@ -36,7 +36,6 @@ export class SidebarTripDetailsComponent implements OnInit {
   ngOnInit() {
     this.activeTripDay$.subscribe(data => this.activeTripDay = data);
     this.recoverTripRoute();
-
   }
 
   recoverTripRoute() {

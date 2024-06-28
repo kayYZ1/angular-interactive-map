@@ -9,7 +9,7 @@ import {
 import { selectTrip } from '../../../../core/store/trip/trip.selectors';
 import { ITrip, ITripDay } from '../../../../shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { addTripDay, removeTripDay, setActiveTripDay, updateTripDayRoute } from '../../../../core/store/trip/trip.actions';
+import { addTripDay, removeTripDay, setActiveTripDay, setTripDate, updateTripDayRoute } from '../../../../core/store/trip/trip.actions';
 import { getCurrentDate } from '../../../../shared/utils';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -34,11 +34,12 @@ export class SidebarTripComponent implements OnInit {
 
   detailsClicked: boolean = false;
 
-  tripDate = "";
+  tripDate!: string;
   currentDate = getCurrentDate();
 
   ngOnInit() {
     this.trip$.subscribe(data => this.trip = data)
+    this.tripDate = this.trip.days[0].date
   }
 
   addNewTripDay() {
@@ -66,4 +67,7 @@ export class SidebarTripComponent implements OnInit {
     this.detailsClicked = !this.detailsClicked
   }
 
+  setDate(date: string) {
+    this.store.dispatch(setTripDate({ date }))
+  }
 }

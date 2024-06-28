@@ -34,7 +34,7 @@ export const tripReducer = createReducer(
           id: generateId(),
           objects: [],
           route: [],
-          date: addDaysToDate(state.days[state.days.length - 1].date),
+          date: addDaysToDate(state.days[state.days.length - 1].date, parseInt(state.days[0].date.slice(5, 7), 10)),
           distance: 0,
           time: 0
         }
@@ -47,7 +47,6 @@ export const tripReducer = createReducer(
   })),
   on(TripActions.addObjectToTripDay, (state, { object, id }) => {
     const tdToUpdate = state.days.find(day => day.id === id);
-
     if (!tdToUpdate || tdToUpdate.objects.includes(object)) return state;
 
     const updatedTd = {
@@ -116,7 +115,6 @@ export const tripReducer = createReducer(
   }),
   on(TripActions.setSummary, (state, { id, distance, time }) => {
     const tripDay = state.days.find(day => day.id === id);
-
     if (!tripDay) return state;
 
     const updatedTd = {
@@ -151,5 +149,21 @@ export const tripReducer = createReducer(
   on(TripActions.setName, (state, { name }) => ({
     ...state,
     name: name.length > 3 ? name : state.name
-  }))
+  })),
+  on(TripActions.setTripDate, (state, { date }) => {
+    if (state.days.length > 1) return state;
+    const updatedTd = {
+      ...state.days[0],
+      date
+    }
+
+    const updatedDays = [...state.days];
+    updatedDays[0] = updatedTd;
+
+    return {
+      ...state,
+      days: updatedDays,
+      activeTripDay: updatedTd
+    }
+  })
 );

@@ -1,7 +1,7 @@
 <div class="trip-save-container">
   <label>Nazwa wycieczki:</label>
-  <input type="text" [placeholder]="trip.name" [(ngModel)]="tripName" (ngModelChange)="onChange(tripName)"
-    class="trip-name-input" />
+  <input type="text" [placeholder]="trip.name" name="tripName" [ngModel]="tripName"
+    (ngModelChange)="onChange(tripName = $event)" class="trip-name-input" maxlength="20" />
   <div class="trip-save-actions">
     <button class="trip-save-btn" id="btn-first">Zapisz</button>
     <button class="trip-save-btn">Zapisz link</button>
