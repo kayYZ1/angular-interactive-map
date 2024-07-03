@@ -1,4 +1,5 @@
 import { createFeatureSelector } from "@ngrx/store";
-import { FiltersState } from "./filters.reducer";
 
-export const selectFilters = createFeatureSelector<FiltersState>('filters');
+import { IFilters } from "@/shared/ts/interfaces";
+
+export const selectFilters = createFeatureSelector<IFilters>('filters');

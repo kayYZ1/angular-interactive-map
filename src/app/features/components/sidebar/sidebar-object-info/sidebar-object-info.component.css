@@ -6,7 +6,6 @@
 
 hr {
   opacity: 0.2;
-  margin: 1vh 0 1vh 0;
 }
 
 .header-icons {
@@ -23,7 +22,36 @@ span {
   font-weight: bold;
 }
 
+.object-info-trip-days {
+  width: 100%;
+  height: 5vh;
+  padding-bottom: 0.5vh;
+}
+
+.trip-day-btn {
+  display: inline-block;
+  border: none;
+  background-color: #00adef;
+  height: 36px;
+  width: 36px;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  margin-right: 0.5vw;
+}
+
+fa-icon {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.isAddedToTripDay {
+  background-color: black;
+  cursor: pointer;
+}
+
 .object-info-content {
+  padding-top: 2vh;
   display: flex;
   align-items: center;
   justify-content: center;

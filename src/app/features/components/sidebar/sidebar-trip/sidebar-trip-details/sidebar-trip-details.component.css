@@ -1,3 +1,10 @@
+.trip-date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: medium;
+  color: #00adef;
+}
+
 .trip-object-list {
   display: flex;
   flex-direction: column;
@@ -11,7 +18,6 @@
   align-items: center;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  cursor: move;
 }
 
 .trip-object-content {
@@ -43,13 +49,12 @@ h1 {
 p {
   margin-top: 10px;
   font-size: small;
-  text-transform: capitalize;
   color: #555;
 }
 
 .trip-object-details {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .details-icon {
@@ -59,16 +64,8 @@ p {
 span {
   padding-top: 1vh;
   padding-bottom: 1vh;
-}
-
-.details-btn {
-  cursor: pointer;
-  border: none;
-  padding: 0.5vw;
-  color: white;
-  font-size: small;
-  background-color: #00adef;
-  margin-left: 0.5vw;
+  font-size: smaller;
+  opacity: 0.8;
 }
 
 .return-icon {

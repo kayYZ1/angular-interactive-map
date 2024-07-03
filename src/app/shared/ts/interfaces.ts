@@ -7,17 +7,24 @@ export interface IObject {
   phone: string;
   email: string;
   category: Categories;
+  visitingTimeInMinutes: number;
   coordinates: [number, number];
   imgUrl: string;
 }
 
 export interface ITrip {
   name: string;
-  places: IObject[];
+  days: ITripDay[];
+  activeTripDay: ITripDay;
+}
+
+export interface ITripDay {
+  id: number;
+  objects: IObject[];
   route: [number, number][]
   date: string;
-  totalDistance: number;
-  totalTime: number;
+  distance: number;
+  time: number;
 }
 
 export interface IFilters {

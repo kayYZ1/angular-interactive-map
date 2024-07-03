@@ -1,14 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { Categories } from '../../../shared/ts/enums';
 
-import * as FilterActions from './filters.actions';
+import * as FilterActions from "@/core/store/filters/filters.actions"
+import { IFilters } from '@/shared/ts/interfaces';
 
-export interface FiltersState {
-  searchQuery: string;
-  criteria: Categories[];
-}
-
-const initialState: FiltersState = {
+const initialState: IFilters = {
   searchQuery: '',
   criteria: [],
 };

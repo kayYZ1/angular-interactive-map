@@ -1,27 +1,42 @@
 <div class="trip-container">
+  @if (!detailsClicked) {
   <div class="trip-header">
     <div>
       {{ trip.name }}
     </div>
-    <input type="date" [defaultValue]="trip.date" [min]="currentDate" [ngModel]="tripDate"
-      (ngModelChange)="onChange(tripDate = $event)" class="trip-datepicker" />
+    <input type="date" [defaultValue]="trip.days[0].date" [ngModel]="tripDate" [min]="currentDate"
+      (ngModelChange)="setDate(tripDate = $event)" class="trip-datepicker" />
   </div>
   <hr>
-  @if (!detailsClicked) {
-  <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event)">
-    @for (object of trip.places; track object.id) {
-    <div class="trip-object-draggable" cdkDrag>
-      <img [src]="object.imgUrl" [alt]="object.title" class="object-img" />
+  @for (tripDay of trip.days; track tripDay.id) {
+  <div class="trip-day">
+    <div class="trip-date">
+      {{ tripDay.date | date: 'dd.MM.yyyy'}}
     </div>
-    } @empty {
-    <p>...</p>
-    }
+    <div cdkDropList cdkDropListOrientation="horizontal" class="trip-info" (cdkDropListDropped)="drop($event, tripDay)">
+      @for (object of tripDay.objects; track object.id) {
+      <div class="trip-object-draggable" cdkDrag>
+        <img [src]="object.imgUrl" [alt]="object.title" class="object-img" />
+      </div>
+      }
+    </div>
+    <div class="trip-actions">
+      <button class="trip-info-btn" (click)="handleDetails(tripDay)">Szczegóły</button>
+      @if (trip.days.length !== 1) {
+      <button id="trash-btn" (click)="removeTripDay(tripDay.id)">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
+      }
+    </div>
   </div>
-  <div class="trip-actions">
-    <button class="trip-info-btn" id="first-btn" disabled>Optymalizuj</button>
-    <button class="trip-info-btn" (click)="handleDetails()">Szczegóły</button>
+  <hr>
+  }
+  <div class="new-trip-day">
+    <button id="add-btn" (click)="addNewTripDay()">
+      <fa-icon [icon]="faPlus" style="font-size: 24px; font-weight: 300;"></fa-icon>
+    </button>
   </div>
   } @else {
-  <app-sidebar-trip-details (close)="handleDetails()" />
+  <app-sidebar-trip-details (close)="handleDetails(null)" />
   }
 </div>

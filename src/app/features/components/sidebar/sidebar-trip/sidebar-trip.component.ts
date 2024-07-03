@@ -1,22 +1,26 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   CdkDragDrop,
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { selectTrip } from '../../../../core/store/trip/trip.selectors';
-import { ITrip } from '../../../../shared/ts/interfaces';
+import { selectTrip } from '@/core/store/trip/trip.selectors';
+import { ITrip, ITripDay } from '@/shared/ts/interfaces';
 import { SidebarTripDetailsComponent } from './sidebar-trip-details/sidebar-trip-details.component';
-import { recoverRoute, setDate, updateTrip } from '../../../../core/store/trip/trip.actions';
-import { getCurrentDate } from '../../../../shared/utils';
+import { addTripDay, removeTripDay, setActiveTripDay, setTripDate, updateTripDayRoute }
+  from "@/core/store/trip/trip.actions";
+import { getCurrentDate } from '@/shared/utils';
 
 @Component({
   selector: 'app-sidebar-trip',
   standalone: true,
-  imports: [SidebarTripDetailsComponent, DragDropModule, FormsModule],
+  imports: [SidebarTripDetailsComponent, DragDropModule, FontAwesomeModule, FormsModule, CommonModule],
   templateUrl: './sidebar-trip.component.html',
   styleUrl: './sidebar-trip.component.css',
 })
@@ -26,41 +30,45 @@ export class SidebarTripComponent implements OnInit {
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
 
+  faPlus = faPlus;
+  faTrash = faTrash;
+
   detailsClicked: boolean = false;
 
   tripDate!: string;
   currentDate = getCurrentDate();
 
   ngOnInit() {
-    this.trip$.subscribe((data) => (this.trip = data));
-    this.tripDate = this.trip.date;
-
-    this.recoverTripRoute();
+    this.trip$.subscribe(data => this.trip = data)
+    this.tripDate = this.trip.days[0].date
   }
 
-  recoverTripRoute() {
-    const route = [...this.trip.route];
-    for (const object of this.trip.places) {
-      if (!route.includes(object.coordinates)) route.push(object.coordinates);
-    }
-    this.store.dispatch(recoverRoute({ route }))
+  addNewTripDay() {
+    this.store.dispatch(addTripDay());
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    const updatedPlaces = [...this.trip.places];
-    const updatedRoute = [...this.trip.route];
-    moveItemInArray(updatedPlaces, event.previousIndex, event.currentIndex);
+  removeTripDay(id: number) {
+    this.store.dispatch(removeTripDay({ id }));
+  }
+
+  drop(event: CdkDragDrop<string[]>, tripDay: ITripDay) {
+    const updatedObjects = [...tripDay.objects];
+    const updatedRoute = [...tripDay.route];
+    moveItemInArray(updatedObjects, event.previousIndex, event.currentIndex);
     moveItemInArray(updatedRoute, event.previousIndex, event.currentIndex);
     this.store.dispatch(
-      updateTrip({ places: updatedPlaces, route: updatedRoute })
+      updateTripDayRoute({ id: tripDay.id, objects: updatedObjects, route: updatedRoute })
     );
   }
 
-  handleDetails() {
-    this.detailsClicked = !this.detailsClicked;
+  handleDetails(tripDay: ITripDay | null) {
+    if (tripDay) {
+      this.store.dispatch(setActiveTripDay({ tripDay }))
+    }
+    this.detailsClicked = !this.detailsClicked
   }
 
-  onChange(date: string) {
-    this.store.dispatch(setDate({ date }))
+  setDate(date: string) {
+    this.store.dispatch(setTripDate({ date }))
   }
 }

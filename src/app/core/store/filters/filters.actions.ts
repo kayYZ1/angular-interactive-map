@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
-import { Categories } from "../../../shared/ts/enums";
+
+import { Categories } from "@/shared/ts/enums";
 
 export const setSearchQueryFilter = createAction
   ('[Filters] Search Query',

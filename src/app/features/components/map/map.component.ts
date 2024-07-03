@@ -1,20 +1,23 @@
-import * as Leaflet from 'leaflet';
+import * as Leaflet from "leaflet";
+
 import "leaflet.markercluster";
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
-import { Component, inject } from '@angular/core';
-import { LeafletModule } from '@bluehalo/ngx-leaflet';
-import { Store } from '@ngrx/store';
-import { IFilters, IObject } from '../../../shared/ts/interfaces';
-import { selectRoute } from '../../../core/store/trip/trip.selectors';
-import { selectFilters } from '../../../core/store/filters/filters.selectors';
-import { Objects } from '../../../core/data/objects';
-import { CriteriaFilterPipe } from '../../../core/pipes/criteria-filter.pipe';
-import { SearchFilterPipe } from '../../../core/pipes/search-filter.pipe';
-import { addToTrip, setSummary } from '../../../core/store/trip/trip.actions';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
+import { IFilters, IObject, ITripDay } from '@/shared/ts/interfaces';
+import { addObjectToTripDay, setSummary } from '@/core/store/trip/trip.actions';
 import { customMarker, popupHeader, popupStyle } from './styles';
+import { selectActiveTripDay, selectRoute } from '@/core/store/trip/trip.selectors';
+
+import { CriteriaFilterPipe } from '@/core/pipes/criteria-filter.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
+import { Objects } from '@/core/data/objects';
+import { SearchFilterPipe } from '@/core/pipes/search-filter.pipe';
+import { Store } from '@ngrx/store';
+import { selectFilters } from '@/core/store/filters/filters.selectors';
 
 @Component({
   selector: 'app-map',
@@ -24,16 +27,19 @@ import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster"
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
-export class MapComponent {
+export class MapComponent implements OnInit, AfterViewInit {
   private readonly store = inject(Store);
   private criteriaPipe = inject(CriteriaFilterPipe);
   private searchPipe = inject(SearchFilterPipe);
 
+  activeTripDay$ = this.store.select(selectActiveTripDay);
   route$ = this.store.select(selectRoute);
   filters$ = this.store.select(selectFilters);
 
   objects: IObject[] = Objects;
-  route: [number, number][] = [];
+
+  activeTripDay!: ITripDay;
+  route!: [number, number][];
   filters!: IFilters;
 
   routingControl!: Leaflet.Routing.Control;
@@ -67,10 +73,12 @@ export class MapComponent {
   }
 
   ngAfterViewInit() {
-    this.route$.subscribe((data) => {
+    this.activeTripDay$.subscribe(data => this.activeTripDay = data);
+
+    this.route$.subscribe(data => {
       this.route = data;
       this.mapRoute();
-    });
+    })
 
     this.filters$.subscribe((data) => {
       this.filters = data;
@@ -118,8 +126,8 @@ export class MapComponent {
 
       const marker = Leaflet.marker(object.coordinates, { icon });
       marker
-        .on('click', () => {
-          this.store.dispatch(addToTrip({ object }));
+        .on("click", () => {
+          this.store.dispatch(addObjectToTripDay({ object, id: this.activeTripDay.id }))
         })
         .bindTooltip(`<div style=${popupStyle}>
             <div style=${popupHeader}>
@@ -152,9 +160,7 @@ export class MapComponent {
         const distance = e.routes[0].summary.totalDistance;
         const time = e.routes[0].summary.totalTime;
         this.store.dispatch(
-          setSummary({
-            distance, time
-          })
+          setSummary({ id: this.activeTripDay.id, distance, time })
         );
       });
     } else {

@@ -1,27 +1,26 @@
-<div class="trip-object-list" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="drop($event)">
-  @for(object of trip.places; track object.id) {
-  <div class="trip-object" cdkDrag>
-    <div class="trip-object-content">
-      <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
-      <div class="trip-object-text">
-        <h1>{{ object.title }}</h1>
-        <p>{{ object.category }}</p>
-      </div>
-    </div>
-    <fa-icon [icon]="faTrash" (click)="onClick(object)" class="delete-icon"></fa-icon>
-  </div>
-  } @empty {
-  <p>...</p>
-  }
+<div class="trip-date">
+  {{ activeTripDay.date | date: 'dd.MM.yyyy' }}
 </div>
+@for(object of activeTripDay.objects; track object.id) {
+<div class="trip-object">
+  <div class="trip-object-content">
+    <img [src]="object.imgUrl" alt="object.title" class="trip-object-img" />
+    <div class="trip-object-text">
+      <h1>{{ object.title }}</h1>
+      <p>Czas zwiedzania: {{ object.visitingTimeInMinutes }} min.</p>
+    </div>
+  </div>
+  <fa-icon [icon]="faTrash" (click)="onClick(object, activeTripDay.id)" class="delete-icon"></fa-icon>
+</div>
+}
 <div class="trip-object-details">
   <span>
     <fa-icon [icon]="faRoad" class="details-icon"></fa-icon>
-    {{ (trip.totalDistance / 1000) | number:'1.0-1' }}km
+    {{ (activeTripDay.distance / 1000) | number:'1.0-1' }} km
   </span>
   <span>
     <fa-icon [icon]="faCar" class="details-icon"></fa-icon>
-    {{ (trip.totalTime / 60) | number:'1.0-0' }}m
+    {{ (activeTripDay.time / 60) | number:'1.0-0' }} min.
   </span>
 </div>
 <div class="trip-object-actions">

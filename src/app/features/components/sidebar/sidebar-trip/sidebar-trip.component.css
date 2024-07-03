@@ -1,6 +1,8 @@
 .trip-container {
   padding: 1vh 1vw 1vh 1vw;
   animation: fade-in 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  overflow-y: auto;
+  max-height: 75vh;
 }
 
 @keyframes fade-in {
@@ -16,6 +18,31 @@
 .trip-header {
   display: flex;
   justify-content: space-between;
+}
+
+.trip-date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  letter-spacing: 0.33px;
+  color: #00adef;
+}
+
+.trip-datepicker {
+  border: none;
+  color: #00adef;
+  font-weight: 500;
+  font-size: 15px;
+  outline: none;
+  font-family: "Lato", "sans-serif";
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.trip-day {
+  padding-bottom: 2vh;
 }
 
 .trip-info {
@@ -72,12 +99,19 @@ hr {
 .trip-actions {
   padding-top: 2vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
-#first-btn {
-  background-color: rgb(185, 176, 176);
-  cursor: not-allowed;
+#trash-btn {
+  background-color: transparent;
+  font-size: large;
+  cursor: pointer;
+  padding: 1.5px;
+  border: none;
+}
+
+#trash-btn:hover {
+  color: red;
 }
 
 .trip-info-btn {
@@ -93,15 +127,39 @@ hr {
   background-color: #0391c9fd;
 }
 
-.trip-datepicker {
-  border: none;
-  color: #00adef;
-  font-weight: 500;
-  font-size: 15px;
-  outline: none;
-  font-family: "Lato", "sans-serif";
+.new-trip-day {
+  display: flex;
+  justify-content: center;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+#add-btn {
+  display: inline-block;
+  border: none;
+  background-color: #00adef;
+  margin-top: 1vh;
+  height: 48px;
+  width: 48px;
+  color: white;
   cursor: pointer;
+}
+
+#add-btn:hover {
+  background-color: #0391c9fd;
+}
+
+* {
+  scrollbar-width: 3px;
+  scrollbar-color: #095768;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #095768;
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
 }
