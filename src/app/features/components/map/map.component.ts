@@ -1,6 +1,6 @@
-import * as Leaflet from "leaflet";
+import * as Leaflet from 'leaflet';
 
-import "leaflet.markercluster";
+import 'leaflet.markercluster';
 import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
 
@@ -8,11 +8,14 @@ import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { IFilters, IObject, ITripDay } from '@/shared/ts/interfaces';
 import { addObjectToTripDay, setSummary } from '@/core/store/trip/trip.actions';
 import { customMarker, popupHeader, popupStyle } from './styles';
-import { selectActiveTripDay, selectRoute } from '@/core/store/trip/trip.selectors';
+import {
+  selectActiveTripDay,
+  selectRoute,
+} from '@/core/store/trip/trip.selectors';
 
 import { CriteriaFilterPipe } from '@/core/pipes/criteria-filter.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
+import { LeafletMarkerClusterModule } from '@bluehalo/ngx-leaflet-markercluster';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { Objects } from '@/core/data/objects';
 import { SearchFilterPipe } from '@/core/pipes/search-filter.pipe';
@@ -63,22 +66,22 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   markerClusterGroup!: Leaflet.MarkerClusterGroup;
   markerClusterData: Leaflet.Marker[] = [];
-  markerClusterOptions: Leaflet.MarkerClusterGroupOptions = ({
+  markerClusterOptions: Leaflet.MarkerClusterGroupOptions = {
     disableClusteringAtZoom: 13,
-    showCoverageOnHover: false
-  })
+    showCoverageOnHover: false,
+  };
 
   ngOnInit() {
     this.updateMarkers(this.objects);
   }
 
   ngAfterViewInit() {
-    this.activeTripDay$.subscribe(data => this.activeTripDay = data);
+    this.activeTripDay$.subscribe((data) => (this.activeTripDay = data));
 
-    this.route$.subscribe(data => {
+    this.route$.subscribe((data) => {
       this.route = data;
       this.mapRoute();
-    })
+    });
 
     this.filters$.subscribe((data) => {
       this.filters = data;
@@ -107,8 +110,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     for (const object of objects) {
       const imgDiv = `
-        width: 90%;
-        height: 90%;
+        width: 95%;
+        height: 95%;
         transform: rotate(-45deg);
         border-radius: 3rem;
         background-image: url(${object.imgUrl});
@@ -125,11 +128,11 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
 
       const marker = Leaflet.marker(object.coordinates, { icon });
-      marker
-        .on("click", () => {
-          this.store.dispatch(addObjectToTripDay({ object, id: this.activeTripDay.id }))
-        })
-        .bindTooltip(`<div style=${popupStyle}>
+      marker.on('click', () => {
+        this.store.dispatch(
+          addObjectToTripDay({ object, id: this.activeTripDay.id })
+        );
+      }).bindTooltip(`<div style=${popupStyle}>
             <div style=${popupHeader}>
               <b>${object.title}</b>
               <small style='text-transform: uppercase; padding-left: 0.5vw;'>${object.category}</small>
@@ -138,7 +141,7 @@ export class MapComponent implements OnInit, AfterViewInit {
               <p>${object.email}</p>
               <a href=${object.phone} style='color: #00adef'>${object.phone}</a>
             </div>
-          </div>`)
+          </div>`);
 
       this.markers.push(marker);
     }
