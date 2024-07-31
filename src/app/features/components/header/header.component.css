@@ -22,13 +22,12 @@
 .navbar-list-item {
   display: inline-block;
   position: relative;
-  border: 1px;
   padding: 1.5vh 1vw 1.5vh 1vw;
-  width: 25vh;
+  width: 15vw;
   text-align: center;
   text-transform: uppercase;
   color: white;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -37,11 +36,11 @@
 }
 
 .navbar-list-item:not(:first-child):not(:last-child) {
-  border-left: 1px solid rgba(255, 255, 255, .2);
+  border-left: 2px solid rgba(255, 255, 255, .2);
 }
 
 .navbar-list-item:last-child {
-  border-left: 1px solid rgba(255, 255, 255, .2);
+  border-left: 2px solid rgba(255, 255, 255, .2);
 }
 
 .navbar-list-item-text {

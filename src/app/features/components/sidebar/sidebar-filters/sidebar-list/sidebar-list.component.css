@@ -34,15 +34,12 @@ li:nth-child(odd) {
 }
 
 .object-description {
+  padding-top: 1vh;
   font-weight: 300;
   font-size: smaller;
 }
 
-.object-empty {
-  justify-content: center;
-  font-size: larger;
-}
-
 .pagination-controls {
-  padding-left: 0;
+  padding-top: 2vh;
+  padding-left: 4vw;
 }

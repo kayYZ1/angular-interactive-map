@@ -10,7 +10,6 @@ import { MapComponent } from './features/components/map/map.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, SidebarComponent, MapComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
   currentView = 'search';

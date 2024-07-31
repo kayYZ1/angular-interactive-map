@@ -44,6 +44,7 @@ input[type="text"] {
   box-sizing: border-box;
   font-size: small;
   padding-left: 1vw;
+  letter-spacing: 0.1px;
 }
 
 input:focus {
@@ -57,31 +58,29 @@ input::placeholder {
 
 label {
   display: grid;
-  grid-template-columns: 2vh auto;
-  gap: 1vh;
-  padding-left: 2vh;
+  grid-template-columns: 1vw auto;
+  padding-left: 2vw;
+  gap: 0.5vw;
+  margin-bottom: 1vh;
 }
 
 .radio-text {
-  padding-left: 0.5vh;
+  padding-top: 0.15vh;
   opacity: 0.7;
   font-size: 12px;
   text-transform: uppercase;
 }
 
-
 .categories-input {
   box-sizing: border-box;
   color: gray;
-  padding-left: 1.2vw;
-  padding-top: 0.1vh;
+  padding-left: 1vw;
 }
 
 .collapsible .content {
   overflow: hidden;
   max-height: 0;
   padding: 0;
-  padding-bottom: 1vh;
 }
 
 .collapsible .content.collapsed {
