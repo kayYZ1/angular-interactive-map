@@ -28,6 +28,7 @@ li:nth-child(odd) {
 }
 
 .object-title {
+  padding-top: 1vh;
   font-weight: 500;
   font-size: large;
   color: #00adef;

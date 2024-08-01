@@ -128,11 +128,15 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
 
       const marker = Leaflet.marker(object.coordinates, { icon });
-      marker.on('click', () => {
-        this.store.dispatch(
-          addObjectToTripDay({ object, id: this.activeTripDay.id })
-        );
-      }).bindTooltip(`<div style=${popupStyle}>
+      marker
+        .on('click', () => {
+          this.store.dispatch(
+            addObjectToTripDay({ object, id: this.activeTripDay.id })
+          );
+        })
+        .bindTooltip(
+          `
+          <div style=${popupStyle}>
             <div style=${popupHeader}>
               <b>${object.title}</b>
               <small style='text-transform: uppercase; padding-left: 0.5vw;'>${object.category}</small>
@@ -141,7 +145,9 @@ export class MapComponent implements OnInit, AfterViewInit {
               <p>${object.email}</p>
               <a href=${object.phone} style='color: #00adef'>${object.phone}</a>
             </div>
-          </div>`);
+          </div>
+        `
+        );
 
       this.markers.push(marker);
     }

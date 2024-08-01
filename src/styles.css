@@ -171,3 +171,8 @@ h6,
 .h6 {
   font-size: 19px;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

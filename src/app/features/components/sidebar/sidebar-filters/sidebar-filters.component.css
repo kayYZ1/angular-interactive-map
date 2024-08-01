@@ -75,6 +75,7 @@ label {
   box-sizing: border-box;
   color: gray;
   padding-left: 1vw;
+  padding-top: 0.1vh;
 }
 
 .collapsible .content {

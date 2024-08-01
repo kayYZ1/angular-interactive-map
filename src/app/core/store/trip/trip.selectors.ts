@@ -1,6 +1,6 @@
-import { createSelector, createFeatureSelector } from "@ngrx/store";
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import { ITrip } from "@/shared/ts/interfaces";
+import { ITrip } from '@/shared/ts/interfaces';
 
 export const selectTrip = createFeatureSelector<ITrip>('trip');
 
@@ -12,10 +12,9 @@ export const selectTripDays = createSelector(
 export const selectActiveTripDay = createSelector(
   selectTrip,
   (state: ITrip) => state.activeTripDay
-)
+);
 
 export const selectRoute = createSelector(
   selectTrip,
   (state: ITrip) => state.activeTripDay.route
 );
-
