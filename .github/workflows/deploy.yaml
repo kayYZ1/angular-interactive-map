@@ -25,4 +25,4 @@ jobs:
         run: npm run build -- --base-href=https://kayYZ1.github.io/angular-interactive-map/
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/my-angular-app
+        run: npx angular-cli-ghpages --dir=dist/angular-interactive-map
