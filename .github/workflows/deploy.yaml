@@ -1,4 +1,4 @@
-name: Angular Build and Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -8,21 +8,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 20
+          node-version: "20"
 
-      - name: Build Angular app to prod
-        working-directory: ./
-        run: npm install --legacy-peer-deps && npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular project
+        run: npm run build -- --base-href=https://kayYZ1.github.io/angular-interactive-map/
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./angular-interactive-map/dist/app/browser
-          branch: main
+        run: npx angular-cli-ghpages --dir=dist/my-angular-app
