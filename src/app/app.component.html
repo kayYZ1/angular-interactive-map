@@ -1,9 +1,0 @@
-<main class="container">
-  <app-header (sidebarView)="toggleSidebarView($event)" />
-  <div class="content">
-    @if (currentView !== 'map') {
-    <app-sidebar [view]="currentView" />
-    }
-    <app-map />
-  </div>
-</main>
