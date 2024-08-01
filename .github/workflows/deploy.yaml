@@ -24,5 +24,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ./angular-interactive-map/dist/browser
+          folder: ./angular-interactive-map/dist/app/browser
           branch: main
