@@ -5,6 +5,7 @@ import 'leaflet-routing-machine';
 import 'leaflet-defaulticon-compatibility';
 
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { IFilters, IObject, ITripDay } from '@/shared/ts/interfaces';
 import { addObjectToTripDay, setSummary } from '@/core/store/trip/trip.actions';
 import { customMarker, popupHeader, popupStyle } from './styles';
@@ -70,6 +71,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     disableClusteringAtZoom: 13,
     showCoverageOnHover: false,
   };
+
+  osrmUrl = environment.OSMR_API;
 
   ngOnInit() {
     this.updateMarkers(this.objects);
@@ -175,6 +178,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     } else {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
+        router: Leaflet.Routing.osrmv1({
+          serviceUrl: `${this.osrmUrl}/route/v1`,
+        }),
         fitSelectedRoutes: true,
         lineOptions: {
           styles: [{ color: '#00adef', opacity: 0.9, weight: 3 }],
