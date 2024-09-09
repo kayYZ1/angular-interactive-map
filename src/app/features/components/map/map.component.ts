@@ -72,7 +72,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     showCoverageOnHover: false,
   };
 
-  osrmUrl = environment.OSMR_API;
+  osrmUrl = environment.osrmApi;
 
   ngOnInit() {
     this.updateMarkers(this.objects);
