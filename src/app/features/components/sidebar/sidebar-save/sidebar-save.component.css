@@ -23,7 +23,7 @@ label {
 }
 
 .trip-name-input {
-  width: 22vw;
+  width: "100%";
   margin-bottom: 2vh;
   border-color: transparent;
   font-size: medium;
@@ -60,8 +60,4 @@ label {
 
 .trip-save-btn:hover {
   background-color: #0391c9fd;
-}
-
-#btn-first {
-  grid-column: span 2;
 }

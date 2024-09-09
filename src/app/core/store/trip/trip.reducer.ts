@@ -23,6 +23,10 @@ const initialState: ITrip = {
 
 export const tripReducer = createReducer(
   initialState,
+  on(TripActions.setTrip, (state, { trip }) => ({
+    ...state,
+    ...trip,
+  })),
   on(TripActions.setActiveTripDay, (state, { tripDay }) => ({
     ...state,
     activeTripDay: tripDay,

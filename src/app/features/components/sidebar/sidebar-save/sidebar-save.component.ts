@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
@@ -13,23 +14,35 @@ import { ITrip } from '@/shared/ts/interfaces';
   standalone: true,
   imports: [FormsModule, FontAwesomeModule],
   templateUrl: './sidebar-save.component.html',
-  styleUrl: './sidebar-save.component.css'
+  styleUrl: './sidebar-save.component.css',
 })
 export class SidebarSaveComponent implements OnInit {
   private readonly store = inject(Store);
+  private router = inject(Router);
 
   trip$ = this.store.select(selectTrip);
   trip!: ITrip;
 
-  tripName = "";
+  tripName = '';
 
   faSave = faSave;
 
   ngOnInit(): void {
-    this.trip$.subscribe(data => this.trip = data)
+    this.trip$.subscribe((data) => (this.trip = data));
   }
 
   onChange(name: string) {
-    this.store.dispatch(setName({ name }))
+    this.store.dispatch(setName({ name }));
+  }
+
+  saveTripState() {
+    const serializedState = encodeURIComponent(JSON.stringify(this.trip));
+
+    this.router.navigate([], {
+      queryParams: {
+        state: serializedState,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }

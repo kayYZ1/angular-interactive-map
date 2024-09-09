@@ -3,8 +3,7 @@
   <input type="text" [placeholder]="trip.name" name="tripName" [ngModel]="tripName"
     (ngModelChange)="onChange(tripName = $event)" class="trip-name-input" maxlength="20" />
   <div class="trip-save-actions">
-    <button class="trip-save-btn" id="btn-first">Zapisz</button>
-    <button class="trip-save-btn">Zapisz link</button>
+    <button class="trip-save-btn" (click)="saveTripState()">Zapisz</button>
     <button class="trip-save-btn">Udostępnij</button>
   </div>
 </div>

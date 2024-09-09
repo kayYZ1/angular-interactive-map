@@ -1,6 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 
-import { IObject, ITripDay } from '@/shared/ts/interfaces';
+import { IObject, ITripDay, ITrip } from '@/shared/ts/interfaces';
+
+export const setTrip = createAction(
+  '[Trip] Set trip',
+  props<{ trip: ITrip }>()
+);
 
 export const setActiveTripDay = createAction(
   '[Trip] Set active trip day',
