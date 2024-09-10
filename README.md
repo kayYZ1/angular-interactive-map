@@ -3,18 +3,6 @@
 
 Opo Trip is a web application that allows users to plan and select single or multiple trips within the city of Opole. The project is built using Angular, providing a smooth and dynamic experience for creating, managing, and customizing trip itineraries. Users can explore points of interest, get trip suggestions, and manage their travel plans efficiently.
 
-### Tech stack
-- Angular
-- NgRx
-- HTML&CSS
-- Leaflet
-
-
-
-
-
-
-
 ## Features
 
 - Trip Planning: Create and plan trips by selecting multiple points of interest in Opole.
