@@ -21,6 +21,7 @@ import { Objects } from '@/core/data/objects';
 import { SearchFilterPipe } from '@/core/pipes/search-filter.pipe';
 import { Store } from '@ngrx/store';
 import { selectFilters } from '@/core/store/filters/filters.selectors';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -70,6 +71,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     disableClusteringAtZoom: 13,
     showCoverageOnHover: false,
   };
+
+  osrmUrl = environment.apiUrl;
 
   ngOnInit() {
     this.updateMarkers(this.objects);
@@ -176,7 +179,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.routingControl = Leaflet.Routing.control({
         waypoints: this.waypoints,
         router: Leaflet.Routing.osrmv1({
-          serviceUrl: `http://frog02.mikr.us:30159/route/v1`,
+          serviceUrl: `${this.osrmUrl}/route/v1`,
         }),
         fitSelectedRoutes: true,
         lineOptions: {

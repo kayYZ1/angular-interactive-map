@@ -42,3 +42,5 @@ testem.log
 Thumbs.db
 
 bun.lockb
+
+src/environments/environment.ts
